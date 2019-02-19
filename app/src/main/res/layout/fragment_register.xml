@@ -1,263 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:scrollbarAlwaysDrawVerticalTrack="true"
-    tools:context="com.jss.abhi.zealicon.fragments.RegisterFragment"
-    >
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_eventdetails"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="top"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:background="@color/colorPrimary"
         >
 
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:gravity="center"
-          android:text="Ticket to Relive"
-          android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-          style="@style/MyTextStyle_Toolbar_Heading"
-          />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:text="Register"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            style="@style/HeaderItemTextStyle"
+            />
 
     </android.support.v7.widget.Toolbar>
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="130dp"
+        android:src="@drawable/logo"
+        android:layout_marginTop="1dp"
+        android:layout_gravity="center_horizontal"/>
 
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      app:layout_constraintEnd_toEndOf="@id/toolbar_eventdetails"
-      app:layout_constraintStart_toStartOf="@id/toolbar_eventdetails"
-      app:layout_constraintTop_toBottomOf="@+id/toolbar_eventdetails"
-      >
 
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true"
-        />
-    <WebView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/webview_register"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:scrollbars="none">
+            <!--Scrollable content here-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        >
-    </WebView>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textColorHint="@color/base_color"
+                    app:hintTextAppearance="@style/MyHintText">
 
-  </RelativeLayout>
-  </LinearLayout>
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:visibility="gone"
-      android:orientation="vertical">
-  <android.support.design.widget.TextInputLayout
-      android:id="@+id/textInputLayout2"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="16dp"
-      android:backgroundTint="@android:color/black"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/appbar"
-      >
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/base_color"
+                        android:hint="FULL NAME"
+                        android:fontFamily="@font/delius"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:background="@drawable/custom_edit_text"/>
 
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/black"
-        android:ems="10"
-        android:fontFamily="@font/aref_ruqaa"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        android:typeface="sans"
-        />
-  </android.support.design.widget.TextInputLayout>
-     <android.support.design.widget.TextInputLayout
-         android:id="@+id/textInputLayout3"
-         android:layout_width="0dp"
-         android:layout_height="wrap_content"
-         android:layout_marginEnd="8dp"
-         android:layout_marginStart="8dp"
-         android:layout_marginTop="8dp"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-         >
+                </android.support.design.widget.TextInputLayout>
 
-         <android.support.design.widget.TextInputEditText
-             android:id="@+id/email"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:ems="10"
-             android:fontFamily="@font/aref_ruqaa"
-             android:hint="Email"
-             android:backgroundTint="@android:color/black"
-             android:inputType="textEmailAddress"
-             android:textSize="14sp"
-             android:typeface="sans"
-             />
-     </android.support.design.widget.TextInputLayout>
-  <android.support.design.widget.TextInputLayout
-      android:id="@+id/textInputLayout5"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
-      android:backgroundTint="@android:color/black"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
-      >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textColorHint="@color/base_color"
+                    app:hintTextAppearance="@style/MyHintText">
 
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/college"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/black"
-        android:ems="10"
-        android:fontFamily="@font/aref_ruqaa"
-        android:hint="College"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        android:typeface="sans"
-        />
-  </android.support.design.widget.TextInputLayout>
-  <android.support.design.widget.TextInputLayout
-      android:id="@+id/textInputLayout4"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
-      android:backgroundTint="@android:color/black"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textInputLayout5"
-      >
+                    <EditText
+                        android:id="@+id/college_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/base_color"
+                        android:hint="COLLEGE NAME"
+                        android:fontFamily="@font/delius"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:background="@drawable/custom_edit_text"/>
 
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/contact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/black"
-        android:ems="10"
-        android:fontFamily="@font/aref_ruqaa"
-        android:hint="Contact No"
-        android:inputType="phone"
-        android:textSize="14sp"
-        android:typeface="sans"
-        />
-  </android.support.design.widget.TextInputLayout>
-  <TextView
-      android:id="@+id/textView2"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="16dp"
-      android:layout_marginTop="8dp"
-      android:fontFamily="@font/aref_ruqaa"
-      android:text="Year"
-      android:textSize="18sp"
-      android:textStyle="bold"
-      android:typeface="sans"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
-      />
-  <TextView
-      android:id="@+id/textView3"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:fontFamily="@font/aref_ruqaa"
-      android:text="Branch"
-      android:textSize="18sp"
-      android:textStyle="bold"
-      android:typeface="sans"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
-      />
-  <TextView
-      android:id="@+id/textView4"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
-      android:fontFamily="@font/aref_ruqaa"
-      android:text="Course"
-      android:textAllCaps="false"
-      android:textSize="18sp"
-      android:textStyle="bold"
-      android:typeface="sans"
-      app:layout_constraintEnd_toStartOf="@+id/textView3"
-      app:layout_constraintStart_toEndOf="@+id/textView2"
-      app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
-      />
-  <Spinner
-      android:id="@+id/year"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textView2"
-      />
-  <Spinner
-      android:id="@+id/course"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
-      app:layout_constraintEnd_toStartOf="@+id/branch"
-      app:layout_constraintStart_toEndOf="@+id/year"
-      app:layout_constraintTop_toBottomOf="@+id/textView4"
-      />
-  <Spinner
-      android:id="@+id/branch"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textView3"
-      />
-   <Button
-       android:id="@+id/register"
-       android:layout_width="0dp"
-       android:layout_height="wrap_content"
-       android:layout_marginBottom="8dp"
-       android:layout_marginEnd="8dp"
-       android:layout_marginStart="8dp"
-       android:layout_marginTop="32dp"
-       android:background="?attr/colorPrimary"
-       android:fontFamily="@font/autour_one"
-       android:padding="@dimen/dp10"
-       android:text="Register"
-       android:textSize="24sp"
-       android:typeface="serif"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/year"
-       style="@style/Widget.AppCompat.Button"
-       />
-  </LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textColorHint="@color/base_color"
+                    app:hintTextAppearance="@style/MyHintText">
+
+                    <EditText
+                        android:id="@+id/course"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/base_color"
+                        android:hint="COURSE"
+                        android:fontFamily="@font/delius"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:background="@drawable/custom_edit_text"/>
+
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textColorHint="@color/base_color"
+                    app:hintTextAppearance="@style/MyHintText">
+
+
+                    <EditText
+                        android:id="@+id/branch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/base_color"
+                        android:hint="BRANCH"
+                        android:fontFamily="@font/delius"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:background="@drawable/custom_edit_text"/>
+
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textColorHint="@color/base_color"
+                    app:hintTextAppearance="@style/MyHintText">
+
+                    <EditText
+                        android:id="@+id/year"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/base_color"
+                        android:hint="YEAR"
+                        android:fontFamily="@font/delius"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:background="@drawable/custom_edit_text"/>
+
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textColorHint="@color/base_color"
+                    app:hintTextAppearance="@style/MyHintText">
+
+                    <EditText
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/base_color"
+                        android:hint="EMAIL ID"
+                        android:fontFamily="@font/delius"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:background="@drawable/custom_edit_text"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColorHint="@color/base_color"
+                    app:hintTextAppearance="@style/MyHintText">
+
+                    <EditText
+                        android:id="@+id/contact_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/base_color"
+                        android:hint="CONTACT NO."
+                        android:fontFamily="@font/delius"
+                        android:inputType="number"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:background="@drawable/custom_edit_text"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/register_button"
+                    android:shadowColor="@color/black_opaq"
+                    android:background="@drawable/button_press"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/delius"
+                    android:textStyle="bold"
+                    android:layout_marginTop="40dp"
+                    android:text="Register"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="30dp"
+                  />
+            </LinearLayout>
+
+
+
+        </ScrollView>
+
+</LinearLayout>

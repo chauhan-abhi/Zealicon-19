@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-permission-sdk-23 android:name="android.permission.CALL_PHONE" />
 
@@ -15,15 +15,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppThemeTransparentStatusBar">
         <activity
-            android:name="com.jss.abhi.zealicon.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="Zealicon18"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppThemeTransparentStatusBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.jss.abhi.zealicon.activities.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,21 +31,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.jss.abhi.zealicon.activities.ZealIDActivity" />
-        <activity android:name="com.jss.abhi.zealicon.activities.EventDetailsActivity" />
+        <activity android:name=".activities.ZealIDActivity" />
 
         <service
-            android:name="com.jss.abhi.zealicon.service.NotificationService"
-            android:exported="false" />
-
-        <service android:name="com.jss.abhi.zealicon.service.MyFirebaseMessagingService">
+            android:name=".service.NotificationService"
+            android:exported="false"></service>
+        <service android:name=".service.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service
-            android:name="com.jss.abhi.zealicon.service.MyFirebaseInstanceIDService"
+            android:name=".service.MyFirebaseInstanceIDService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -53,7 +50,11 @@
             </intent-filter>
         </service>
 
-        <receiver android:name="com.jss.abhi.zealicon.service.NotificationService$AlarmReceiver"/>
+        <receiver android:name=".service.NotificationService$AlarmReceiver" />
+
+        <activity android:name=".activities.EventDetailActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

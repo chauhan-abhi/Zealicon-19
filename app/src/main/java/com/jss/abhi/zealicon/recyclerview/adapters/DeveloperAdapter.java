@@ -1,25 +1,20 @@
 package com.jss.abhi.zealicon.recyclerview.adapters;
 
 
-import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.jss.abhi.zealicon.R;
-import com.jss.abhi.zealicon.activities.MainActivity;
 import com.jss.abhi.zealicon.model.Developer;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by abhi on 15/2/18.
@@ -34,7 +29,7 @@ public class DeveloperAdapter extends RecyclerView.Adapter<DeveloperAdapter.DevV
 
     private CircleImageView profileImg;
     private TextView name,position;
-    private FloatingActionButton gitFab;
+    private ImageView gitFab;
 
 
     public DevViewHolder(View itemView) {
@@ -43,7 +38,7 @@ public class DeveloperAdapter extends RecyclerView.Adapter<DeveloperAdapter.DevV
       profileImg = itemView.findViewById(R.id.devImageView);
       name = itemView.findViewById(R.id.nameTextView);
       position = itemView.findViewById(R.id.positionTextView);
-      gitFab = itemView.findViewById(R.id.floatingActionButton);
+      //gitFab = itemView.findViewById(R.id.floatingActionButton);
     }
   }
 
@@ -83,7 +78,7 @@ public class DeveloperAdapter extends RecyclerView.Adapter<DeveloperAdapter.DevV
     }
 
 
-    holder.gitFab.setOnClickListener(new View.OnClickListener() {
+   /* holder.gitFab.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View view) {
         Log.v("onClick Call Fab",""+developer.getMobNum());
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)
@@ -97,7 +92,7 @@ public class DeveloperAdapter extends RecyclerView.Adapter<DeveloperAdapter.DevV
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + developer.getMobNum()));
         context.startActivity(intent);
       }
-    });
+    });*/
 
   }
 

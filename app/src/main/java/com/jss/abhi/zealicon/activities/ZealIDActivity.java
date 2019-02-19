@@ -1,8 +1,9 @@
 package com.jss.abhi.zealicon.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
 import com.jss.abhi.zealicon.R;
 
 public class ZealIDActivity extends AppCompatActivity {

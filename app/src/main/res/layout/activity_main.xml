@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/homepage"
+    android:background="@color/colorPrimary"
     tools:context="com.jss.abhi.zealicon.activities.MainActivity">
 
     <FrameLayout
@@ -31,10 +31,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:itemIconTint="@color/app_white"
-        app:itemTextColor="@color/app_white"
-        android:backgroundTint="@color/trans"
-        android:background="@color/trans"
+        app:itemIconTint="@color/bottom_navigation_icon_color_selector"
+        app:itemTextColor="@color/bottom_navigation_icon_color_selector"
+        android:background="@color/colorPrimary"
         app:menu="@menu/bottom_navigation_items"/>
 
    <!-- app:elevation="16dp"-->
