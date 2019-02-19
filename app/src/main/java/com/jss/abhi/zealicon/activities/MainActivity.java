@@ -30,14 +30,14 @@ import com.jss.abhi.zealicon.fragments.ScheduleFragment;
 import java.lang.reflect.Field;
 
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
-    private String TAG="Main Activity";
+    private String TAG = "Main Activity";
 
-    private int POS_CURRENT=-1;
+    private int POS_CURRENT = -1;
     ConstraintLayout activityMain;
     private BottomNavigationView mBottomNav;
-    private Fragment selectedFragment=null;
+    private Fragment selectedFragment = null;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity  {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
 // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimary));
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
-        activityMain=findViewById(R.id.activity_main);
+        activityMain = findViewById(R.id.activity_main);
         /*Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 */
@@ -65,16 +65,15 @@ public class MainActivity extends AppCompatActivity  {
 
     }
 
-    private void showFragment(Fragment fragment,int position) {
+    private void showFragment(Fragment fragment, int position) {
         //Fragment current= getFragmentManager().findFragmentById(R.id.frame_layout);
-        if(POS_CURRENT!=position){
-            POS_CURRENT=position;
+        if (POS_CURRENT != position) {
+            POS_CURRENT = position;
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_layout, fragment)
                     .commit();
-        }
-        else
-            Log.v(TAG,"same fragment selected");
+        } else
+            Log.v(TAG, "same fragment selected");
     }
 
 
@@ -85,42 +84,42 @@ public class MainActivity extends AppCompatActivity  {
 
 
     /**
-     * Bottom Navoigation Implementation
+     * Bottom Navigation Implementation
      */
-    public void initBottomNavigation(){
-        mBottomNav=findViewById(R.id.bottom_navigation);
+    public void initBottomNavigation() {
+        mBottomNav = findViewById(R.id.bottom_navigation);
         mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 //Fragment selectedFragment=null;
-                int position=0;
-                switch (item.getItemId()){
+                int position = 0;
+                switch (item.getItemId()) {
                     case R.id.home:
-                        position=0;
-                        selectedFragment= HomeFragment.newInstance();
-                        activityMain.setBackgroundResource(R.drawable.background);
-                        Log.v(TAG,"Home Fragment Selected");
+                        position = 0;
+                        selectedFragment = HomeFragment.newInstance();
+                        //activityMain.setBackgroundResource(R.drawable.background);
+                        Log.v(TAG, "Home Fragment Selected");
                         break;
                     case R.id.info:
-                        position=3;
-                        selectedFragment= InfoFragment.newInstance();
-                        activityMain.setBackgroundResource(R.drawable.background);
-                        Log.v(TAG,"Info Fragment Selected");
+                        position = 3;
+                        selectedFragment = InfoFragment.newInstance();
+                        //activityMain.setBackgroundResource(R.drawable.background);
+                        Log.v(TAG, "Info Fragment Selected");
                         break;
                     case R.id.schedule:
-                        position=1;
-                        activityMain.setBackgroundResource(R.drawable.background);
-                        selectedFragment= ScheduleFragment.newInstance();
-                        Log.v(TAG,"Schedule Fragment Selected");
+                        position = 1;
+                        //activityMain.setBackgroundResource(R.drawable.background);
+                        selectedFragment = ScheduleFragment.newInstance();
+                        Log.v(TAG, "Schedule Fragment Selected");
                         break;
                     case R.id.register:
-                        position=2;
-                        selectedFragment= RegisterFragment.newInstance();
-                        activityMain.setBackgroundResource(R.drawable. background);
-                        Log.v(TAG,"Register Fragment Selected");
+                        position = 2;
+                        selectedFragment = RegisterFragment.newInstance();
+                        //activityMain.setBackgroundResource(R.drawable.background);
+                        Log.v(TAG, "Register Fragment Selected");
                         break;
                 }
-                showFragment(selectedFragment,position);
+                showFragment(selectedFragment, position);
                 /*FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 //transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.commit();
@@ -133,14 +132,13 @@ public class MainActivity extends AppCompatActivity  {
         transaction.replace(R.id.frame_layout, HomeFragment
                 .newInstance());
         transaction.commit();*/
-        showFragment(HomeFragment.newInstance(),0);
+        showFragment(HomeFragment.newInstance(), 0);
         disableShiftingModeOfBottomNavigationView(mBottomNav);
     }
 
     /**
-     *  This method disables Shifting of bottom nav items in the bottom
-     *  nav bar.
-     *
+     * This method disables Shifting of bottom nav items in the bottom
+     * nav bar.
      */
 
     @SuppressLint("RestrictedApi")

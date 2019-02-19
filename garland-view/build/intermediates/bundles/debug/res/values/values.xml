@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GarlandView"><attr format="dimension" name="itemStart"/><attr format="dimension" name="itemGap"/></declare-styleable>
+    <item name="tail_header_tag" type="id"/>
+    <string name="app_name">garland-view</string>
+</resources>
