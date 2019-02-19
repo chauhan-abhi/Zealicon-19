@@ -154,4 +154,15 @@ public class InnerData implements Serializable{
         this.event_location = event_location;
         this.event_date = event_date;
     }
+
+    public InnerData (String event_name){
+        this.event_name = event_name;
+    }
+
+    public InnerData(String event_name, int event_time, String event_location) {
+        this.event_name = event_name;
+        this.event_time = event_time;
+        this.event_location = event_location;
+    }
+
 }

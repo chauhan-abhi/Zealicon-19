@@ -5,20 +5,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.activities.MainActivity;
 import com.jss.abhi.zealicon.model.Developer;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by abhi on 19/2/18.
@@ -33,7 +35,8 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
     private CircleImageView profileImg;
     private TextView name,position;
-    private FloatingActionButton callFab;
+    private ImageView callImageview
+            ;
 
     public TeamViewHolder(View itemView) {
       super(itemView);
@@ -41,7 +44,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
       profileImg = itemView.findViewById(R.id.teamImageView);
       name = itemView.findViewById(R.id.memberName);
       position = itemView.findViewById(R.id.memberPosition);
-      callFab = itemView.findViewById(R.id.call);
+      callImageview = itemView.findViewById(R.id.call);
     }
   }
 
@@ -103,7 +106,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
       holder.profileImg.setImageResource(R.drawable.aavatar);
     }
 
-    holder.callFab.setOnClickListener(new View.OnClickListener() {
+    holder.callImageview.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View view) {
         Log.v("onClick Call Fab",""+team.getMobNum());
           if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)

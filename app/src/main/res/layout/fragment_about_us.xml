@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,6 +16,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/delius"
             android:padding="10dp"
+            android:textColor="@color/gray_shade_9"
             android:text="@string/about_effe"
             android:textSize="18sp" />
 

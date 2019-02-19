@@ -1,7 +1,5 @@
 package com.jss.abhi.zealicon.fragments;
 
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,28 +8,26 @@ import android.view.ViewGroup;
 
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.model.InnerData;
-import com.jss.abhi.zealicon.recyclerview.adapters.OuterAdapter;
-import com.jss.abhi.zealicon.utils.Jsonparser;
-import com.ramotion.garlandview.TailLayoutManager;
-import com.ramotion.garlandview.TailRecyclerView;
-import com.ramotion.garlandview.TailSnapHelper;
-import com.ramotion.garlandview.header.HeaderTransformer;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.io.BufferedReader;
-import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
+import github.chenupt.multiplemodel.viewpager.PagerModelManager;
+import github.chenupt.springindicator.SpringIndicator;
+import github.chenupt.springindicator.viewpager.ScrollerViewPager;
 
 
 public class ScheduleFragment extends Fragment {
 
-    private final static int OUTER_COUNT = 4;
-    private final static int INNER_COUNT = 4;
-    List<List<InnerData>> outerData = new ArrayList<>();
-    public TailRecyclerView rv;
+    ArrayList<ArrayList> eventScheduleArrayListAl;
+    ArrayList<InnerData> day1ScheduleArrayList;
+    ArrayList<InnerData> day2ScheduleArrayList;
+    ArrayList<InnerData> day3ScheduleArrayList;
+    ArrayList<InnerData> day4ScheduleArrayList;
+
+
 
     public static Fragment newInstance() {
         ScheduleFragment fragment = new ScheduleFragment();
@@ -41,33 +37,101 @@ public class ScheduleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initScheduleData();
+
+    }
+
+    public void initScheduleData(){
+        day1ScheduleArrayList = new ArrayList<>();
+        day2ScheduleArrayList = new ArrayList<>();
+        day3ScheduleArrayList = new ArrayList<>();
+        day4ScheduleArrayList = new ArrayList<>();
+
+        day1ScheduleArrayList.add(new InnerData("Code in Pair"));
+        day1ScheduleArrayList.add(new InnerData("Code in less"));
+        day1ScheduleArrayList.add(new InnerData("Technovision"));
+        day1ScheduleArrayList.add(new InnerData("Web-O-Cart"));
+        day1ScheduleArrayList.add(new InnerData("Logocon"));
+        day1ScheduleArrayList.add(new InnerData("Codeaggedon"));
+        day1ScheduleArrayList.add(new InnerData("Coding is Divertido"));
+
+        day2ScheduleArrayList.add(new InnerData("Code in Pair"));
+        day2ScheduleArrayList.add(new InnerData("Code in less"));
+        day2ScheduleArrayList.add(new InnerData("Technovision"));
+        day2ScheduleArrayList.add(new InnerData("Web-O-Cart"));
+        day2ScheduleArrayList.add(new InnerData("Logocon"));
+        day2ScheduleArrayList.add(new InnerData("Codeaggedon"));
+        day2ScheduleArrayList.add(new InnerData("Coding is Divertido"));
+
+        day3ScheduleArrayList.add(new InnerData("Code in Pair"));
+        day3ScheduleArrayList.add(new InnerData("Code in less"));
+        day3ScheduleArrayList.add(new InnerData("Technovision"));
+        day3ScheduleArrayList.add(new InnerData("Web-O-Cart"));
+        day3ScheduleArrayList.add(new InnerData("Logocon"));
+        day3ScheduleArrayList.add(new InnerData("Codeaggedon"));
+        day3ScheduleArrayList.add(new InnerData("Coding is Divertido"));
+
+        day4ScheduleArrayList.add(new InnerData("Code in Pair"));
+        day4ScheduleArrayList.add(new InnerData("Code in less"));
+        day4ScheduleArrayList.add(new InnerData("Technovision"));
+        day4ScheduleArrayList.add(new InnerData("Web-O-Cart"));
+        day4ScheduleArrayList.add(new InnerData("Logocon"));
+        day4ScheduleArrayList.add(new InnerData("Codeaggedon"));
+        day4ScheduleArrayList.add(new InnerData("Coding is Divertido"));
+
+
+
+
 
 
     }
+    private ScrollerViewPager viewPager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
-        rv = view.findViewById(R.id.daysRecyclerView);
-        /*ParsingEvents parsingEvents=new ParsingEvents();
-        parsingEvents.execute();*/
-        parseJSON();
-        initRecyclerView(outerData);
+        /*rv = view.findViewById(R.id.daysRecyclerView);*/
+        //parseJSON();
+        //initRecyclerView(outerData);
+        viewPager = (ScrollerViewPager) view.findViewById(R.id.view_pager);
+        SpringIndicator springIndicator = (SpringIndicator) view.findViewById(R.id.indicator) ;
+        PagerModelManager manager = new PagerModelManager();
+        manager.addCommonFragment(EventScheduleFragment.class, getEventScheduleArrayList(), getTitles());
+        ModelPagerAdapter adapter = new ModelPagerAdapter(getFragmentManager(), manager);
+        viewPager.setAdapter(adapter);
+        viewPager.fixScrollSpeed();
+
+        // just set viewPager
+        springIndicator.setViewPager(viewPager);
 
         return view;
     }
 
-
-
-    private void initRecyclerView(List<List<InnerData>> data) {
-        ((TailLayoutManager)rv.getLayoutManager()).setPageTransformer(new HeaderTransformer());
-        rv.setAdapter(new OuterAdapter(data));
-        new TailSnapHelper().attachToRecyclerView(rv);
+    private List<String> getTitles(){
+        return Arrays.asList("Day 1", "Day 2", "Day 3", "Day 4");
     }
 
-    void parseJSON() {
+    private List<ArrayList> getEventScheduleArrayList(){
+        eventScheduleArrayListAl = new ArrayList<>();
+        eventScheduleArrayListAl.add(day1ScheduleArrayList);
+        eventScheduleArrayListAl.add(day2ScheduleArrayList);
+        eventScheduleArrayListAl.add(day3ScheduleArrayList);
+        eventScheduleArrayListAl.add(day4ScheduleArrayList);
+
+        return eventScheduleArrayListAl;
+
+    }
+
+
+    /*private void initRecyclerView(List<List<InnerData>> data) {
+        ((RecyclerView.LayoutManager)rv.getLayoutManager()).setPageTransformer(new HeaderTransformer());
+        rv.setAdapter(new OuterAdapter(data));
+        new TailSnapHelper().attachToRecyclerView(rv);
+    }*/
+
+   /* void parseJSON() {
         SharedPreferences s = getContext().getSharedPreferences("events", 0);
         String day1array = s.getString(getString(R.string.day1events), getString(R.string.default_str));
         String day2array = s.getString(getString(R.string.day2events), getString(R.string.default_str));
@@ -182,5 +246,5 @@ public class ScheduleFragment extends Fragment {
         @Override
         protected void onPostExecute(final String success) {
         }
-    }
+    }*/
 }

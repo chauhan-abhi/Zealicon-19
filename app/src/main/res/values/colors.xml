@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#404040</color>
-    <color name="colorPrimaryDark">#228B22</color>
-    <color name="colorAccent">#c2c9f7</color>
+    <color name="colorPrimary">#0F2027</color>
+    <color name="colorPrimaryDark">#0F2027</color>
+    <color name="colorAccent">#FFA000</color>
 
     <color name="skycolor">#8E24AA</color>
 
@@ -18,5 +18,35 @@
     <color name="app_white">#fefefe</color>
 
     <color name="header_green">#b3d577</color>
+
+    <color name="gray_shade_0">#ECEFF1</color>
+    <color name="gray_shade_1">#cfd8dc</color>
+    <color name="gray_shade_2">#b0bec5</color>
+    <color name="gray_shade_3">#90A4AE</color>
+    <color name="gray_shade_4">#78909C</color>
+    <color name="gray_shade_5">#607D8B</color>
+    <color name="gray_shade_6">#546E7A</color>
+    <color name="gray_shade_7">#455A64</color>
+
+    <color name="gray_shade_8">#37474f</color>
+    <color name="gray_shade_9">#263238</color>
+
+    <color name="black_overlay">#66000000</color>
+
+
+    <color name="indicator_1">#AEEECB</color>
+    <color name="indicator_2">#EFDBCD</color>
+    <color name="indicator_3">#F3E097</color>
+    <color name="indicator_4">#AFD8CA</color>
+    <color name="base_color">#f9bd18</color>
+
+    <!--<color name="indicator_1">#696763</color>
+    <color name="indicator_2">#696763</color>
+    <color name="indicator_3">#696763</color>
+    <color name="indicator_4">#696763</color>-->
+
+    <color name="InactiveBottomNavIconColor">#000000</color>
+
+
 
 </resources>

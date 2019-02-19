@@ -2,7 +2,6 @@ package com.jss.abhi.zealicon.fragments;
 
 
 import android.os.Bundle;
-//import android.app.Fragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +12,10 @@ import android.view.ViewGroup;
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.model.Developer;
 import com.jss.abhi.zealicon.recyclerview.adapters.SponsorAdapter;
+
 import java.util.ArrayList;
+
+//import android.app.Fragment;
 
 public class SponsorsFragment extends Fragment {
 
