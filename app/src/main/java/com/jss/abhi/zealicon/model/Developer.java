@@ -13,20 +13,20 @@ public class Developer {
   private String imgurl;
   private String position;
   /*********This field is contact no for team and github url for developer************/
-  private String mobNum;
+  private String gitUrl;
 
   //Constructor for Developer and Team members
-  public Developer(String name, String imgurl, String position, String mobNum) {
+  public Developer(String name, String imgurl, String position, String gitUrl) {
     this.name = name;
     this.imgurl = imgurl;
     this.position = position;
-    this.mobNum = mobNum;
+    this.gitUrl = gitUrl;
   }
 
   //Constructor for sponsors
-  public Developer(String sponsorName,String imgurl,String category){
+  public Developer(String sponsorName,String giturl,String category){
     this.name = sponsorName;
-    this.imgurl = imgurl;
+    this.gitUrl = giturl;
     this.position = category;
   }
 
@@ -42,8 +42,8 @@ public class Developer {
     return imgurl;
   }
 
-  public void setImgurl(String imgurl) {
-    this.imgurl = imgurl;
+  public void setGitUrl(String giturl) {
+    this.gitUrl = gitUrl;
   }
 
   public String getPosition() {
@@ -55,12 +55,13 @@ public class Developer {
   }
 
   public String getMobNum() {
-    return mobNum;
+    return gitUrl;
   }
 
-  public void setMobNum(String mobNum) {
-    this.mobNum = mobNum;
+  public String getGitUrl() {
+    return gitUrl;
   }
+
 
 
 

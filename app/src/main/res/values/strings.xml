@@ -44,18 +44,10 @@
         <item>MBA</item>
     </string-array>
 
-    <string name="about_effe">Pokemon at 5, and then Beyblade at 5.30. Tom and Jerry, Looney tunes, Scooby Doo, Shaktiman…. That’s so Raven...Video games..\n
-    Do you yearn to live and bring all those times back ?\n
-    If the answer is Yes...then we are back with our Zeal… are you ?\n
-    JSS Academy of Technical Education, Noida presents to you the most enthusiastic annual
-    Techno-Cultural fest in NCR- the “Zealicon”, turning 10 with the 90’s nostalgia.
-    This time with a different aura and touchstone but an antiquated journey down to one’s
-    memory lane.\n
-    Join us on this nostalgic journey from 14th March 2018 - 17th March 2018 with opportunity
-    to be a part of some airing and zestful events. Promising, loads of fun, prizes and
-    exposure to make this fest Bigger this time!\n
-    Further details will be disclosed soon. Keep visiting this page to stay updated on your journey in ZEALICON'18.
-> </string>
+    <string name="about_zealicon">Zealicon is the annual techno-cultural festival of JSSATE, Noida. Dedicated to the celebration of creativity and science, it is a stimulating event brimming with youthful dynamism. It transforms the campus into a veritable kaleidoscope of people. Involving multifarious exciting events from technical scratch to cultural zeal. A platform for all the creative minds to express their ideas in the form of events including band performances, discussions, film screenings that are spread over four days. Apart from the exuberant cultural events, Zealicon is also known for its mind boggling technical events that creates an ambience for the technocrats.
+
+Zealicon 2019 will cover the aspects of hysterical face of literature along with popular arts, science and technology. This edition of Zealicon promises all the trademarks of the earlier versions. A plethora of events where academicians will vouch out their intellect and artists will showcase the best of art. Projecting the fictitious gesture onto the real world, Zealicon will act as a connecting link between the fantasy and reality. Creating an aura of avidity and togetherness, We hope that Zealicon 2019 will turn out to be a memorable experience for you!
+ </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
