@@ -70,6 +70,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home, container, false);
         upcomingRecyclerView = view.findViewById(R.id.upcomingRecyclerView);
+        upcomingRecyclerView.setNestedScrollingEnabled(false);
         upcomingRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         upcomingRecyclerView.setAdapter(new UpcomingEventAdapter(upcomingEventArrayList));
 

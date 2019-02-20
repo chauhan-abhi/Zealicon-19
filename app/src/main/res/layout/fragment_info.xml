@@ -1,42 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:theme="@style/AppTheme.AppBarOverlay"
-        android:id="@+id/app_bar"
-        android:background="@color/colorPrimary">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_eventdetails"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="top"
-            android:paddingBottom="5dp"
-            android:paddingTop="15dp"
             android:background="@color/colorPrimary"
-            >
+            android:paddingTop="15dp"
+            android:paddingBottom="5dp">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:text="Info"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                 style="@style/HeaderItemTextStyle"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="Info"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
         </android.support.v7.widget.Toolbar>
+
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
