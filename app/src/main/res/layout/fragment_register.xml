@@ -74,14 +74,14 @@
                     android:textColorHint="@color/base_color"
                     app:hintTextAppearance="@style/MyHintText">
 
-                    <EditText
+                    <AutoCompleteTextView
                         android:id="@+id/college_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/base_color"
+                        android:autofillHints="@string/jss"
                         android:hint="COLLEGE NAME"
                         android:fontFamily="@font/delius"
-                        android:text="@string/jss"
                         android:inputType="text"
                         android:textColor="@color/colorPrimary"
                         android:textSize="20sp"

@@ -29,21 +29,28 @@
         <item>4</item>
     </string-array>
 
+    <!--Array values for autocomplete suggestion of college-->
+    <string-array name="list_of_colleges">
+        <item>JSS Academy of Technical Education [JSSATE], Noida</item>
+    </string-array>
+
     <string-array name="branch">
         <item>CSE</item>
         <item>IT</item>
-        <item>ME</item>
-        <item>EC</item>
         <item>EE</item>
-        <item>Civil</item>
+        <item>ECE</item>
+        <item>CE</item>
         <item>IC</item>
+        <item>ME</item>
         <item>EEE</item>
     </string-array>
 
     <string-array name="course">
-        <item>B-Tech</item>
+        <item>B.Tech</item>
         <item>MCA</item>
         <item>MBA</item>
+        <item>M.Tech</item>
+        <item>OTHERS</item>
     </string-array>
 
     <string name="about_zealicon">Zealicon is the annual techno-cultural festival of JSSATE, Noida. Dedicated to the celebration of creativity and science, it is a stimulating event brimming with youthful dynamism. It transforms the campus into a veritable kaleidoscope of people. Involving multifarious exciting events from technical scratch to cultural zeal. A platform for all the creative minds to express their ideas in the form of events including band performances, discussions, film screenings that are spread over four days. Apart from the exuberant cultural events, Zealicon is also known for its mind boggling technical events that creates an ambience for the technocrats.

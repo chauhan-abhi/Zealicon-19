@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -21,8 +22,9 @@ import static android.util.Patterns.PHONE;
 
 public class RegisterFragment extends Fragment {
 
-    private EditText nameView, emailView, collegeView, contactView;
-    Spinner branchView, yearView, courseView;
+    private EditText nameView, emailView, contactView;
+    private AutoCompleteTextView collegeView;
+    private Spinner branchView, yearView, courseView;
     private Button register;
 
     private String name, email, college, contact, year, branch, course, token_id;
@@ -46,13 +48,18 @@ public class RegisterFragment extends Fragment {
 
         nameView = (EditText) view.findViewById(R.id.name);
         emailView = (EditText) view.findViewById(R.id.email);
-        collegeView = (EditText) view.findViewById(R.id.college_name);
+        collegeView = (AutoCompleteTextView) view.findViewById(R.id.college_name);
         contactView = (EditText) view.findViewById(R.id.contact_no);
         yearView = (Spinner) view.findViewById(R.id.year);
         courseView = (Spinner) view.findViewById(R.id.course);
         branchView = (Spinner) view.findViewById(R.id.branch);
 
         register = (Button) view.findViewById(R.id.register_button);
+
+        String[] colleges = getResources().getStringArray(R.array.list_of_colleges);
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, colleges);
+        collegeView.setAdapter(adapter);
 
         ArrayAdapter<CharSequence> branchAdapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.branch, R.layout.spinner_item);
