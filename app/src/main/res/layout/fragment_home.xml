@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background"
+    android:background="@drawable/background_19"
     android:overScrollMode="never">
 
 
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/autour_one"
             android:padding="8dp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:text="Bookmarks"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -65,7 +65,7 @@
             android:padding="8dp"
             android:layout_marginBottom="4dp"
             android:text="Upcoming"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
 

@@ -16,10 +16,6 @@ import com.jss.abhi.zealicon.recyclerview.adapters.EventScheduleAdapter;
 
 import java.util.ArrayList;
 
-/**
- * Created by chenupt@gmail.com on 2015/1/31.
- * Description TODO
- */
 public class EventScheduleFragment extends Fragment{
 
     private ArrayList<? extends InnerData> eventScheduleArrayList;
