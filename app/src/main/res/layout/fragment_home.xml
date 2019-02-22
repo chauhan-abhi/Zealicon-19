@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:reverseLayout="true"
+            app:reverseLayout="false"
             android:layoutAnimation="@anim/layout_animation_slide_from_right"
             android:overScrollMode="never">
         </android.support.v7.widget.RecyclerView>

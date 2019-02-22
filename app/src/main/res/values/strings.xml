@@ -15,9 +15,11 @@
     <string name="your_id">Your Zealicon Id is</string>
     <string name="rules">Note: You need this registration id and pay \nregistration amount at the registration desk \nNon-JSS Students need to bring their College-Ids and passport size photographs</string>
 
-    <!-- Event Detail Page -->
-    <string name="going">Going</string>
-    <string name="interested">Interested</string>
+    <!--register page -->
+    <string name="jss">JSS Academy of Technical Education [JSSATE], Noida</string>
+    <string name="branch">CHOOSE BRANCH</string>
+    <string name="year">CHOOSE YEAR</string>
+    <string name="course">CHOOSE COURSE</string>
 
     <!-- Array values for register -->
     <string-array name="year">

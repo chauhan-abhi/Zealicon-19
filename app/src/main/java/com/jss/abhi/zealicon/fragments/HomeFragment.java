@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
         upcomingRecyclerView.setAdapter(new UpcomingEventAdapter(upcomingEventArrayList));
 
         bookmarksRecyclerView = view.findViewById(R.id.bookmarksRecyclerView);
-        bookmarksRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
+        bookmarksRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         bookmarksRecyclerView.setAdapter(new BookmarksEventAdapter(bookmarkEventArrayList));
         return view;
     }

@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/delius"
             android:padding="10dp"
+            android:textAlignment="center"
             android:textColor="@color/gray_shade_9"
             android:text="@string/about_zealicon"
             android:textSize="18sp" />

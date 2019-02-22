@@ -7,8 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.jss.abhi.zealicon.R;
@@ -19,7 +21,8 @@ import static android.util.Patterns.PHONE;
 
 public class RegisterFragment extends Fragment {
 
-    private EditText nameView, emailView, collegeView, contactView, branchView, yearView, courseView;
+    private EditText nameView, emailView, collegeView, contactView;
+    Spinner branchView, yearView, courseView;
     private Button register;
 
     private String name, email, college, contact, year, branch, course, token_id;
@@ -45,12 +48,23 @@ public class RegisterFragment extends Fragment {
         emailView = (EditText) view.findViewById(R.id.email);
         collegeView = (EditText) view.findViewById(R.id.college_name);
         contactView = (EditText) view.findViewById(R.id.contact_no);
-        register = (Button) view.findViewById(R.id.register);
-        courseView = (EditText) view.findViewById(R.id.course);
-        branchView = (EditText) view.findViewById(R.id.branch);
-        yearView = (EditText) view.findViewById(R.id.year);
+        yearView = (Spinner) view.findViewById(R.id.year);
+        courseView = (Spinner) view.findViewById(R.id.course);
+        branchView = (Spinner) view.findViewById(R.id.branch);
 
         register = (Button) view.findViewById(R.id.register_button);
+
+        ArrayAdapter<CharSequence> branchAdapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.branch, R.layout.spinner_item);
+        branchView.setAdapter(branchAdapter);
+
+        ArrayAdapter<CharSequence> courseAdapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.course, R.layout.spinner_item);
+        courseView.setAdapter(courseAdapter);
+
+        ArrayAdapter<CharSequence> yearAdapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.year, R.layout.spinner_item);
+        yearView.setAdapter(yearAdapter);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,9 +74,9 @@ public class RegisterFragment extends Fragment {
                 email = emailView.getText().toString();
                 college = collegeView.getText().toString();
                 contact = contactView.getText().toString();
-                course = courseView.getText().toString();
-                branch = branchView.getText().toString();
-                year = yearView.getText().toString();
+                course = courseView.getSelectedItem().toString();
+                branch = branchView.getSelectedItem().toString();
+                year = yearView.getSelectedItem().toString();
 
                 Log.v("Register Fragment", name + email + contact + year + branch);
                 if (name.equals("") || email.equals("") || college.equals("") || contact.equals("") || course.equals("") || branch.equals("") || year.equals(""))
