@@ -17,7 +17,7 @@
         android:layout_marginTop="5dp"
         android:text="Event Name"
         android:textSize="22sp"
-        android:textColor="@color/gray_shade_9"
+        android:textColor="@color/app_white"
         android:textStyle="bold"
         android:fontFamily="@font/delius"
         app:autoSizeTextType="uniform"/>
@@ -35,7 +35,7 @@
             android:text="AB1 Labs"
             android:textSize="16sp"
             android:fontFamily="@font/comfortaa_light"
-            android:textColor="@color/gray_shade_7"/>
+            android:textColor="@color/app_white"/>
         <TextView
             android:id="@+id/timeTextView"
             android:layout_width="0dp"
@@ -43,7 +43,7 @@
             android:textSize="16sp"
             android:layout_weight="1"
             android:text="10:00 AM"
-            android:textColor="@color/gray_shade_7"
+            android:textColor="@color/app_white"
             android:fontFamily="@font/comfortaa_light" />
 
         <android.support.v4.widget.Space
@@ -61,7 +61,7 @@
     <View
         android:layout_width="235dp"
         android:layout_height="1dp"
-        android:background="@color/gray_shade_2"
+        android:background="@color/app_white"
         android:layout_gravity="bottom|center_horizontal"/>
 
 

@@ -16,9 +16,6 @@ import com.jss.abhi.zealicon.recyclerview.adapters.UpcomingEventAdapter;
 
 import java.util.ArrayList;
 
-//import android.app.Fragment;
-
-
 public class HomeFragment extends Fragment {
 
     RecyclerView upcomingRecyclerView;
@@ -79,10 +76,4 @@ public class HomeFragment extends Fragment {
         bookmarksRecyclerView.setAdapter(new BookmarksEventAdapter(bookmarkEventArrayList));
         return view;
     }
-
-
-
-
-
-
 }

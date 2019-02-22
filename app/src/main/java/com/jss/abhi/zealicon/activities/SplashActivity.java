@@ -31,132 +31,142 @@ import java.util.Date;
 
 public class SplashActivity extends AppCompatActivity {
 
-  private static int SPLASH_TIME_OUT = 2000;
+    private static int SPLASH_TIME_OUT = 2000;
 
-  boolean openHome=false;
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_splash);
-    AppPreferences appPreferences = new AppPreferences(getApplicationContext());
-    if(appPreferences.getInt("firsttime",0)==0){
-      requestjson();
-    }
-    else {
-      Intent i = new Intent(getApplicationContext(),MainActivity.class);
-      startActivity(i);
-    }
-  }
+    boolean openHome = false;
 
-  private void requestjson() {
-    final String backofficeUrl = "http://backoffice.zealicon.in/events";
-    final RequestQueue requestQueue = Volley.newRequestQueue(this);
-    final StringRequest eventRequest = new StringRequest(Request.Method.GET, backofficeUrl,
-            new Response.Listener<String>() {
-              @Override
-              public void onResponse(String response) {
-
-                Log.v("MyApp", response);
-                if(!response.toString().equals("[]") || !response.equals("")) {
-                  SharedPreferences s = getSharedPreferences("events", 0);
-                  s.edit().putString("allevents", response).apply();
-                  intializeSchedule();
-                  SharedPreferences sf = getSharedPreferences("firsttime", 0);
-                  sf.edit().putInt("first", 1).apply();
-                }
-                if(!openHome) {
-                  openHome=true;
-                  Intent in = new Intent(getApplicationContext(), MainActivity.class);
-                  startActivity(in);
-                  finish();
-                }
-
-              }
-            },
-            new Response.ErrorListener() {
-              @Override
-              public void onErrorResponse(VolleyError error) {
-                //You can handle error here if you want
-                Log.v("MyApp",error.toString());
-                Toast.makeText(SplashActivity.this, "No Connectivity", Toast.LENGTH_LONG).show();
-              }
-            });
-
-    requestQueue.add(eventRequest);
-    int socketTimeout = 2000;//20 seconds - change to what you want
-    RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-    eventRequest.setRetryPolicy(policy);
-    //final RequestQueue requestQueue = Volley.newRequestQueue(this);
-    new Handler().postDelayed(new Runnable() {
-      @Override public void run() {
-        if(!openHome) {
-          openHome=true;
-          Intent in = new Intent(getApplicationContext(), MainActivity.class);
-          startActivity(in);
-          finish();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
+        AppPreferences appPreferences = new AppPreferences(getApplicationContext());
+        if (appPreferences.getInt("firsttime", 0) == 0) {
+            requestjson();
+        } else {
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
         }
-        //finish();
-      }
-    },SPLASH_TIME_OUT);
-  }
+    }
 
-  void intializeSchedule(){
-    SharedPreferences s=getSharedPreferences("events",0);
-    String events=s.getString("allevents","[]");
-    JSONArray eventsArray,day1Array,day2Array,day3Array,day4Array;
-    day1Array=new JSONArray();
-    day2Array=new JSONArray();
-    day3Array=new JSONArray();
-    day4Array=new JSONArray();
-    try {
-      eventsArray = new JSONArray(events);
-      for (int i = 0; i < eventsArray.length(); i++) {
-        JSONObject eventObject = eventsArray.getJSONObject(i);
-        String timing = eventObject.getString("timing");
+    private void requestjson() {
+        final String backofficeUrl = "http://backoffice.zealicon.in/api/event";
+        final RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final StringRequest eventRequest = new StringRequest(Request.Method.GET, backofficeUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date date = null; // You will need try/catch around this
+                        Log.v("MyApp", response);
+                        if (!response.toString().equals("[]") || !response.equals("")) {
+                            try {
+                                JSONObject resp = new JSONObject(response);
+                                if (resp.getBoolean("success")) {
+                                    JSONArray eventsarray = resp.getJSONArray("data");
+                                    SharedPreferences s = getSharedPreferences("events", 0);
+                                    s.edit().putString("allevents", eventsarray.toString()).apply();
+                                    intializeSchedule();
+                                    SharedPreferences sf = getSharedPreferences("firsttime", 0);
+                                    sf.edit().putInt("first", 1).apply();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                        if (!openHome) {
+                            openHome = true;
+                            Intent in = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(in);
+                            finish();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //You can handle error here if you want
+                        Log.v("MyApp", error.toString());
+                        Toast.makeText(SplashActivity.this, "No Connectivity", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        requestQueue.add(eventRequest);
+        int socketTimeout = 2000;//20 seconds - change to what you want
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        eventRequest.setRetryPolicy(policy);
+        //final RequestQueue requestQueue = Volley.newRequestQueue(this);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!openHome) {
+                    openHome = true;
+                    Intent in = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(in);
+                    finish();
+                }
+                //finish();
+            }
+        }, SPLASH_TIME_OUT);
+    }
+
+    void intializeSchedule() {
+        SharedPreferences s = getSharedPreferences("events", 0);
+        String events = s.getString("allevents", "[]");
+        JSONArray eventsArray, day1Array, day2Array, day3Array, day4Array;
+        day1Array = new JSONArray();
+        day2Array = new JSONArray();
+        day3Array = new JSONArray();
+        day4Array = new JSONArray();
         try {
-          date = formatter.parse(timing);
-          Calendar calendar = Calendar.getInstance();
-          calendar.setTime(date);
-          int dateInt = calendar.get(Calendar.DATE);
-          switch (dateInt) {
-            case 11:
-            case 12:
-            case 13:
-              day1Array.put(eventObject);
-              break;
-            case 14:
-              day1Array.put(eventObject);
-              break;
-            case 15:
-              day2Array.put(eventObject);
-              break;
-            case 16:
-              day3Array.put(eventObject);
-              break;
-            case 17:
-              day4Array.put(eventObject);
-              break;
-            default:
+            eventsArray = new JSONArray(events);
+            for (int i = 0; i < eventsArray.length(); i++) {
+                JSONObject eventObject = eventsArray.getJSONObject(i);
+                String timing = eventObject.getString("timing");
 
-          }
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                Date date = null; // You will need try/catch around this
+                try {
+                    date = formatter.parse(timing);
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(date);
+                    int dateInt = calendar.get(Calendar.DATE);
+                    switch (dateInt) {
+                        case 11:
+                        case 12:
+                        case 13:
+                            day1Array.put(eventObject);
+                            break;
+                        case 14:
+                            day1Array.put(eventObject);
+                            break;
+                        case 15:
+                            day2Array.put(eventObject);
+                            break;
+                        case 16:
+                            day3Array.put(eventObject);
+                            break;
+                        case 17:
+                            day4Array.put(eventObject);
+                            break;
+                        default:
 
-        } catch (ParseException e) {
-          e.printStackTrace();
+                    }
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            s.edit().putString("allevents", "[]").apply();
+            s.edit().putString("day1events", day1Array.toString()).apply();
+            s.edit().putString("day2events", day2Array.toString()).apply();
+            s.edit().putString("day3events", day3Array.toString()).apply();
+            s.edit().putString("day4events", day4Array.toString()).apply();
+            Log.v("MyApp", "Schedule Distribution Done");
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-      }
-      s.edit().putString("allevents", "[]").apply();
-      s.edit().putString("day1events", day1Array.toString()).apply();
-      s.edit().putString("day2events", day2Array.toString()).apply();
-      s.edit().putString("day3events", day3Array.toString()).apply();
-      s.edit().putString("day4events", day4Array.toString()).apply();
-      Log.v("MyApp", "Schedule Distribution Done");
-    } catch(JSONException e){
-        e.printStackTrace();
-      }
 
 
-  }
+    }
 }
