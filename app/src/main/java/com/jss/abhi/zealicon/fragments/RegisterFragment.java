@@ -16,6 +16,17 @@ import android.widget.Toast;
 
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.activities.ZealIDActivity;
+import com.jss.abhi.zealicon.di.Injector;
+import com.jss.abhi.zealicon.model.BackofficeResponse;
+import com.jss.abhi.zealicon.network.ApiService;
+
+import java.util.HashMap;
+
+import javax.inject.Inject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.util.Patterns.EMAIL_ADDRESS;
 import static android.util.Patterns.PHONE;
@@ -26,6 +37,9 @@ public class RegisterFragment extends Fragment {
     private AutoCompleteTextView collegeView;
     private Spinner branchView, yearView, courseView;
     private Button register;
+
+    @Inject
+    ApiService apiService;
 
     private String name, email, college, contact, year, branch, course, token_id;
 
@@ -45,6 +59,7 @@ public class RegisterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_register, container, false);
+        Injector.appComponent.inject(this);
 
         nameView = (EditText) view.findViewById(R.id.name);
         emailView = (EditText) view.findViewById(R.id.email);
@@ -56,7 +71,7 @@ public class RegisterFragment extends Fragment {
 
         register = (Button) view.findViewById(R.id.register_button);
 
-        String[] colleges = getResources().getStringArray(R.array.list_of_colleges);
+        final String[] colleges = getResources().getStringArray(R.array.list_of_colleges);
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, colleges);
         collegeView.setAdapter(adapter);
@@ -77,24 +92,38 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.v("App", "started");
+                registertask(name, email, college, contact, course, branch, year);
                 name = nameView.getText().toString();
                 email = emailView.getText().toString();
                 college = collegeView.getText().toString();
                 contact = contactView.getText().toString();
-                course = courseView.getSelectedItem().toString();
-                branch = branchView.getSelectedItem().toString();
-                year = yearView.getSelectedItem().toString();
+                try {
+                    course = courseView.getSelectedItem().toString();
+                    branch = branchView.getSelectedItem().toString();
+                    year = yearView.getSelectedItem().toString();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
 
-                Log.v("Register Fragment", name + email + contact + year + branch);
+               /* Log.v("Register Fragment", name + email + contact + year + branch);
                 if (name.equals("") || email.equals("") || college.equals("") || contact.equals("") || course.equals("") || branch.equals("") || year.equals(""))
                     Toast.makeText(getActivity(), "Sorry..Please Enter All Fields", Toast.LENGTH_SHORT).show();
-                if(name.length()==0 || !isValidMail(email) || contact.length()!= 10 || college.length()==0
-                    || branch.equals("") || year.equals(" ") || course.equals("") || !isValidMobile(contact)) {
+                if (name.length() == 0 || !isValidMail(email) || contact.length() != 10 || college.length() == 0
+                        || branch.equals("") || year.equals(" ") || course.equals("") || !isValidMobile(contact)) {
                     Toast.makeText(getActivity(), "Sorry..Invalid Fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    registertask(name, email, college, contact, course, branch, year);
+                }*/
+
+                /*if (name.equals("") || email.equals("") || college.equals("") || contact.equals("") || course.equals("") || branch.equals("") || year.equals(""))
+                    Toast.makeText(getActivity(), "Please Enter All the Fields", Toast.LENGTH_SHORT).show();
+                else if(name.length()==0 || !isValidMail(email) || contact.length()!= 10 || college.length()==0
+                        || branch.equals("") || year.equals(" ") || course.equals("") || !isValidMobile(contact)) {
+                    Toast.makeText(getActivity(), "Invalid Fields", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     registertask();
-                }
+                }*/
             }
         });
 
@@ -110,13 +139,50 @@ public class RegisterFragment extends Fragment {
         return PHONE.matcher(phone).matches();
     }
 
-    void registertask() {
+    void registertask(String name, String email, String college, String contact, String course, String branch, String year) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("name", "a2a");
+        params.put("email", "a22b3@gm.com");
+        params.put("course", "B-Tech");
+        params.put("branch", "CSE");
+        params.put("contact", "9914994343");
+        params.put("college", "jss");
+        params.put("year", "4");
+        params.put("token", "XAHbduUGiXNiuauaytebQTbduygcYi");
+        apiService.doRegister(params).enqueue(new Callback<BackofficeResponse>() {
+            @Override
+            public void onResponse(Call<BackofficeResponse> call, Response<BackofficeResponse> response) {
+                Log.v("RESP", response.toString());
+                if(response.isSuccessful()) {
+                    if(response.body() != null && response.body().getResponse().equals("200")) {
+                        // zeal id given no errors
+                        Intent i = new Intent(getActivity(), ZealIDActivity.class);
+                        i.putExtra("zealId", response.body().getId());
+                        startActivity(i);
 
-        Intent i = new Intent(this.getActivity(),ZealIDActivity.class);
+                    } else if(response.body() != null && response.body().getResponse().equals("500")) {
+                        // error in params
+                        BackofficeResponse res = response.body();
+                        if(res != null ) {
+
+                        }
+                        Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                Toast.makeText(getActivity(), "OnRespnse", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<BackofficeResponse> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failure", Toast.LENGTH_SHORT).show();
+            }
+        });
+        Intent i = new Intent(this.getActivity(), ZealIDActivity.class);
         startActivity(i);
     }
 
-    @Override public void onDetach() {
+    @Override
+    public void onDetach() {
         super.onDetach();
         //setEmpty();
     }

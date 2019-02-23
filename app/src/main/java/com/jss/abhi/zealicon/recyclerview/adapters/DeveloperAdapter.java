@@ -71,7 +71,7 @@ public class DeveloperAdapter extends RecyclerView.Adapter<DeveloperAdapter.DevV
           holder.profileImg.setImageResource(R.drawable.abhijeet);
           break;
         case 1:
-          holder.profileImg.setImageResource(R.drawable.divyanshu);
+          holder.profileImg.setImageResource(R.drawable.satyam_verma);
           break;
       }
     }
