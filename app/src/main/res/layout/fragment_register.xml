@@ -74,11 +74,12 @@
                     android:textColorHint="@color/base_color"
                     app:hintTextAppearance="@style/MyHintText">
 
-                    <EditText
+                    <AutoCompleteTextView
                         android:id="@+id/college_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/base_color"
+                        android:autofillHints="@string/jss"
                         android:hint="COLLEGE NAME"
                         android:fontFamily="@font/delius"
                         android:inputType="text"
@@ -91,58 +92,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
                     android:textColorHint="@color/base_color"
                     app:hintTextAppearance="@style/MyHintText">
 
                     <EditText
-                        android:id="@+id/course"
+                        android:id="@+id/contact_no"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/base_color"
-                        android:hint="COURSE"
+                        android:hint="CONTACT NO."
                         android:fontFamily="@font/delius"
-                        android:inputType="text"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        android:background="@drawable/custom_edit_text"/>
-
-                </android.support.design.widget.TextInputLayout>
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:textColorHint="@color/base_color"
-                    app:hintTextAppearance="@style/MyHintText">
-
-
-                    <EditText
-                        android:id="@+id/branch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/base_color"
-                        android:hint="BRANCH"
-                        android:fontFamily="@font/delius"
-                        android:inputType="text"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        android:background="@drawable/custom_edit_text"/>
-
-                </android.support.design.widget.TextInputLayout>
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:textColorHint="@color/base_color"
-                    app:hintTextAppearance="@style/MyHintText">
-
-                    <EditText
-                        android:id="@+id/year"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/base_color"
-                        android:hint="YEAR"
-                        android:fontFamily="@font/delius"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:textColor="@color/colorPrimary"
                         android:textSize="20sp"
                         android:background="@drawable/custom_edit_text"/>
@@ -168,28 +129,56 @@
                         android:background="@drawable/custom_edit_text"/>
 
                 </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
+                <com.jss.abhi.zealicon.model.NoDefaultSpinner
+                    android:id="@+id/course"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:textColorHint="@color/base_color"
-                    app:hintTextAppearance="@style/MyHintText">
+                    android:paddingLeft="3dp"
+                    android:textAlignment="gravity"
+                    android:prompt="@string/course"
+                    android:backgroundTint="@color/base_color"
+                    android:entries="@array/course"
+                    />
 
-                    <EditText
-                        android:id="@+id/contact_no"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/base_color"
-                        android:hint="CONTACT NO."
-                        android:fontFamily="@font/delius"
-                        android:inputType="number"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        android:background="@drawable/custom_edit_text"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/base_color" />
+                <com.jss.abhi.zealicon.model.NoDefaultSpinner
+                    android:id="@+id/branch"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:paddingLeft="3dp"
+                    android:textAlignment="gravity"
+                    android:prompt="@string/branch"
+                    android:backgroundTint="@color/base_color"
+                    android:entries="@array/branch"
+                    />
 
-                </android.support.design.widget.TextInputLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/base_color" />
+
+                <com.jss.abhi.zealicon.model.NoDefaultSpinner
+                    android:id="@+id/year"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:paddingLeft="3dp"
+                    android:textAlignment="gravity"
+                    android:prompt="@string/year"
+                    android:backgroundTint="@color/base_color"
+                    android:entries="@array/year"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/base_color" />
+
 
                 <Button
                     android:id="@+id/register_button"

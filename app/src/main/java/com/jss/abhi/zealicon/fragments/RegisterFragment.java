@@ -7,8 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.jss.abhi.zealicon.R;
@@ -19,7 +22,9 @@ import static android.util.Patterns.PHONE;
 
 public class RegisterFragment extends Fragment {
 
-    private EditText nameView, emailView, collegeView, contactView, branchView, yearView, courseView;
+    private EditText nameView, emailView, contactView;
+    private AutoCompleteTextView collegeView;
+    private Spinner branchView, yearView, courseView;
     private Button register;
 
     private String name, email, college, contact, year, branch, course, token_id;
@@ -43,14 +48,30 @@ public class RegisterFragment extends Fragment {
 
         nameView = (EditText) view.findViewById(R.id.name);
         emailView = (EditText) view.findViewById(R.id.email);
-        collegeView = (EditText) view.findViewById(R.id.college_name);
+        collegeView = (AutoCompleteTextView) view.findViewById(R.id.college_name);
         contactView = (EditText) view.findViewById(R.id.contact_no);
-        register = (Button) view.findViewById(R.id.register);
-        courseView = (EditText) view.findViewById(R.id.course);
-        branchView = (EditText) view.findViewById(R.id.branch);
-        yearView = (EditText) view.findViewById(R.id.year);
+        yearView = (Spinner) view.findViewById(R.id.year);
+        courseView = (Spinner) view.findViewById(R.id.course);
+        branchView = (Spinner) view.findViewById(R.id.branch);
 
         register = (Button) view.findViewById(R.id.register_button);
+
+        String[] colleges = getResources().getStringArray(R.array.list_of_colleges);
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, colleges);
+        collegeView.setAdapter(adapter);
+
+        ArrayAdapter<CharSequence> branchAdapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.branch, R.layout.spinner_item);
+        branchView.setAdapter(branchAdapter);
+
+        ArrayAdapter<CharSequence> courseAdapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.course, R.layout.spinner_item);
+        courseView.setAdapter(courseAdapter);
+
+        ArrayAdapter<CharSequence> yearAdapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.year, R.layout.spinner_item);
+        yearView.setAdapter(yearAdapter);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,16 +81,20 @@ public class RegisterFragment extends Fragment {
                 email = emailView.getText().toString();
                 college = collegeView.getText().toString();
                 contact = contactView.getText().toString();
-                course = courseView.getText().toString();
-                branch = branchView.getText().toString();
-                year = yearView.getText().toString();
+                try {
+                    course = courseView.getSelectedItem().toString();
+                    branch = branchView.getSelectedItem().toString();
+                    year = yearView.getSelectedItem().toString();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
 
                 Log.v("Register Fragment", name + email + contact + year + branch);
                 if (name.equals("") || email.equals("") || college.equals("") || contact.equals("") || course.equals("") || branch.equals("") || year.equals(""))
-                    Toast.makeText(getActivity(), "Sorry..Please Enter All Fields", Toast.LENGTH_SHORT).show();
-                if(name.length()==0 || !isValidMail(email) || contact.length()!= 10 || college.length()==0
+                    Toast.makeText(getActivity(), "Please Enter All the Fields", Toast.LENGTH_SHORT).show();
+                else if(name.length()==0 || !isValidMail(email) || contact.length()!= 10 || college.length()==0
                     || branch.equals("") || year.equals(" ") || course.equals("") || !isValidMobile(contact)) {
-                    Toast.makeText(getActivity(), "Sorry..Invalid Fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Invalid Fields", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     registertask();

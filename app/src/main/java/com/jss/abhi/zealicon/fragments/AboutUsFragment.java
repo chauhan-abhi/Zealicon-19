@@ -37,7 +37,7 @@ public class AboutUsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_about_us, container, false);
@@ -53,12 +53,27 @@ public class AboutUsFragment extends Fragment {
             }
         });
 
-        // insta click listner
-        //TODO
+        instaImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String scheme = "http://instagram.com/_u/zealicon";
+                String path = "https://instagram.com/zealicon";
+                String nomPackageInfo ="com.instagram.android";
+                Intent instaIntent;
+                try {
+                    getActivity().getPackageManager().getPackageInfo(nomPackageInfo, 0);
+                    instaIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(scheme));
+                } catch (Exception e) {
+                    instaIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(path));
+                }
+                getActivity().startActivity(instaIntent);
+
+            }
+        });
 
         youtubeImage.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=dLdmEiMv5GM"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://https://youtu.be/lJIlIQYAvmc"));
                 startActivity(intent);
             }
         });
@@ -79,6 +94,7 @@ public class AboutUsFragment extends Fragment {
             return FACEBOOK_URL; //normal web url
         }
     }
+
 
 
 }

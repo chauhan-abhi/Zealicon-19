@@ -2,6 +2,8 @@ package com.jss.abhi.zealicon.recyclerview.adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +40,7 @@ public class DeveloperAdapter extends RecyclerView.Adapter<DeveloperAdapter.DevV
       profileImg = itemView.findViewById(R.id.devImageView);
       name = itemView.findViewById(R.id.nameTextView);
       position = itemView.findViewById(R.id.positionTextView);
-      //gitFab = itemView.findViewById(R.id.floatingActionButton);
+      gitFab = itemView.findViewById(R.id.githubImageView);
     }
   }
 
@@ -66,10 +68,10 @@ public class DeveloperAdapter extends RecyclerView.Adapter<DeveloperAdapter.DevV
     if(!(developer.getImgurl().isEmpty() || developer.getImgurl() == null)) {
       switch (position){
         case 0:
-          holder.profileImg.setImageResource(R.drawable.mrsinghania);
+          holder.profileImg.setImageResource(R.drawable.abhijeet);
           break;
         case 1:
-          holder.profileImg.setImageResource(R.drawable.abhijeet);
+          holder.profileImg.setImageResource(R.drawable.satyam_verma);
           break;
       }
     }
@@ -77,22 +79,13 @@ public class DeveloperAdapter extends RecyclerView.Adapter<DeveloperAdapter.DevV
       holder.profileImg.setImageResource(R.drawable.aavatar);
     }
 
-
-   /* holder.gitFab.setOnClickListener(new View.OnClickListener() {
+    holder.gitFab.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View view) {
-        Log.v("onClick Call Fab",""+developer.getMobNum());
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)
-                != PackageManager.PERMISSION_GRANTED) {
-          // TODO: Consider calling
-          ActivityCompat.requestPermissions((MainActivity)context,
-                  new String[]{Manifest.permission.CALL_PHONE},
-                  0);
-          return;
-        }
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + developer.getMobNum()));
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(developer.getGitUrl()));
         context.startActivity(intent);
       }
-    });*/
+    });
 
   }
 
