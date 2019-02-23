@@ -81,16 +81,20 @@ public class RegisterFragment extends Fragment {
                 email = emailView.getText().toString();
                 college = collegeView.getText().toString();
                 contact = contactView.getText().toString();
-                course = courseView.getSelectedItem().toString();
-                branch = branchView.getSelectedItem().toString();
-                year = yearView.getSelectedItem().toString();
+                try {
+                    course = courseView.getSelectedItem().toString();
+                    branch = branchView.getSelectedItem().toString();
+                    year = yearView.getSelectedItem().toString();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
 
                 Log.v("Register Fragment", name + email + contact + year + branch);
                 if (name.equals("") || email.equals("") || college.equals("") || contact.equals("") || course.equals("") || branch.equals("") || year.equals(""))
-                    Toast.makeText(getActivity(), "Sorry..Please Enter All Fields", Toast.LENGTH_SHORT).show();
-                if(name.length()==0 || !isValidMail(email) || contact.length()!= 10 || college.length()==0
+                    Toast.makeText(getActivity(), "Please Enter All the Fields", Toast.LENGTH_SHORT).show();
+                else if(name.length()==0 || !isValidMail(email) || contact.length()!= 10 || college.length()==0
                     || branch.equals("") || year.equals(" ") || course.equals("") || !isValidMobile(contact)) {
-                    Toast.makeText(getActivity(), "Sorry..Invalid Fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Invalid Fields", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     registertask();

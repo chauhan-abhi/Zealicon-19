@@ -298,59 +298,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/organizerName1" />
             </android.support.constraint.ConstraintLayout>
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/organizer2_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="60dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
-                android:layout_marginTop="4dp"
-                android:backgroundTint="@color/black_opaq">
-
-                <TextView
-                    android:id="@+id/organizerName2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Organiser Name 2"
-                    android:textColor="@color/gray_shade_8"
-                    android:fontFamily="@font/delius"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toStartOf="@+id/callButton2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/callButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="8dp"
-                    android:clickable="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_call"
-                    app:fabSize="mini"/>
-
-                <TextView
-                    android:id="@+id/organizerNumber2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="1234567895"
-                    android:textColor="@color/gray_shade_8"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/organizerName2" />
-            </android.support.constraint.ConstraintLayout>
         </LinearLayout>
 
     </LinearLayout>
