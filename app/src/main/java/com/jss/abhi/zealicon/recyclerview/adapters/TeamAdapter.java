@@ -35,8 +35,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
     private CircleImageView profileImg;
     private TextView name,position;
-    private ImageView callImageview
-            ;
+    private ImageView callImageview;
 
     public TeamViewHolder(View itemView) {
       super(itemView);
@@ -63,42 +62,57 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     holder.position.setText(team.getPosition());
     //holder.profileImg.setImageResource(R.drawable.avatar);
     if(!(team.getImgurl().isEmpty() || team.getImgurl() == null)){
-      if(team.getImgurl().equals("abhishekk"))
-        holder.profileImg.setImageResource(R.drawable.abhishekk);
-      else if(team.getImgurl().equals("abhishekt"))
-        holder.profileImg.setImageResource(R.drawable.abhishekt);
-      else if(team.getImgurl().equals("abhisheks"))
-        holder.profileImg.setImageResource(R.drawable.abhisheks);
-      else if(team.getImgurl().equals("aradhya"))
-        holder.profileImg.setImageResource(R.drawable.aradhya);
-      else if(team.getImgurl().equals("ashwani"))
-        holder.profileImg.setImageResource(R.drawable.ashwani);
-      else if(team.getImgurl().equals("ayushg"))
-        holder.profileImg.setImageResource(R.drawable.ayushg);
-      else if(team.getImgurl().equals("ayushs"))
-        holder.profileImg.setImageResource(R.drawable.ayushs);
-      else if(team.getImgurl().equals("dv"))
-        holder.profileImg.setImageResource(R.drawable.dv);
-      else if(team.getImgurl().equals("gaurav"))
-        holder.profileImg.setImageResource(R.drawable.gaurav);
-      else if(team.getImgurl().equals("manu"))
-        holder.profileImg.setImageResource(R.drawable.manu);
-      else if(team.getImgurl().equals("mimanshi"))
-        holder.profileImg.setImageResource(R.drawable.mimanshi);
+      if(team.getImgurl().equals("gurulingappa_patil")) {
+        holder.profileImg.setImageResource(R.drawable.gurulingappa_patil);
+        holder.callImageview.setVisibility(View.INVISIBLE);
+      }
+      else if(team.getImgurl().equals("prashant_chauhan"))
+        holder.profileImg.setImageResource(R.drawable.prashant_chauhan);
+      else if(team.getImgurl().equals("sonu_bharti"))
+        holder.profileImg.setImageResource(R.drawable.sonu_kumar);
+      else if(team.getImgurl().equals("satyam_verma"))
+        holder.profileImg.setImageResource(R.drawable.satyam_verma);
+      else if(team.getImgurl().equals("satwik_singh"))
+        holder.profileImg.setImageResource(R.drawable.satwik_singh);
+      else if(team.getImgurl().equals("dhruv_srivastav"))
+        holder.profileImg.setImageResource(R.drawable.dhruv_srivastava);
+      else if(team.getImgurl().equals("aditya_rawat"))
+        holder.profileImg.setImageResource(R.drawable.aditya_rawat);
+      else if(team.getImgurl().equals("ashutosh_atri"))
+        holder.profileImg.setImageResource(R.drawable.ashutosh_atari);
+      else if(team.getImgurl().equals("waris"))
+        holder.profileImg.setImageResource(R.drawable.waris);
+      else if(team.getImgurl().equals("naman_jain"))
+        holder.profileImg.setImageResource(R.drawable.naman_jain);
+      else if(team.getImgurl().equals("anurag_agarwal"))
+        holder.profileImg.setImageResource(R.drawable.anurag_agarwal);
+      else if(team.getImgurl().equals("aabhas_pradhan"))
+        holder.profileImg.setImageResource(R.drawable.aabhas_pradhan);
+      else if(team.getImgurl().equals("ankit_gupta"))
+        holder.profileImg.setImageResource(R.drawable.ankit_gupta);
+      else if(team.getImgurl().equals("ishan_dalela"))
+        holder.profileImg.setImageResource(R.drawable.ishan_dalela);
+      else if(team.getImgurl().equals("rishabh_handa"))
+        holder.profileImg.setImageResource(R.drawable.rishabh_handa);
+      else if(team.getImgurl().equals("hitwik_singh"))
+        holder.profileImg.setImageResource(R.drawable.hitwik_singh);
+      else if(team.getImgurl().equals("utkarsh_mishra"))
+        holder.profileImg.setImageResource(R.drawable.utkarsh_mishra);
+      else if(team.getImgurl().equals("sujata_bajaj"))
+        holder.profileImg.setImageResource(R.drawable.sujata_bajaj);
+      else if(team.getImgurl().equals("vineet_sharma"))
+        holder.profileImg.setImageResource(R.drawable.vineet_sharma);
+      else if(team.getImgurl().equals("abhay"))
+        holder.profileImg.setImageResource(R.drawable.abhay);
       else if(team.getImgurl().equals("prashant"))
         holder.profileImg.setImageResource(R.drawable.prashant);
-      else if(team.getImgurl().equals("rahul"))
-        holder.profileImg.setImageResource(R.drawable.rahul);
-      else if(team.getImgurl().equals("sarmishtha"))
-        holder.profileImg.setImageResource(R.drawable.sarmishtha);
-      else if(team.getImgurl().equals("shubham"))
-        holder.profileImg.setImageResource(R.drawable.shubham);
-      else if(team.getImgurl().equals("utkarshs"))
-        holder.profileImg.setImageResource(R.drawable.utkarshs);
-      else if(team.getImgurl().equals("utkarsht"))
-        holder.profileImg.setImageResource(R.drawable.utkarsht);
-      else if(team.getImgurl().equals("vaibhav"))
-        holder.profileImg.setImageResource(R.drawable.vaibhav);
+      else if(team.getImgurl().equals("vibhav_chaturvedi"))
+        holder.profileImg.setImageResource(R.drawable.vibhav_chaturvedi);
+      else if(team.getImgurl().equals("vinayak_bansal"))
+        holder.profileImg.setImageResource(R.drawable.vinayak_bansal);
+      else if(team.getImgurl().equals("sarvagya_singh"))
+        holder.profileImg.setImageResource(R.drawable.sarvagya);
+
       else
         holder.profileImg.setImageResource(R.drawable.aavatar);
     }

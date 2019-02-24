@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context="com.jss.abhi.zealicon.fragments.TeamFragment"
     >
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/team_rv"
         android:layout_width="match_parent"
