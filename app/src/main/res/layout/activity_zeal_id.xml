@@ -55,22 +55,21 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textView6"
       />
+
   <TextView
-      android:id="@+id/textView8"
+      android:id="@+id/zealIdTextView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
       android:layout_marginStart="8dp"
       android:layout_marginTop="16dp"
-      android:textColor="@color/gray_shade_8"
+      android:layout_marginEnd="8dp"
       android:fontFamily="@font/delius"
-      android:textStyle="bold"
-      android:text="ZealDummy ID"
+      android:textColor="@color/gray_shade_8"
       android:textSize="24sp"
+      android:textStyle="bold"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textView7"
-      />
+      app:layout_constraintTop_toBottomOf="@+id/textView7" />
   <TextView
       android:id="@+id/zealIDTextView"
       android:layout_width="wrap_content"
@@ -86,7 +85,7 @@
       android:typeface="sans"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textView8"
+      app:layout_constraintTop_toBottomOf="@+id/zealIdTextView"
       />
 
   <Button

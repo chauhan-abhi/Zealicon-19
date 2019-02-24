@@ -3,19 +3,20 @@ package com.jss.abhi.zealicon.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class BackofficeResponse  {
+
+public class BackofficeResponse {
 
     @SerializedName("response")
     @Expose
-    String response;    // response code 200 for ok 500 for errors
+    private String response;    // response code 200 for ok 500 for errors
 
     @SerializedName("id")
     @Expose
-    Integer id;
+    private Integer id;
 
     @SerializedName("errors")
     @Expose
-    ErrorResponse errors;
+    private ErrorResponse errors;
 
     public String getResponse() {
         return response;
@@ -25,7 +26,7 @@ public class BackofficeResponse  {
         this.response = response;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -35,6 +36,14 @@ public class BackofficeResponse  {
 
     public ErrorResponse getErrors() {
         return errors;
+    }
+
+    public String getContactErrors() {
+        return errors.getContact().get(0);
+    }
+
+    public String getEmailErrors() {
+        return errors.getEmail().get(0);
     }
 
     public void setErrors(ErrorResponse errors) {

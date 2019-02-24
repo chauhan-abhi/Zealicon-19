@@ -50,18 +50,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:textColorHint="@color/base_color"
+                    android:textColorHint="@color/app_white"
                     app:hintTextAppearance="@style/MyHintText">
 
                     <EditText
                         android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/base_color"
+                        android:backgroundTint="@color/app_white"
                         android:hint="FULL NAME"
                         android:fontFamily="@font/delius"
                         android:inputType="text"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/app_white"
                         android:textSize="20sp"
                         android:background="@drawable/custom_edit_text"/>
 
@@ -71,19 +71,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:textColorHint="@color/base_color"
+                    android:textColorHint="@color/app_white"
                     app:hintTextAppearance="@style/MyHintText">
 
                     <AutoCompleteTextView
                         android:id="@+id/college_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/base_color"
+                        android:backgroundTint="@color/app_white"
                         android:autofillHints="@string/jss"
                         android:hint="COLLEGE NAME"
                         android:fontFamily="@font/delius"
                         android:inputType="text"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/app_white"
                         android:textSize="20sp"
                         android:background="@drawable/custom_edit_text"/>
 
@@ -93,18 +93,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="10dp"
-                    android:textColorHint="@color/base_color"
+                    android:textColorHint="@color/app_white"
                     app:hintTextAppearance="@style/MyHintText">
 
                     <EditText
                         android:id="@+id/contact_no"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/base_color"
+                        android:backgroundTint="@color/app_white"
                         android:hint="CONTACT NO."
                         android:fontFamily="@font/delius"
                         android:inputType="number"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/app_white"
                         android:textSize="20sp"
                         android:background="@drawable/custom_edit_text"/>
 
@@ -113,23 +113,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:textColorHint="@color/base_color"
+                    android:textColorHint="@color/app_white"
                     app:hintTextAppearance="@style/MyHintText">
 
                     <EditText
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/base_color"
+                        android:backgroundTint="@color/app_white"
                         android:hint="EMAIL ID"
                         android:fontFamily="@font/delius"
                         android:inputType="textEmailAddress"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/app_white"
                         android:textSize="20sp"
                         android:background="@drawable/custom_edit_text"/>
 
                 </android.support.design.widget.TextInputLayout>
-                <com.jss.abhi.zealicon.model.NoDefaultSpinner
+                <Spinner
                     android:id="@+id/course"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -137,14 +137,14 @@
                     android:paddingLeft="3dp"
                     android:textAlignment="gravity"
                     android:prompt="@string/course"
-                    android:backgroundTint="@color/base_color"
+                    android:popupBackground="@color/colorPrimary"
                     android:entries="@array/course"
                     />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/base_color" />
+                    android:background="@color/app_white" />
                 <com.jss.abhi.zealicon.model.NoDefaultSpinner
                     android:id="@+id/branch"
                     android:layout_width="match_parent"
@@ -153,14 +153,14 @@
                     android:paddingLeft="3dp"
                     android:textAlignment="gravity"
                     android:prompt="@string/branch"
-                    android:backgroundTint="@color/base_color"
+                    android:popupBackground="@color/colorPrimary"
                     android:entries="@array/branch"
                     />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/base_color" />
+                    android:background="@color/app_white" />
 
                 <com.jss.abhi.zealicon.model.NoDefaultSpinner
                     android:id="@+id/year"
@@ -170,14 +170,14 @@
                     android:paddingLeft="3dp"
                     android:textAlignment="gravity"
                     android:prompt="@string/year"
-                    android:backgroundTint="@color/base_color"
+                    android:popupBackground="@color/colorPrimary"
                     android:entries="@array/year"
                     />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/base_color" />
+                    android:background="@color/app_white" />
 
 
                 <Button

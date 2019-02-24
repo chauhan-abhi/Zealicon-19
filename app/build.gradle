@@ -15,6 +15,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+    buildTypes.each {
+        it.buildConfigField 'String', 'TOKEN', REGISTRAION_TOKEN
+    }
     buildTypes {
         release {
             minifyEnabled false
