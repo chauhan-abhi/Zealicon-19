@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jss.abhi.zealicon.R;
+import com.jss.abhi.zealicon.model.EventData;
 import com.jss.abhi.zealicon.model.InnerData;
 import com.jss.abhi.zealicon.recyclerview.adapters.EventScheduleAdapter;
 
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class EventScheduleFragment extends Fragment{
 
-    private ArrayList<? extends InnerData> eventScheduleArrayList;
+    private ArrayList<? extends EventData> eventScheduleArrayList;
     private RecyclerView eventScheduleRv;
 
     @Override
