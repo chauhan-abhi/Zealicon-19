@@ -33,7 +33,8 @@ public class Jsonparser {
     }
 
     public static InnerData toObject(String jsonString){
-        InnerData innerData=new InnerData();
+        InnerData innerData=new
+                InnerData();
         try {
             JSONObject jsonObject=new JSONObject(jsonString);
             innerData.setTimings(get(jsonObject,"timing"));

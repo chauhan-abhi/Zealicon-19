@@ -1,13 +1,10 @@
 *.iml
 .gradle
 /local.properties
-/.idea/workspace.xmlgit
+/.idea/workspace.xml
 /.idea/libraries
-<<<<<<< HEAD
 /.idea/misc.xml
-=======
 /.idea/modules.xml
->>>>>>> 91fbb652fb001dda8c72920dd9f78daec41dc748
 .DS_Store
 /build
 /captures

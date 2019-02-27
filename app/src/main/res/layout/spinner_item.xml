@@ -7,6 +7,6 @@
     android:textSize="20sp"
     android:fontFamily="@font/delius"
     android:gravity="left"
-    android:textColor="@color/colorPrimary"
+    android:textColor="@color/app_white"
     android:padding="5dip"
     />

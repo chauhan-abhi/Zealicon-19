@@ -56,8 +56,8 @@
         android:layout_width="18dp"
         android:layout_height="18dp"
         app:siShape="@raw/star"
-        android:layout_gravity="right|center_vertical"
-        android:layout_marginRight="14dp" />
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="14dp" />
     <View
         android:layout_width="235dp"
         android:layout_height="1dp"
