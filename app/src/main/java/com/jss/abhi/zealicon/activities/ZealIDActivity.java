@@ -16,7 +16,7 @@ public class ZealIDActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zeal_id);
         zealidTV = findViewById(R.id.zealIdTextView);
-        zealidTV.setText(getIntent().getStringExtra("zealId"));
+        zealidTV.setText("ZO_" + getIntent().getStringExtra("zealId"));
         findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

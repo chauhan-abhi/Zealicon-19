@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import com.jss.abhi.zealicon.R;
+import com.jss.abhi.zealicon.model.EventData;
 import com.jss.abhi.zealicon.service.NotificationService;
 
 import java.text.ParseException;
@@ -27,6 +28,7 @@ import java.util.Locale;
 public class EventDetailActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    private EventData eventData;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -58,7 +60,9 @@ public class EventDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // getSupportActionBar().setDisplayShowHomeEnabled(true);
         //toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.app_white));
-
+        if (getIntent() != null) {
+            eventData = (EventData) getIntent().getSerializableExtra("eventData");
+        }
 
         /**
          * this function will be called when star or bell is pressed

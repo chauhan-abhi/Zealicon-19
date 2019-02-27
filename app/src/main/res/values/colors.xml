@@ -12,6 +12,7 @@
     <color name="toolbar">#383547</color>
     <color name="trans">#00000000 </color>.
     <color name="black_opaq">#16000000</color>
+    <color name="card_dark_theme">#243447</color>
 
 
     <!-- App Primary View Colors (might be deprecated). -->

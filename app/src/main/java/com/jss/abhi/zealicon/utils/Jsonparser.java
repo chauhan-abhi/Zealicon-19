@@ -1,5 +1,6 @@
 package com.jss.abhi.zealicon.utils;
 
+import com.jss.abhi.zealicon.model.EventData;
 import com.jss.abhi.zealicon.model.InnerData;
 
 import org.json.JSONArray;
@@ -32,12 +33,12 @@ public class Jsonparser {
         }
     }
 
-    public static InnerData toObject(String jsonString){
-        InnerData innerData=new
-                InnerData();
+    public static EventData toObject(String jsonString){
+        EventData eventData=new
+                EventData();
         try {
             JSONObject jsonObject=new JSONObject(jsonString);
-            innerData.setTimings(get(jsonObject,"timing"));
+            /*innerData.setTimings(get(jsonObject,"timing"));
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             Date date = new Date(); // You will need try/catch around this
             try {
@@ -48,12 +49,16 @@ public class Jsonparser {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
             innerData.setEvent_date(calendar.get(Calendar.DATE));
-            innerData.setEvent_time(calendar.get(Calendar.HOUR_OF_DAY));
-            innerData.setEvent_name(get(jsonObject,"event_name"));
-            innerData.setEvent_description(get(jsonObject,"event_description"));
-            innerData.setLong_des(get(jsonObject,"long_des"));
-            innerData.setCategory(get(jsonObject,"category"));
-            String prizes=get(jsonObject,"prize_money");
+            innerData.setEvent_time(calendar.get(Calendar.HOUR_OF_DAY));*/
+            eventData.setName(get(jsonObject,"name"));
+            eventData.setDescription(get(jsonObject,"description"));
+            eventData.setContact_name(get(jsonObject, "contact_name"));
+            eventData.setContact_no(get(jsonObject, "contact_no"));
+            eventData.setWinner1(get(jsonObject, "winner1"));
+            eventData.setWinner2(get(jsonObject,  "winner2"));
+            //innerData.setLong_des(get(jsonObject,"long_des"));
+            //innerData.setCategory(get(jsonObject,"category"));
+            /*String prizes=get(jsonObject,"prize_money");
             JSONArray prizeList=new JSONArray(prizes);
             if(prizeList.length()>=1)
                 innerData.setPrize1(prizeList.getString(0));
@@ -75,11 +80,11 @@ public class Jsonparser {
                 innerData.setContact_num2(get(contact2obj,"number"));
             }catch (Exception e){
                 e.printStackTrace();
-            }
+            }*/
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return innerData;
+        return eventData;
     }
 }

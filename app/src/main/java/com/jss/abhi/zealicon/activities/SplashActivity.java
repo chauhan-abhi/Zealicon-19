@@ -122,7 +122,22 @@ public class SplashActivity extends AppCompatActivity {
             eventsArray = new JSONArray(events);
             for (int i = 0; i < eventsArray.length(); i++) {
                 JSONObject eventObject = eventsArray.getJSONObject(i);
-                String timing = eventObject.getString("timing");
+                switch (i%4) {
+                    case 0:
+                        day1Array.put(eventObject);
+                        break;
+                    case 1:
+                        day2Array.put(eventObject);
+                        break;
+                    case 2:
+                        day3Array.put(eventObject);
+                        break;
+                    case 3:
+                        day4Array.put(eventObject);
+                        break;
+                    default:
+                }
+                /*String timing = eventObject.getString("timing");
 
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 Date date = null; // You will need try/catch around this
@@ -155,7 +170,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 } catch (ParseException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
             s.edit().putString("allevents", "[]").apply();
             s.edit().putString("day1events", day1Array.toString()).apply();
