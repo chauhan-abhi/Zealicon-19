@@ -42,6 +42,7 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
             event_time = itemView.findViewById(R.id.timeTextView);
             event_location = itemView.findViewById(R.id.locationTextView);
             event_schedule_layout = itemView.findViewById(R.id.event_schedule_layout);
+            event_category = itemView.findViewById(R.id.categoryTextView);
 
             // event_category = itemView.findViewById(R.id.categoryTextView);
         }
@@ -62,6 +63,30 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
     public void onBindViewHolder(EventScheduleAdapter.EventViewHolder holder, int position) {
         final EventData eventInnerData = eventScheduleArrayList.get(position);
         holder.event_name.setText(toTitleCase(eventInnerData.getName()));
+        //holder.event_category.setText(eventInnerData.getCategory_id());
+
+        switch (Integer.valueOf(eventInnerData.getCategory_id())){
+            case 1:
+                holder.event_category.setText("Coloralo");
+                break;
+            case 2:
+                holder.event_category.setText("Mechavoltz");
+                break;
+            case 3:
+                holder.event_category.setText("Play-it-on");
+                break;
+            case 4:
+                holder.event_category.setText("Robotiles");
+                break;
+            case 5:
+                holder.event_category.setText("Z-wars");
+                break;
+            case 6:
+                holder.event_category.setText("Coderz");
+                break;
+
+
+        }
         //holder.event_time.setText(Integer.toString(eventInnerData.getEvent_time()));
    /* holder.event_location.setText((eventInnerData.getEvent_location()));
     holder.event_category.setText(eventInnerData.getCategory());*/

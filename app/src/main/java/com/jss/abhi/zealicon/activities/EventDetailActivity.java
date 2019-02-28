@@ -40,6 +40,7 @@ public class EventDetailActivity extends AppCompatActivity {
     private TextView eventDescription;
     private TextView prize1, prize2, contactName, contactNumber;
     private FloatingActionButton callButton;
+    private int categoryId;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -87,6 +88,8 @@ public class EventDetailActivity extends AppCompatActivity {
         prize2.setText("₹ " + eventData.getWinner2());
         contactName.setText(eventData.getContact_name());
         contactNumber.setText(eventData.getContact_no());
+
+
 
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {

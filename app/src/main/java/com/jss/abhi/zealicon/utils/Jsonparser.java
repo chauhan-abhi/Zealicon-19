@@ -51,13 +51,13 @@ public class Jsonparser {
             innerData.setEvent_date(calendar.get(Calendar.DATE));
             innerData.setEvent_time(calendar.get(Calendar.HOUR_OF_DAY));*/
             eventData.setName(get(jsonObject,"name"));
+            eventData.setCategory_id(get(jsonObject, "category_id"));
             eventData.setDescription(get(jsonObject,"description"));
             eventData.setContact_name(get(jsonObject, "contact_name"));
             eventData.setContact_no(get(jsonObject, "contact_no"));
             eventData.setWinner1(get(jsonObject, "winner1"));
             eventData.setWinner2(get(jsonObject,  "winner2"));
             //innerData.setLong_des(get(jsonObject,"long_des"));
-            //innerData.setCategory(get(jsonObject,"category"));
             /*String prizes=get(jsonObject,"prize_money");
             JSONArray prizeList=new JSONArray(prizes);
             if(prizeList.length()>=1)
