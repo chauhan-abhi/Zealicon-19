@@ -125,7 +125,7 @@
             android:layout_margin="8dp">
 
             <TextView
-                android:id="@+id/overviewTextView"
+                android:id="@+id/descriptionTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -142,29 +142,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tv3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Rules"
-            android:textColor="@color/gray_shade_9"
-            android:textSize="24sp" />
-        <TextView
-            android:id="@+id/tv4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/delius"
-            android:text="Rules will be displayed here"
-            android:textColor="@color/gray_shade_8"
-            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv5"
@@ -173,7 +150,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/delius"
             android:text="Prizes"
             android:textColor="@color/gray_shade_9"
             android:textSize="24sp" />
@@ -192,10 +169,11 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/gold_coin" />
             <TextView
+                android:id="@+id/prize1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/delius"
-                android:paddingLeft="8dp"
+                android:paddingLeft="4dp"
                 android:text="Rs.3000"
                 android:textColor="@color/gray_shade_8"
                 android:textSize="18sp"/>
@@ -216,10 +194,11 @@
                 android:layout_margin="5dp"
                 android:src="@drawable/silver_coin" />
             <TextView
+                android:id="@+id/prize2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/delius"
-                android:paddingLeft="8dp"
+                android:paddingLeft="4dp"
                 android:text="Rs.2000"
                 android:textColor="@color/gray_shade_8"
                 android:textSize="18sp"/>
@@ -233,7 +212,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/delius"
             android:text="Event Organizers"
             android:textColor="@color/gray_shade_9"
             android:textSize="24sp" />
