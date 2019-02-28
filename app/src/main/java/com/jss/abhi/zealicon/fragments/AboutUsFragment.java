@@ -19,6 +19,7 @@ public class AboutUsFragment extends Fragment {
     private Context context;
     private ImageView fbImage;
     private ImageView instaImage;
+    private ImageView twitterImage;
     private ImageView youtubeImage;
 
     public static String FACEBOOK_URL = "https://www.facebook.com/zealicon/";
@@ -44,6 +45,7 @@ public class AboutUsFragment extends Fragment {
         fbImage = view.findViewById(R.id.fb_icon);
         instaImage = view.findViewById(R.id.insta_icon);
         youtubeImage = view.findViewById(R.id.youtube_icon);
+        twitterImage = view.findViewById(R.id.twitter_icon);
 
         fbImage.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
@@ -75,6 +77,17 @@ public class AboutUsFragment extends Fragment {
             @Override public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://https://youtu.be/lJIlIQYAvmc"));
                 startActivity(intent);
+            }
+        });
+
+        twitterImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?screen_name=" + FACEBOOK_PAGE_ID)));
+                }catch (Exception e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/#!/" + FACEBOOK_PAGE_ID)));
+                }
             }
         });
 

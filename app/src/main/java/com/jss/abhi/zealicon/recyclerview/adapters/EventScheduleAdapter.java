@@ -61,7 +61,7 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
     @Override
     public void onBindViewHolder(EventScheduleAdapter.EventViewHolder holder, int position) {
         final EventData eventInnerData = eventScheduleArrayList.get(position);
-        holder.event_name.setText(eventInnerData.getName());
+        holder.event_name.setText(toTitleCase(eventInnerData.getName()));
         //holder.event_time.setText(Integer.toString(eventInnerData.getEvent_time()));
    /* holder.event_location.setText((eventInnerData.getEvent_location()));
     holder.event_category.setText(eventInnerData.getCategory());*/
@@ -81,6 +81,34 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
     @Override
     public int getItemCount() {
         return eventScheduleArrayList.size();
+    }
+
+    public static String toTitleCase(String str) {
+
+        if (str == null) {
+            return null;
+        }
+
+        boolean space = true;
+        StringBuilder builder = new StringBuilder(str);
+        final int len = builder.length();
+
+        for (int i = 0; i < len; ++i) {
+            char c = builder.charAt(i);
+            if (space) {
+                if (!Character.isWhitespace(c)) {
+                    // Convert to title case and switch out of whitespace mode.
+                    builder.setCharAt(i, Character.toTitleCase(c));
+                    space = false;
+                }
+            } else if (Character.isWhitespace(c)) {
+                space = true;
+            } else {
+                builder.setCharAt(i, Character.toLowerCase(c));
+            }
+        }
+
+        return builder.toString();
     }
 
 }
