@@ -37,13 +37,13 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
             android:scrollbars="none">
             <!--Scrollable content here-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="40dp"
                 android:orientation="vertical">
 
                 <android.support.design.widget.TextInputLayout
@@ -130,7 +130,7 @@
                 </android.support.design.widget.TextInputLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="50dp">
 
@@ -152,7 +152,6 @@
                             android:id="@+id/course"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAlignment="gravity"
                             android:backgroundTint="@color/app_white"
                             android:popupBackground="@color/colorPrimary"
                             android:entries="@array/course"
