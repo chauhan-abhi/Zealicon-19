@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@drawable/background_19"
+    android:background="#000000"
     android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
@@ -92,7 +92,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginBottom="10dp"
                     android:textColorHint="@color/app_white"
                     app:hintTextAppearance="@style/MyHintText">
 
@@ -129,56 +128,116 @@
                         android:background="@drawable/custom_edit_text"/>
 
                 </android.support.design.widget.TextInputLayout>
-                <Spinner
-                    android:id="@+id/course"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="30dp"
-                    android:paddingLeft="3dp"
-                    android:textAlignment="gravity"
-                    android:prompt="@string/course"
-                    android:popupBackground="@color/colorPrimary"
-                    android:entries="@array/course"
-                    />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/app_white" />
-                <com.jss.abhi.zealicon.model.NoDefaultSpinner
-                    android:id="@+id/branch"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="30dp"
-                    android:paddingLeft="3dp"
-                    android:textAlignment="gravity"
-                    android:prompt="@string/branch"
-                    android:popupBackground="@color/colorPrimary"
-                    android:entries="@array/branch"
-                    />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="@color/app_white"
+                        android:text="COURSE :"
+                        android:fontFamily="@font/delius"
+                        android:textSize="20sp"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/app_white" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+                        <com.jss.abhi.zealicon.model.NoDefaultSpinner
+                            android:id="@+id/course"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="gravity"
+                            android:backgroundTint="@color/app_white"
+                            android:popupBackground="@color/colorPrimary"
+                            android:entries="@array/course"
+                            />
 
-                <com.jss.abhi.zealicon.model.NoDefaultSpinner
-                    android:id="@+id/year"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="30dp"
-                    android:paddingLeft="3dp"
-                    android:textAlignment="gravity"
-                    android:prompt="@string/year"
-                    android:popupBackground="@color/colorPrimary"
-                    android:entries="@array/year"
-                    />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/app_white" />
+                    </LinearLayout>
+                </LinearLayout>
 
-                <View
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/app_white" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp">
 
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="@color/app_white"
+                        android:text="BRANCH :"
+                        android:fontFamily="@font/delius"
+                        android:textSize="20sp"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+                        <com.jss.abhi.zealicon.model.NoDefaultSpinner
+                            android:id="@+id/branch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="gravity"
+                            android:backgroundTint="@color/app_white"
+                            android:popupBackground="@color/colorPrimary"
+                            android:entries="@array/branch"
+                            />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/app_white" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="@color/app_white"
+                        android:text="YEAR :"
+                        android:fontFamily="@font/delius"
+                        android:textSize="20sp"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+                        <com.jss.abhi.zealicon.model.NoDefaultSpinner
+                            android:id="@+id/year"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="gravity"
+                            android:backgroundTint="@color/app_white"
+                            android:popupBackground="@color/colorPrimary"
+                            android:entries="@array/year"
+                            />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/app_white" />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/register_button"

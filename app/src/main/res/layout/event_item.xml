@@ -3,24 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginTop="10dp"
-    android:layout_marginLeft="45dp"
-    android:layout_marginRight="45dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="35dp"
+    android:layout_marginRight="35dp"
     android:id="@+id/event_schedule_layout"
-    android:layout_height="80dp">
+    android:layout_height="100dp">
 
     <TextView
         android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
         android:layout_marginTop="5dp"
         android:text="Event Name"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textColor="@color/app_white"
         android:textStyle="bold"
-        android:fontFamily="@font/delius"
-        app:autoSizeTextType="uniform"/>
+        android:textAllCaps="false"
+        android:maxLines="1"
+        android:ellipsize="end"
+        tools:ignore="MissingPrefix"
+        android:fontFamily="@font/delius"/>
+
+    <!-- app:autoSizeMaxTextSize="@dimen/eventItemHeadingSizeMax"
+     app:autoSizeStepGranularity="2sp"
+     app:autoSizeTextType="uniform"-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,8 +65,19 @@
         app:siShape="@raw/star"
         android:layout_gravity="end|center_vertical"
         android:layout_marginEnd="14dp" />
+    <TextView
+        android:id="@+id/categoryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="2"
+        android:text="Category"
+        android:layout_marginTop="63dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/comfortaa_light"
+        android:textColor="@color/app_white"/>
+
     <View
-        android:layout_width="235dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/app_white"
         android:layout_gravity="bottom|center_horizontal"/>
