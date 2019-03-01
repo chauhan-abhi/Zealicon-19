@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.activities.MainActivity;
@@ -62,7 +63,10 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     holder.position.setText(team.getPosition());
     //holder.profileImg.setImageResource(R.drawable.avatar);
     if(!(team.getImgurl().isEmpty() || team.getImgurl() == null)){
-      if(team.getImgurl().equals("prashant_chauhan"))
+      if(team.getImgurl().equals("gurulingappa_patil")) {
+        holder.profileImg.setImageResource(R.drawable.gurulingappa_patil);
+      }
+      else if(team.getImgurl().equals("prashant_chauhan"))
         holder.profileImg.setImageResource(R.drawable.prashant_chauhan);
       else if(team.getImgurl().equals("sonu_bharti"))
         holder.profileImg.setImageResource(R.drawable.sonu_kumar);
@@ -96,8 +100,9 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         holder.profileImg.setImageResource(R.drawable.utkarsh_mishra);
       else if(team.getImgurl().equals("sujata_bajaj"))
         holder.profileImg.setImageResource(R.drawable.sujata_bajaj);
-      else if(team.getImgurl().equals("vineet_sharma"))
+      else if(team.getImgurl().equals("vineet_sharma")) {
         holder.profileImg.setImageResource(R.drawable.vineet_sharma);
+      }
       else if(team.getImgurl().equals("abhay"))
         holder.profileImg.setImageResource(R.drawable.abhay);
       else if(team.getImgurl().equals("prashant"))
@@ -106,8 +111,10 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         holder.profileImg.setImageResource(R.drawable.vibhav_chaturvedi);
       else if(team.getImgurl().equals("vinayak_bansal"))
         holder.profileImg.setImageResource(R.drawable.vinayak_bansal);
-      else if(team.getImgurl().equals("sarvagya_singh"))
+      else if(team.getImgurl().equals("sarvagya_singh")){
         holder.profileImg.setImageResource(R.drawable.sarvagya);
+      }
+
 
       else
         holder.profileImg.setImageResource(R.drawable.aavatar);
@@ -119,6 +126,10 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     holder.callImageview.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View view) {
         Log.v("onClick Call Fab",""+team.getMobNum());
+        if(team.getMobNum() == ""){
+          Toast.makeText(context, "Sorry! Number not disclosed", Toast.LENGTH_LONG).show();
+          return;
+        }
           if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)
                   != PackageManager.PERMISSION_GRANTED) {
               // TODO: Consider calling

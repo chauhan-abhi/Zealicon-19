@@ -39,8 +39,9 @@ public class EventDetailActivity extends AppCompatActivity {
     private TextView eventTime, eventDate, eventVenue;
     private TextView eventDescription;
     private TextView prize1, prize2, contactName, contactNumber;
-    private FloatingActionButton callButton;
-    private int categoryId;
+    private FloatingActionButton callButton, bookmarkButton;
+    private boolean isBookMark = false;
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -59,9 +60,9 @@ public class EventDetailActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
-
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.white));
         toolbar =  findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,23 +71,26 @@ public class EventDetailActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         eventDescription = (TextView) findViewById(R.id.descriptionTextView);
         prize1 = (TextView) findViewById(R.id.prize1);
         prize2 = (TextView) findViewById(R.id.prize2);
         contactNumber = (TextView) findViewById(R.id.organizerNumber1);
         contactName = (TextView) findViewById(R.id.organizerName1);
         callButton = (FloatingActionButton) findViewById(R.id.callButton1);
+        bookmarkButton = (FloatingActionButton) findViewById(R.id.bookmark_fab);
+
         // getSupportActionBar().setDisplayShowHomeEnabled(true);
         //toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.app_white));
         if (getIntent() != null) {
             eventData = (EventData) getIntent().getSerializableExtra("eventData");
         }
 
-        collapsingToolbarLayout.setTitle(eventData.getName());
+        collapsingToolbarLayout.setTitle(toTitleCase(eventData.getName()));
         eventDescription.setText(eventData.getDescription());
-        prize1.setText("₹ " + eventData.getWinner1());
-        prize2.setText("₹ " + eventData.getWinner2());
-        contactName.setText(eventData.getContact_name());
+        prize1.setText(String.format("₹ %s", eventData.getWinner1()));
+        prize2.setText(String.format("₹ %s", eventData.getWinner2()));
+        contactName.setText(toTitleCase(eventData.getContact_name()));
         contactNumber.setText(eventData.getContact_no());
 
 
@@ -144,5 +148,35 @@ public class EventDetailActivity extends AppCompatActivity {
         am2.set(AlarmManager.RTC_WAKEUP, millis - 300000, pi);
     }
 
+    private static String toTitleCase(String str) {
+
+        if (str == null) {
+            return null;
+        }
+
+        boolean space = true;
+        StringBuilder builder = new StringBuilder(str);
+        final int len = builder.length();
+
+        for (int i = 0; i < len; ++i) {
+            char c = builder.charAt(i);
+            if (space) {
+                if(c == '('){
+                    i++;
+                }
+                if (!Character.isWhitespace(builder.charAt(i))) {
+                    // Convert to title case and switch out of whitespace mode.
+                    builder.setCharAt(i, Character.toTitleCase(builder.charAt(i)));
+                    space = false;
+                }
+            } else if (Character.isWhitespace(c)) {
+                space = true;
+            } else {
+                builder.setCharAt(i, Character.toLowerCase(c));
+            }
+        }
+
+        return builder.toString();
+    }
 }
 

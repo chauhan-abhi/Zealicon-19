@@ -34,77 +34,80 @@ public class TeamFragment extends Fragment {
 
     private void initTeamData() {
         mTeamList = new ArrayList<>();
+        mTeamList.add(new Developer("Dr. Gurulingappa M Patil",
+                "gurulingappa_patil",
+                "Chairman", ""));
         mTeamList.add(new Developer("Dr. Prashant Chauhan",
                 "prashant_chauhan",
-                "Convener","8586852282"));
+                "Convener","9990841257"));
 
         mTeamList.add(new Developer("Sonu Kumar Bharti",
                 "sonu_bharti",
-                "Festival Secretary","8586852282"));
+                "Festival Secretary","9319446763"));
 
         mTeamList.add(new Developer("Satyam Verma",
                 "satyam_verma",
-                "Festival Co-Secretary","8586852282"));
+                "Festival Co-Secretary","9559870238"));
         mTeamList.add(new Developer("Satwik Singh",
                 "satwik_singh",
-                "Creative Head","8586852282"));
+                "Creative Head","8853842111"));
         mTeamList.add(new Developer("Dhruv Srivastav",
                 "dhruv_srivastav",
-                "Technical Head","8586852282"));
+                "Technical Head","9917475447"));
         mTeamList.add(new Developer("Aditya Rawat",
                 "aditya_rawat",
-                "Management Head","8586852282"));
+                "Management Head","8527371779"));
         mTeamList.add(new Developer("Ashutosh Atri",
                 "ashutosh_atri",
-                "Security Head","8586852282"));
+                "Security Head","9457177554"));
         mTeamList.add(new Developer("Waris",
                 "waris",
-                "Promotion & Marketing Head","8586852282"));
+                "Promotion & Marketing Head","9643709668"));
         mTeamList.add(new Developer("Naman Jain",
                 "naman_jain",
-                "Dep. Security Head","8586852282"));
+                "Dep. Security Head","9721335607"));
         mTeamList.add(new Developer("Anurag Agarwal",
                 "anurag_agarwal",
-                "Sponsorship Head","8586852282"));
+                "Sponsorship Head","8743082849"));
         mTeamList.add(new Developer("Aabhas Pradhan",
                 "aabhas_pradhan",
-                "Dep. Sponsorship & Management Head","8586852282"));
+                "Dep. Sponsorship & Management Head","8750668273"));
         mTeamList.add(new Developer("Ankit Gupta",
                 "ankit_gupta",
-                "Cultural Head","8586852282"));
+                "Cultural Head","8587974281"));
         mTeamList.add(new Developer("Ishan Dalela",
                 "ishan_dalela",
-                "Media & Photography Head","8586852282"));
+                "Media & Photography Head","8826384385"));
         mTeamList.add(new Developer("Rishabh Handa",
                 "rishabh_handa",
-                "Student Welafare Head","8586852282"));
+                "Student Welafare Head","9696016668"));
         mTeamList.add(new Developer("Hitwik Singh",
                 "hitwik_singh",
-                "Scheduling Head","8586852282"));
+                "Scheduling Head","9958346697"));
         mTeamList.add(new Developer("Utkarsh Mishra",
                 "utkarsh_mishra",
-                "Merchandise Head","8586852282"));
+                "Merchandise Head","8750668707"));
         mTeamList.add(new Developer("Sujata Bajaj",
                 "sujata_bajaj",
-                "Merchandise Head","8586852282"));
+                "Merchandise Head","9354024413"));
         mTeamList.add(new Developer("Vineet Sharma",
                 "vineet_sharma",
-                "P.A. System Head","8586852282"));
+                "P.A. System Head", ""));
         mTeamList.add(new Developer("Abhay",
                 "abhay",
-                "College Promotion Head","8586852282"));
+                "College Promotion Head","8505830434"));
         mTeamList.add(new Developer("Prashant",
                 "prashant",
-                "Resource Head","8586852282"));
+                "Resource Head","7838018484"));
         mTeamList.add(new Developer("Vibhav Chaturvedi",
                 "vibhav_chaturvedi",
-                "Social Media & Marketing Head","8586852282"));
+                "Social Media & Marketing Head","9454755102"));
         mTeamList.add(new Developer("Vinayak Bansal",
                 "vinayak_bansal",
-                "Social Media & Marketing Head","8586852282"));
+                "Social Media & Marketing Head","7840050914"));
         mTeamList.add(new Developer("Sarvagya Singh",
                 "sarvagya_singh",
-                "Application Head","8586852282"));
+                "Application Head", ""));
 
     }
 
