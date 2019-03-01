@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.activities.MainActivity;
@@ -64,7 +65,6 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     if(!(team.getImgurl().isEmpty() || team.getImgurl() == null)){
       if(team.getImgurl().equals("gurulingappa_patil")) {
         holder.profileImg.setImageResource(R.drawable.gurulingappa_patil);
-        holder.callImageview.setVisibility(View.INVISIBLE);
       }
       else if(team.getImgurl().equals("prashant_chauhan"))
         holder.profileImg.setImageResource(R.drawable.prashant_chauhan);
@@ -102,7 +102,6 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         holder.profileImg.setImageResource(R.drawable.sujata_bajaj);
       else if(team.getImgurl().equals("vineet_sharma")) {
         holder.profileImg.setImageResource(R.drawable.vineet_sharma);
-        holder.callImageview.setVisibility(View.INVISIBLE);
       }
       else if(team.getImgurl().equals("abhay"))
         holder.profileImg.setImageResource(R.drawable.abhay);
@@ -114,7 +113,6 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         holder.profileImg.setImageResource(R.drawable.vinayak_bansal);
       else if(team.getImgurl().equals("sarvagya_singh")){
         holder.profileImg.setImageResource(R.drawable.sarvagya);
-        holder.callImageview.setVisibility(View.INVISIBLE);
       }
 
 
@@ -128,6 +126,10 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     holder.callImageview.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View view) {
         Log.v("onClick Call Fab",""+team.getMobNum());
+        if(team.getMobNum() == ""){
+          Toast.makeText(context, "Sorry! Number not disclosed", Toast.LENGTH_LONG).show();
+          return;
+        }
           if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)
                   != PackageManager.PERMISSION_GRANTED) {
               // TODO: Consider calling

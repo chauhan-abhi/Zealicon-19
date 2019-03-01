@@ -39,8 +39,9 @@ public class EventDetailActivity extends AppCompatActivity {
     private TextView eventTime, eventDate, eventVenue;
     private TextView eventDescription;
     private TextView prize1, prize2, contactName, contactNumber;
-    private FloatingActionButton callButton;
-    private int categoryId;
+    private FloatingActionButton callButton, bookmarkButton;
+    private boolean isBookMark = false;
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -77,6 +78,7 @@ public class EventDetailActivity extends AppCompatActivity {
         contactNumber = (TextView) findViewById(R.id.organizerNumber1);
         contactName = (TextView) findViewById(R.id.organizerName1);
         callButton = (FloatingActionButton) findViewById(R.id.callButton1);
+        bookmarkButton = (FloatingActionButton) findViewById(R.id.bookmark_fab);
 
         // getSupportActionBar().setDisplayShowHomeEnabled(true);
         //toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.app_white));

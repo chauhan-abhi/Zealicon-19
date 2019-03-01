@@ -36,7 +36,7 @@ public class TeamFragment extends Fragment {
         mTeamList = new ArrayList<>();
         mTeamList.add(new Developer("Dr. Gurulingappa M Patil",
                 "gurulingappa_patil",
-                "Chairman"));
+                "Chairman", ""));
         mTeamList.add(new Developer("Dr. Prashant Chauhan",
                 "prashant_chauhan",
                 "Convener","9990841257"));
@@ -92,7 +92,7 @@ public class TeamFragment extends Fragment {
                 "Merchandise Head","9354024413"));
         mTeamList.add(new Developer("Vineet Sharma",
                 "vineet_sharma",
-                "P.A. System Head"));
+                "P.A. System Head", ""));
         mTeamList.add(new Developer("Abhay",
                 "abhay",
                 "College Promotion Head","8505830434"));
@@ -107,7 +107,7 @@ public class TeamFragment extends Fragment {
                 "Social Media & Marketing Head","7840050914"));
         mTeamList.add(new Developer("Sarvagya Singh",
                 "sarvagya_singh",
-                "Application Head"));
+                "Application Head", ""));
 
     }
 
