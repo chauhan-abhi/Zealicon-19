@@ -11,20 +11,13 @@
     android:layout_marginStart="12dp"
     android:layout_marginTop="4dp"
     android:elevation="2dp"
+    app:cardBackgroundColor="@color/card_color"
     app:cardCornerRadius="6dp">
 
     <RelativeLayout
         android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/eventImageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:foreground="@drawable/gradient_upcoming"
-            android:scaleType="centerCrop"
-            android:src="@drawable/upcoming_background" />
 
         <TextView
             android:id="@+id/eventNameTV"
