@@ -1,14 +1,19 @@
 package com.jss.abhi.zealicon.activities;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +21,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
+
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.model.EventData;
 import com.jss.abhi.zealicon.service.NotificationService;
@@ -29,6 +36,11 @@ public class EventDetailActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     private EventData eventData;
+    private TextView eventTime, eventDate, eventVenue;
+    private TextView eventDescription;
+    private TextView prize1, prize2, contactName, contactNumber;
+    private FloatingActionButton callButton;
+    private int categoryId;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -47,7 +59,7 @@ public class EventDetailActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
-        collapsingToolbarLayout.setTitle("Code in Pair");
+
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.white));
         toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -58,11 +70,43 @@ public class EventDetailActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        eventDescription = (TextView) findViewById(R.id.descriptionTextView);
+        prize1 = (TextView) findViewById(R.id.prize1);
+        prize2 = (TextView) findViewById(R.id.prize2);
+        contactNumber = (TextView) findViewById(R.id.organizerNumber1);
+        contactName = (TextView) findViewById(R.id.organizerName1);
+        callButton = (FloatingActionButton) findViewById(R.id.callButton1);
         // getSupportActionBar().setDisplayShowHomeEnabled(true);
         //toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.app_white));
         if (getIntent() != null) {
             eventData = (EventData) getIntent().getSerializableExtra("eventData");
         }
+
+        collapsingToolbarLayout.setTitle(eventData.getName());
+        eventDescription.setText(eventData.getDescription());
+        prize1.setText("₹ " + eventData.getWinner1());
+        prize2.setText("₹ " + eventData.getWinner2());
+        contactName.setText(eventData.getContact_name());
+        contactNumber.setText(eventData.getContact_no());
+
+
+
+        callButton.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+                Log.v("onClick Call Fab",""+eventData.getContact_no());
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    ActivityCompat.requestPermissions(EventDetailActivity.this,
+                            new String[]{Manifest.permission.CALL_PHONE},
+                            0);
+                    return;
+                }
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + eventData.getContact_no()));
+                startActivity(intent);
+            }
+        });
+
 
         /**
          * this function will be called when star or bell is pressed
