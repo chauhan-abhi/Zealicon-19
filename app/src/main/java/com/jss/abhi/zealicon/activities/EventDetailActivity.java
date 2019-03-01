@@ -159,12 +159,15 @@ public class EventDetailActivity extends AppCompatActivity {
         for (int i = 0; i < len; ++i) {
             char c = builder.charAt(i);
             if (space) {
-                if (!Character.isWhitespace(c)) {
+                if(c == '('){
+                    i++;
+                }
+                if (!Character.isWhitespace(builder.charAt(i))) {
                     // Convert to title case and switch out of whitespace mode.
-                    builder.setCharAt(i, Character.toTitleCase(c));
+                    builder.setCharAt(i, Character.toTitleCase(builder.charAt(i)));
                     space = false;
                 }
-            } else if (Character.isWhitespace(c) || c == '(') {
+            } else if (Character.isWhitespace(c)) {
                 space = true;
             } else {
                 builder.setCharAt(i, Character.toLowerCase(c));
@@ -173,6 +176,5 @@ public class EventDetailActivity extends AppCompatActivity {
 
         return builder.toString();
     }
-
 }
 

@@ -124,7 +124,7 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
                 }
                 if (!Character.isWhitespace(builder.charAt(i))) {
                     // Convert to title case and switch out of whitespace mode.
-                    builder.setCharAt(i, Character.toTitleCase(c));
+                    builder.setCharAt(i, Character.toTitleCase(builder.charAt(i)));
                     space = false;
                 }
             } else if (Character.isWhitespace(c)) {
