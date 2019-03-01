@@ -62,11 +62,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     holder.position.setText(team.getPosition());
     //holder.profileImg.setImageResource(R.drawable.avatar);
     if(!(team.getImgurl().isEmpty() || team.getImgurl() == null)){
-      if(team.getImgurl().equals("gurulingappa_patil")) {
-        holder.profileImg.setImageResource(R.drawable.gurulingappa_patil);
-        holder.callImageview.setVisibility(View.INVISIBLE);
-      }
-      else if(team.getImgurl().equals("prashant_chauhan"))
+      if(team.getImgurl().equals("prashant_chauhan"))
         holder.profileImg.setImageResource(R.drawable.prashant_chauhan);
       else if(team.getImgurl().equals("sonu_bharti"))
         holder.profileImg.setImageResource(R.drawable.sonu_kumar);

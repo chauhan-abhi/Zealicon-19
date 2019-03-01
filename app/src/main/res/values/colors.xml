@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0F2027</color>
+  <!--  <color name="colorPrimary">#0F2027</color>
     <color name="colorPrimaryDark">#0F2027</color>
+    <color name="colorAccent">#FFA000</color>-->
+
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="fragment_background">#303030</color>
+    <color name="card_color">#424242</color>
     <color name="colorAccent">#FFA000</color>
 
     <color name="skycolor">#8E24AA</color>
@@ -12,11 +18,10 @@
     <color name="toolbar">#383547</color>
     <color name="trans">#00000000 </color>.
     <color name="black_opaq">#16000000</color>
-    <color name="card_dark_theme">#243447</color>
 
 
     <!-- App Primary View Colors (might be deprecated). -->
-    <color name="app_white">#fefefe</color>
+    <color name="app_white">#ffffff</color>
 
     <color name="header_green">#b3d577</color>
 

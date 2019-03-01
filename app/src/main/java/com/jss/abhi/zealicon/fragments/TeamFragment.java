@@ -34,9 +34,6 @@ public class TeamFragment extends Fragment {
 
     private void initTeamData() {
         mTeamList = new ArrayList<>();
-        mTeamList.add(new Developer("Dr. Gurulingappa M Patil",
-                "gurulingappa_patil",
-                "Chairman","8586852282"));
         mTeamList.add(new Developer("Dr. Prashant Chauhan",
                 "prashant_chauhan",
                 "Convener","8586852282"));
