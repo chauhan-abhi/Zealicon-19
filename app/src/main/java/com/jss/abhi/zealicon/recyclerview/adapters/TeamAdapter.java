@@ -100,8 +100,10 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         holder.profileImg.setImageResource(R.drawable.utkarsh_mishra);
       else if(team.getImgurl().equals("sujata_bajaj"))
         holder.profileImg.setImageResource(R.drawable.sujata_bajaj);
-      else if(team.getImgurl().equals("vineet_sharma"))
+      else if(team.getImgurl().equals("vineet_sharma")) {
         holder.profileImg.setImageResource(R.drawable.vineet_sharma);
+        holder.callImageview.setVisibility(View.INVISIBLE);
+      }
       else if(team.getImgurl().equals("abhay"))
         holder.profileImg.setImageResource(R.drawable.abhay);
       else if(team.getImgurl().equals("prashant"))
@@ -110,8 +112,11 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         holder.profileImg.setImageResource(R.drawable.vibhav_chaturvedi);
       else if(team.getImgurl().equals("vinayak_bansal"))
         holder.profileImg.setImageResource(R.drawable.vinayak_bansal);
-      else if(team.getImgurl().equals("sarvagya_singh"))
+      else if(team.getImgurl().equals("sarvagya_singh")){
         holder.profileImg.setImageResource(R.drawable.sarvagya);
+        holder.callImageview.setVisibility(View.INVISIBLE);
+      }
+
 
       else
         holder.profileImg.setImageResource(R.drawable.aavatar);

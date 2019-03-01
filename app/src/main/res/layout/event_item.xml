@@ -7,6 +7,7 @@
     android:layout_marginLeft="35dp"
     android:layout_marginRight="35dp"
     android:id="@+id/event_schedule_layout"
+    android:background="@drawable/ripple"
     android:layout_height="100dp">
 
     <TextView

@@ -24,11 +24,12 @@ public class Developer {
   }
 
   //Constructor for sponsors
-  public Developer(String sponsorName,String giturl,String category){
+  public Developer(String sponsorName,String imgurl,String category){
     this.name = sponsorName;
-    this.gitUrl = giturl;
+    this.imgurl = imgurl;
     this.position = category;
   }
+
 
   public String getName() {
     return name;

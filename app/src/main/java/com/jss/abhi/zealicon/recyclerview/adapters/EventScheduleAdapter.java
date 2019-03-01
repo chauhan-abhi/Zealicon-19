@@ -94,8 +94,6 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
         holder.event_schedule_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(context, R.anim.list_item_click_animation);
-                v.startAnimation(hyperspaceJumpAnimation);
                 Intent intent = new Intent(context, EventDetailActivity.class);
                 intent.putExtra("eventData", eventInnerData);
                 context.startActivity(intent);
@@ -108,7 +106,7 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
         return eventScheduleArrayList.size();
     }
 
-    public static String toTitleCase(String str) {
+    private static String toTitleCase(String str) {
 
         if (str == null) {
             return null;
@@ -121,7 +119,10 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
         for (int i = 0; i < len; ++i) {
             char c = builder.charAt(i);
             if (space) {
-                if (!Character.isWhitespace(c)) {
+                if(c == '('){
+                    i++;
+                }
+                if (!Character.isWhitespace(builder.charAt(i))) {
                     // Convert to title case and switch out of whitespace mode.
                     builder.setCharAt(i, Character.toTitleCase(c));
                     space = false;
