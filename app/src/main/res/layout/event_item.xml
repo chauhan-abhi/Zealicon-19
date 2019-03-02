@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginTop="5dp"
     android:layout_marginLeft="35dp"
     android:layout_marginRight="35dp"
     android:id="@+id/event_schedule_layout"
@@ -15,10 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="Event Name"
         android:textSize="20sp"
-        android:textColor="@color/app_white"
+        android:textColor= "@color/app_white"
         android:textStyle="bold"
         android:textAllCaps="false"
         android:maxLines="1"
@@ -43,7 +42,7 @@
             android:text="AB1 Labs"
             android:textSize="16sp"
             android:fontFamily="@font/comfortaa_light"
-            android:textColor="@color/app_white"/>
+            android:textColor="#D5AC7D"/>
         <TextView
             android:id="@+id/timeTextView"
             android:layout_width="0dp"
@@ -51,7 +50,7 @@
             android:textSize="16sp"
             android:layout_weight="1"
             android:text="10:00 AM"
-            android:textColor="@color/app_white"
+            android:textColor="#D5AC7D"
             android:fontFamily="@font/comfortaa_light" />
 
         <android.support.v4.widget.Space
@@ -76,7 +75,7 @@
         android:layout_marginTop="63dp"
         android:textSize="16sp"
         android:fontFamily="@font/comfortaa_light"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="#D58F38"/>
 
     <View
         android:layout_width="match_parent"
