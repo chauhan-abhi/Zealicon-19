@@ -9,27 +9,28 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.model.EventData;
-import com.jss.abhi.zealicon.model.InnerData;
 import com.jss.abhi.zealicon.recyclerview.adapters.BookmarksEventAdapter;
 import com.jss.abhi.zealicon.recyclerview.adapters.UpcomingEventAdapter;
+import com.jss.abhi.zealicon.utils.Jsonparser;
 
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-
-import static com.jss.abhi.zealicon.utils.Jsonparser.stringToEventArray;
 
 public class HomeFragment extends Fragment {
 
     RecyclerView upcomingRecyclerView;
     RecyclerView bookmarksRecyclerView;
-    ArrayList<InnerData> upcomingEventArrayList;
+    ArrayList<EventData> upcomingEventArrayList;
     ArrayList<EventData> bookmarkEventArrayList;
     BookmarksEventAdapter bookmarksEventAdapter;
 
@@ -57,24 +58,51 @@ public class HomeFragment extends Fragment {
         bookmarkEventArrayList = new ArrayList<>(oldArrayList);
     }
 
-    public void initUpcomingEventData(){
-
+    public void initUpcomingEventData() {
         upcomingEventArrayList = new ArrayList<>();
-        upcomingEventArrayList.add(new InnerData("Code in Pair"));
-        upcomingEventArrayList.add(new InnerData("Code in less"));
-        upcomingEventArrayList.add(new InnerData("Technovision"));
-        upcomingEventArrayList.add(new InnerData("Web-O-Cart"));
-        upcomingEventArrayList.add(new InnerData("Logocon"));
-        upcomingEventArrayList.add(new InnerData("Codeaggedon"));
-        upcomingEventArrayList.add(new InnerData("Coding is Divertido"));
+        SharedPreferences s = getContext().getSharedPreferences("events", 0);
+        Calendar calendar = Calendar.getInstance();
+        int today = calendar.get(Calendar.DATE);
+        String todaysEventString="";
+        switch (today) {
+            case 2:
+                todaysEventString = s.getString("day1events", "[]");
+                break;
+            case 6:
+                todaysEventString = s.getString("day2events", "[]");
+                break;
+            case 7:
+                todaysEventString = s.getString("day3events", "[]");
+                break;
+            case 8:
+                todaysEventString = s.getString("day4events", "[]");
+                break;
+        }
 
+        List<EventData> todayList = new ArrayList<>(Jsonparser.stringToEventArray(todaysEventString));
+
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        try {
+            Date date;
+            for (EventData e : todayList) {
+                date = formatter.parse(e.getTiming());
+                if (date.getTime() - calendar.getTimeInMillis() < 3600000) {
+                    upcomingEventArrayList.add(e);
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+
+        }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
         initBookmarkEventData();
         initUpcomingEventData();
         upcomingRecyclerView = view.findViewById(R.id.upcomingRecyclerView);

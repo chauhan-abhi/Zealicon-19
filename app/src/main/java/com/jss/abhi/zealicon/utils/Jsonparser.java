@@ -79,31 +79,12 @@ public class Jsonparser {
             eventData.setWinner1(get(jsonObject, "winner1"));
             eventData.setWinner2(get(jsonObject,  "winner2"));
             eventData.setId(get(jsonObject, "id"));
-            //innerData.setLong_des(get(jsonObject,"long_des"));
-            /*String prizes=get(jsonObject,"prize_money");
-            JSONArray prizeList=new JSONArray(prizes);
-            if(prizeList.length()>=1)
-                innerData.setPrize1(prizeList.getString(0));
-            if (prizeList.length()==2)
-                innerData.setPrize2(prizeList.getString(1));
-            innerData.setRules(get(jsonObject,"rules"));
-            String contactStr=get(jsonObject,"contact");
-            JSONArray contacts=new JSONArray(contactStr);
-            try {
-                JSONObject contact1obj = contacts.getJSONObject(0);
-                innerData.setContact_name1(get(contact1obj,"name"));
-                innerData.setContact_num1(get(contact1obj,"number"));
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            try {
-                JSONObject contact2obj = contacts.getJSONObject(1);
-                innerData.setContact_name2(get(contact2obj,"name"));
-                innerData.setContact_num2(get(contact2obj,"number"));
-            }catch (Exception e){
-                e.printStackTrace();
-            }*/
 
+            /**
+             * it has to be replaced
+             */
+            //eventData.setTiming(get(jsonObject, "timing"));
+            eventData.setTiming("2019-03-02 16:45:00");
         } catch (JSONException e) {
             e.printStackTrace();
         }

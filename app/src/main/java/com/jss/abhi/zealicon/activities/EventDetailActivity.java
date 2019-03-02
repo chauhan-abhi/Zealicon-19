@@ -132,7 +132,7 @@ public class EventDetailActivity extends AppCompatActivity {
                     // add this event object to array list of bookmarks
                     s.edit().putString("list_bookmarked", gson.toJson(oldArrayList)).apply();
                     isBookMark = false;
-                    bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark));
+                    bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark_border));
 
                     Toast.makeText(EventDetailActivity.this, "Event removed from Bookmarks", Toast.LENGTH_LONG).show();
 
@@ -149,7 +149,7 @@ public class EventDetailActivity extends AppCompatActivity {
                     // add this event object to array list of bookmarks
                     s.edit().putString("list_bookmarked", gson.toJson(oldArrayList)).apply();
                     isBookMark = true;
-                    bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark_border));
+                    bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark));
                     Toast.makeText(EventDetailActivity.this, "Event added to Bookmarks", Toast.LENGTH_LONG).show();
 
 

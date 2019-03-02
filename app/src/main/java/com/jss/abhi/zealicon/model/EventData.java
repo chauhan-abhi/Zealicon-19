@@ -13,10 +13,29 @@ public class EventData implements Serializable {
     private String contact_name;
     private String contact_no;
     private Integer is_active;
+    private String timing;
+    private String venue;
 
     public EventData() {
 
     }
+
+    public String getTiming() {
+        return timing;
+    }
+
+    public void setTiming(String timing) {
+        this.timing = timing;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
+
     public String getId() {
         return id;
     }
