@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ import com.jss.abhi.zealicon.service.NotificationService;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -40,7 +42,9 @@ public class EventDetailActivity extends AppCompatActivity {
     private TextView eventDescription;
     private TextView prize1, prize2, contactName, contactNumber;
     private FloatingActionButton callButton, bookmarkButton;
-    private boolean isBookMark = false;
+    private int bookMarkFlag;
+    private boolean isBookMark;
+    ArrayList<String> bookmarkArrayList = new ArrayList<>();
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -93,6 +97,17 @@ public class EventDetailActivity extends AppCompatActivity {
         contactName.setText(toTitleCase(eventData.getContact_name()));
         contactNumber.setText(eventData.getContact_no());
 
+        SharedPreferences bookmarkSharedPreference = getSharedPreferences("bookmarkedEvent", 0);
+        bookMarkFlag =  bookmarkSharedPreference.getInt(eventData.getId(), 0);
+        if (bookMarkFlag == 1 || bookMarkFlag == 0){
+            bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark_border));
+            isBookMark = false;
+        } else if (bookMarkFlag == 2){
+            bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark));
+            isBookMark = true;
+        }
+
+
 
 
         callButton.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +132,30 @@ public class EventDetailActivity extends AppCompatActivity {
          */
 
         //notifyme();
+
+        bookmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!isBookMark){
+
+                    SharedPreferences bookmarkSharedPreference = getSharedPreferences("bookmarkedEvent", 0);
+                    bookmarkSharedPreference.edit().putInt(eventData.getId(), 2).apply();
+                    Snackbar.make(view, "Event Bookmarked Successfully", Snackbar.LENGTH_SHORT)
+                            .show();
+                    bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark));
+                    isBookMark = true;
+
+                } else {
+
+                    SharedPreferences bookmarkSharedPreference = getSharedPreferences("bookmarkedEvent", 0);
+                    bookmarkSharedPreference.edit().putInt(eventData.getId(), 1).apply();
+                    Snackbar.make(view, "The event is no longer bookmarked", Snackbar.LENGTH_SHORT)
+                            .show();
+                    bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark_border));
+                    isBookMark = false;
+                }
+            }
+        });
 
 
     }

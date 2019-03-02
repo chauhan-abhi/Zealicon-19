@@ -1,10 +1,12 @@
 package com.jss.abhi.zealicon.fragments;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,10 @@ import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.model.InnerData;
 import com.jss.abhi.zealicon.recyclerview.adapters.BookmarksEventAdapter;
 import com.jss.abhi.zealicon.recyclerview.adapters.UpcomingEventAdapter;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -31,6 +37,21 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*SharedPreferences s = getContext().getSharedPreferences("events", 0);
+        String events = s.getString("allevents", "[]");
+        JSONArray eventsArray;
+        try {
+            eventsArray = new JSONArray(events);
+            for (int i = 0; i < eventsArray.length(); i++) {
+                JSONObject eventObject = eventsArray.getJSONObject(i);
+
+
+            }
+            s.edit().putString("allevents", "[]").apply();
+            Log.v("MyApp", "Schedule Distribution Done");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
         initUpcomingEventData();
         initBookmarkEventData();
 

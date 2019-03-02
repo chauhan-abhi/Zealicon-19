@@ -79,7 +79,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
       else if(team.getImgurl().equals("aditya_rawat"))
         holder.profileImg.setImageResource(R.drawable.aditya_rawat);
       else if(team.getImgurl().equals("ashutosh_atri"))
-        holder.profileImg.setImageResource(R.drawable.ashutosh_atari);
+        holder.profileImg.setImageResource(R.drawable.ashutosh_atri);
       else if(team.getImgurl().equals("waris"))
         holder.profileImg.setImageResource(R.drawable.waris);
       else if(team.getImgurl().equals("naman_jain"))
@@ -87,7 +87,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
       else if(team.getImgurl().equals("anurag_agarwal"))
         holder.profileImg.setImageResource(R.drawable.anurag_agarwal);
       else if(team.getImgurl().equals("aabhas_pradhan"))
-        holder.profileImg.setImageResource(R.drawable.aabhas_pradhan);
+        holder.profileImg.setImageResource(R.drawable.abhas_pradhan);
       else if(team.getImgurl().equals("ankit_gupta"))
         holder.profileImg.setImageResource(R.drawable.ankit_gupta);
       else if(team.getImgurl().equals("ishan_dalela"))
@@ -112,7 +112,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
       else if(team.getImgurl().equals("vinayak_bansal"))
         holder.profileImg.setImageResource(R.drawable.vinayak_bansal);
       else if(team.getImgurl().equals("sarvagya_singh")){
-        holder.profileImg.setImageResource(R.drawable.sarvagya);
+        holder.profileImg.setImageResource(R.drawable.sarvagya_singh);
       }
 
 
