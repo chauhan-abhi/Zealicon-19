@@ -22,14 +22,21 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.model.EventData;
 import com.jss.abhi.zealicon.service.NotificationService;
 
+import org.json.JSONArray;
+
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class EventDetailActivity extends AppCompatActivity {
@@ -61,7 +68,7 @@ public class EventDetailActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.white));
-        toolbar =  findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -86,6 +93,9 @@ public class EventDetailActivity extends AppCompatActivity {
             eventData = (EventData) getIntent().getSerializableExtra("eventData");
         }
 
+        isBookMark = getSharedPreferences("bookmarks", 0)
+                .getInt(eventData.getId(), 0) != 0;
+
         collapsingToolbarLayout.setTitle(toTitleCase(eventData.getName()));
         eventDescription.setText(eventData.getDescription());
         prize1.setText(String.format("₹ %s", eventData.getWinner1()));
@@ -93,11 +103,56 @@ public class EventDetailActivity extends AppCompatActivity {
         contactName.setText(toTitleCase(eventData.getContact_name()));
         contactNumber.setText(eventData.getContact_no());
 
+        bookmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences s = getSharedPreferences("bookmarks", 0);
+                String bookmarked_events = s.getString("list_bookmarked", "[]");
+                Gson gson = new Gson();
+                Type type = new TypeToken<List<EventData>>() {
+                }.getType();
 
+                if (isBookMark) {
+                    // delete and unflag
+
+                    List<EventData> oldArrayList = gson.fromJson(bookmarked_events, type);
+                    for (EventData e : oldArrayList) {
+                        if (e.getId().equals(eventData.getId())) {
+                            oldArrayList.remove(e);
+                        }
+                    }
+                    // unflag this event using event id to not show in ui
+                    s.edit().putInt(eventData.getId(), 0).apply();
+                    // add this event object to array list of bookmarks
+                    s.edit().putString("list_bookmarked", gson.toJson(oldArrayList)).apply();
+                    isBookMark = false;
+                    Toast.makeText(EventDetailActivity.this, "Event removed from Bookmarks", Toast.LENGTH_LONG).show();
+
+                } else {
+                    // add and show flag
+
+                    List<EventData> oldArrayList = gson.fromJson(bookmarked_events, type);
+                    oldArrayList.add(eventData);
+
+                    //JSONArray bookMarkArray = new JSONArray(bookmarked_events);
+                    //bookMarkArray.put(gson.toJson(eventData));
+                    // flag this event using event id to show in ui
+                    s.edit().putInt(eventData.getId(), 1).apply();
+                    // add this event object to array list of bookmarks
+                    s.edit().putString("list_bookmarked", gson.toJson(oldArrayList)).apply();
+                    isBookMark = true;
+                    Toast.makeText(EventDetailActivity.this, "Event added to Bookmarks", Toast.LENGTH_LONG).show();
+
+
+
+                }
+            }
+        });
 
         callButton.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
-                Log.v("onClick Call Fab",""+eventData.getContact_no());
+            @Override
+            public void onClick(View view) {
+                Log.v("onClick Call Fab", "" + eventData.getContact_no());
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE)
                         != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
@@ -161,7 +216,7 @@ public class EventDetailActivity extends AppCompatActivity {
         for (int i = 0; i < len; ++i) {
             char c = builder.charAt(i);
             if (space) {
-                if(c == '('){
+                if (c == '(') {
                     i++;
                 }
                 if (!Character.isWhitespace(builder.charAt(i))) {

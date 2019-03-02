@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.activities.EventDetailActivity;
+import com.jss.abhi.zealicon.model.EventData;
 import com.jss.abhi.zealicon.model.InnerData;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAdapter.BookmarkEventScheduleViewHolder> {
 
     public Context context;
-    private ArrayList<? extends InnerData> bookmarkEventScheduleArrayList;
+    private ArrayList<EventData> bookmarkEventScheduleArrayList;
 
     public class BookmarkEventScheduleViewHolder extends RecyclerView.ViewHolder{
         private TextView bookmark_event_name;
@@ -41,7 +42,7 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
         }
     }
 
-    public BookmarksEventAdapter(ArrayList<? extends InnerData> bookmarkEventScheduleArrayList) {
+    public BookmarksEventAdapter(ArrayList<EventData> bookmarkEventScheduleArrayList) {
         this.bookmarkEventScheduleArrayList = bookmarkEventScheduleArrayList;
     }
 
@@ -54,8 +55,8 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
 
     @Override
     public void onBindViewHolder(BookmarkEventScheduleViewHolder holder, int position) {
-        final InnerData eventInnerData = bookmarkEventScheduleArrayList.get(position);
-        holder.bookmark_event_name.setText(eventInnerData.getEvent_name());
+        final EventData eventInnerData = bookmarkEventScheduleArrayList.get(position);
+        holder.bookmark_event_name.setText(eventInnerData.getName());
         //holder.event_time.setText(Integer.toString(eventInnerData.getEvent_time()));
    /* holder.event_location.setText((eventInnerData.getEvent_location()));
     holder.event_category.setText(eventInnerData.getCategory());*/
@@ -64,6 +65,7 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EventDetailActivity.class);
+                intent.putExtra("eventData", eventInnerData);
                 context.startActivity(intent);
             }
         });
@@ -71,6 +73,12 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
 
     @Override public int getItemCount() {
         return bookmarkEventScheduleArrayList.size();
+    }
+
+    public void setData(ArrayList<EventData> list) {
+        bookmarkEventScheduleArrayList.clear();
+        bookmarkEventScheduleArrayList.addAll(list);
+        notifyDataSetChanged();
     }
 
 }

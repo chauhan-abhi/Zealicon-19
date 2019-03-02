@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class EventData implements Serializable {
 
+    private String id;
     private String name;
     private String description;
     private String category_id;
@@ -15,6 +16,14 @@ public class EventData implements Serializable {
 
     public EventData() {
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

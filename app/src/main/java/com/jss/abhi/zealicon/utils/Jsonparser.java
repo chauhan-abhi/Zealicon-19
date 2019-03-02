@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -17,6 +18,25 @@ import java.util.Date;
  */
 
 public class Jsonparser {
+
+    public static ArrayList<EventData> stringToEventArray(String dayArrayString) {
+        ArrayList<EventData> eventDataList = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(dayArrayString);
+            for (int j = 0; j < jsonArray.length(); j++) {
+                EventData eventData = new EventData();
+                try {
+                    eventData = Jsonparser.toObject(jsonArray.getJSONObject(j).toString());
+                    eventDataList.add(eventData);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return eventDataList;
+    }
 
     public static String get(JSONObject jsonObject,String key){
         if(jsonObject.has(key)){
@@ -57,6 +77,7 @@ public class Jsonparser {
             eventData.setContact_no(get(jsonObject, "contact_no"));
             eventData.setWinner1(get(jsonObject, "winner1"));
             eventData.setWinner2(get(jsonObject,  "winner2"));
+            eventData.setId(get(jsonObject, "id"));
             //innerData.setLong_des(get(jsonObject,"long_des"));
             /*String prizes=get(jsonObject,"prize_money");
             JSONArray prizeList=new JSONArray(prizes);

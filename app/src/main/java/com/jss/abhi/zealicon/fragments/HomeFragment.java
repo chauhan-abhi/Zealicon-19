@@ -1,6 +1,7 @@
 package com.jss.abhi.zealicon.fragments;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,20 +9,29 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jss.abhi.zealicon.R;
+import com.jss.abhi.zealicon.model.EventData;
 import com.jss.abhi.zealicon.model.InnerData;
 import com.jss.abhi.zealicon.recyclerview.adapters.BookmarksEventAdapter;
 import com.jss.abhi.zealicon.recyclerview.adapters.UpcomingEventAdapter;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
+
+import static com.jss.abhi.zealicon.utils.Jsonparser.stringToEventArray;
 
 public class HomeFragment extends Fragment {
 
     RecyclerView upcomingRecyclerView;
     RecyclerView bookmarksRecyclerView;
     ArrayList<InnerData> upcomingEventArrayList;
-    ArrayList<InnerData> bookmarkEventArrayList;
+    ArrayList<EventData> bookmarkEventArrayList;
+    BookmarksEventAdapter bookmarksEventAdapter;
 
     public static Fragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -29,15 +39,26 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initUpcomingEventData();
+    public void onResume() {
+        super.onResume();
         initBookmarkEventData();
-
+        bookmarksEventAdapter.setData(bookmarkEventArrayList);
+        initUpcomingEventData();
     }
 
+    private void initBookmarkEventData() {
+        SharedPreferences s = getContext().getSharedPreferences("bookmarks", 0);
+        String bookmarked_events = s.getString("list_bookmarked", "[]");
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<EventData>>() {
+        }.getType();
+
+        List<EventData> oldArrayList = gson.fromJson(bookmarked_events, type);
+        bookmarkEventArrayList = new ArrayList<>(oldArrayList);
+    }
 
     public void initUpcomingEventData(){
+
         upcomingEventArrayList = new ArrayList<>();
         upcomingEventArrayList.add(new InnerData("Code in Pair"));
         upcomingEventArrayList.add(new InnerData("Code in less"));
@@ -49,23 +70,13 @@ public class HomeFragment extends Fragment {
 
     }
 
-    public void initBookmarkEventData(){
-        bookmarkEventArrayList = new ArrayList<>();
-        bookmarkEventArrayList.add(new InnerData("Code in Pair"));
-        bookmarkEventArrayList.add(new InnerData("Code in less"));
-        bookmarkEventArrayList.add(new InnerData("Technovision"));
-        bookmarkEventArrayList.add(new InnerData("Web-O-Cart"));
-        bookmarkEventArrayList.add(new InnerData("Logocon"));
-        bookmarkEventArrayList.add(new InnerData("Codeaggedon"));
-        bookmarkEventArrayList.add(new InnerData("Coding is Divertido"));
-
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home, container, false);
+        initBookmarkEventData();
+        initUpcomingEventData();
         upcomingRecyclerView = view.findViewById(R.id.upcomingRecyclerView);
         upcomingRecyclerView.setNestedScrollingEnabled(false);
         upcomingRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -73,7 +84,8 @@ public class HomeFragment extends Fragment {
 
         bookmarksRecyclerView = view.findViewById(R.id.bookmarksRecyclerView);
         bookmarksRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        bookmarksRecyclerView.setAdapter(new BookmarksEventAdapter(bookmarkEventArrayList));
+        bookmarksEventAdapter = new BookmarksEventAdapter(bookmarkEventArrayList);
+        bookmarksRecyclerView.setAdapter(bookmarksEventAdapter);
         return view;
     }
 }
