@@ -8,15 +8,35 @@ public class EventData implements Serializable {
     private String name;
     private String description;
     private String category_id;
+    private String societyId;
     private String winner1;
     private String winner2;
     private String contact_name;
     private String contact_no;
     private Integer is_active;
+    private String timing;
+    private String venue;
 
     public EventData() {
 
     }
+
+    public String getTiming() {
+        return timing;
+    }
+
+    public void setTiming(String timing) {
+        this.timing = timing;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
+
     public String getId() {
         return id;
     }
@@ -47,6 +67,14 @@ public class EventData implements Serializable {
 
     public void setCategory_id(String category_id) {
         this.category_id = category_id;
+    }
+
+    public String getSocietyId() {
+        return societyId;
+    }
+
+    public void setSocietyId(String societyId) {
+        this.societyId = societyId;
     }
 
     public String getWinner1() {

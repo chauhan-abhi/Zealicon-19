@@ -9,10 +9,6 @@ import android.view.ViewGroup;
 
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.model.EventData;
-import com.jss.abhi.zealicon.utils.Jsonparser;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +18,8 @@ import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
 import github.chenupt.multiplemodel.viewpager.PagerModelManager;
 import github.chenupt.springindicator.SpringIndicator;
 import github.chenupt.springindicator.viewpager.ScrollerViewPager;
+
+import static com.jss.abhi.zealicon.utils.Jsonparser.stringToEventArray;
 
 
 public class ScheduleFragment extends Fragment {
@@ -94,16 +92,16 @@ public class ScheduleFragment extends Fragment {
         SharedPreferences s = getContext().getSharedPreferences("events", 0);
 
         String day1array = s.getString(getString(R.string.day1events), getString(R.string.default_str));
-        day1ScheduleArrayList = new ArrayList<>(initScheduleData(day1array));
+        day1ScheduleArrayList = new ArrayList<>(stringToEventArray(day1array));
 
         String day2array = s.getString(getString(R.string.day2events), getString(R.string.default_str));
-        day2ScheduleArrayList = new ArrayList<>(initScheduleData(day2array));
+        day2ScheduleArrayList = new ArrayList<>(stringToEventArray(day2array));
 
         String day3array = s.getString(getString(R.string.day3events), getString(R.string.default_str));
-        day3ScheduleArrayList = new ArrayList<>(initScheduleData(day3array));
+        day3ScheduleArrayList = new ArrayList<>(stringToEventArray(day3array));
 
         String day4array = s.getString(getString(R.string.day4events), getString(R.string.default_str));
-        day4ScheduleArrayList = new ArrayList<>(initScheduleData(day4array));
+        day4ScheduleArrayList = new ArrayList<>(stringToEventArray(day4array));
 
 
       /*  for (int i = 0; i < 4; i++) {
@@ -143,25 +141,6 @@ public class ScheduleFragment extends Fragment {
             outerData.add(innerDataList);
 
         }*/
-    }
-
-    public ArrayList<EventData> initScheduleData(String dayArrayString) {
-        ArrayList<EventData> eventDataList = new ArrayList<>();
-        try {
-            JSONArray jsonArray = new JSONArray(dayArrayString);
-            for (int j = 0; j < jsonArray.length(); j++) {
-                EventData eventData = new EventData();
-                try {
-                    eventData = Jsonparser.toObject(jsonArray.getJSONObject(j).toString());
-                    eventDataList.add(eventData);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return eventDataList;
     }
 
 }

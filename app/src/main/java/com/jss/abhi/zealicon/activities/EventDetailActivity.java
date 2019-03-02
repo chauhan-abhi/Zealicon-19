@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -23,16 +22,25 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.model.EventData;
 import com.jss.abhi.zealicon.service.NotificationService;
+import com.jss.abhi.zealicon.utils.TitleCaseConverter;
 
+import org.json.JSONArray;
+
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import static com.jss.abhi.zealicon.utils.TitleCaseConverter.toTitleCase;
 
 public class EventDetailActivity extends AppCompatActivity {
 
@@ -42,9 +50,7 @@ public class EventDetailActivity extends AppCompatActivity {
     private TextView eventDescription;
     private TextView prize1, prize2, contactName, contactNumber;
     private FloatingActionButton callButton, bookmarkButton;
-    private int bookMarkFlag;
-    private boolean isBookMark;
-    ArrayList<String> bookmarkArrayList = new ArrayList<>();
+    private boolean isBookMark = false;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -65,7 +71,7 @@ public class EventDetailActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.white));
-        toolbar =  findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -84,10 +90,20 @@ public class EventDetailActivity extends AppCompatActivity {
         callButton = (FloatingActionButton) findViewById(R.id.callButton1);
         bookmarkButton = (FloatingActionButton) findViewById(R.id.bookmark_fab);
 
+
+
         // getSupportActionBar().setDisplayShowHomeEnabled(true);
         //toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.app_white));
         if (getIntent() != null) {
             eventData = (EventData) getIntent().getSerializableExtra("eventData");
+        }
+
+        isBookMark = getSharedPreferences("bookmarks", 0)
+                .getInt(eventData.getId(), 0) != 0;
+        if (isBookMark) {
+            bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark));
+        } else {
+            bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark_border));
         }
 
         collapsingToolbarLayout.setTitle(toTitleCase(eventData.getName()));
@@ -97,22 +113,60 @@ public class EventDetailActivity extends AppCompatActivity {
         contactName.setText(toTitleCase(eventData.getContact_name()));
         contactNumber.setText(eventData.getContact_no());
 
-        SharedPreferences bookmarkSharedPreference = getSharedPreferences("bookmarkedEvent", 0);
-        bookMarkFlag =  bookmarkSharedPreference.getInt(eventData.getId(), 0);
-        if (bookMarkFlag == 1 || bookMarkFlag == 0){
-            bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark_border));
-            isBookMark = false;
-        } else if (bookMarkFlag == 2){
-            bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark));
-            isBookMark = true;
-        }
+        bookmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences s = getSharedPreferences("bookmarks", 0);
+                String bookmarked_events = s.getString("list_bookmarked", "[]");
+                Gson gson = new Gson();
+                Type type = new TypeToken<List<EventData>>() {
+                }.getType();
+
+                if (isBookMark) {
+                    // delete and unflag
+
+
+                    List<EventData> oldArrayList = gson.fromJson(bookmarked_events, type);
+                    for (EventData e : oldArrayList) {
+                        if (e.getId().equals(eventData.getId())) {
+                            oldArrayList.remove(e);
+                        }
+                    }
+                    // unflag this event using event id to not show in ui
+                    s.edit().putInt(eventData.getId(), 0).apply();
+                    // add this event object to array list of bookmarks
+                    s.edit().putString("list_bookmarked", gson.toJson(oldArrayList)).apply();
+                    isBookMark = false;
+                    bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark_border));
+
+                    Toast.makeText(EventDetailActivity.this, "Event removed from Bookmarks", Toast.LENGTH_LONG).show();
+
+                } else {
+                    // add and show flag
+
+                    List<EventData> oldArrayList = gson.fromJson(bookmarked_events, type);
+                    oldArrayList.add(eventData);
+
+                    //JSONArray bookMarkArray = new JSONArray(bookmarked_events);
+                    //bookMarkArray.put(gson.toJson(eventData));
+                    // flag this event using event id to show in ui
+                    s.edit().putInt(eventData.getId(), 1).apply();
+                    // add this event object to array list of bookmarks
+                    s.edit().putString("list_bookmarked", gson.toJson(oldArrayList)).apply();
+                    isBookMark = true;
+                    bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark));
+                    Toast.makeText(EventDetailActivity.this, "Event added to Bookmarks", Toast.LENGTH_LONG).show();
 
 
 
+                }
+            }
+        });
 
         callButton.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
-                Log.v("onClick Call Fab",""+eventData.getContact_no());
+            @Override
+            public void onClick(View view) {
+                Log.v("onClick Call Fab", "" + eventData.getContact_no());
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE)
                         != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
@@ -132,30 +186,6 @@ public class EventDetailActivity extends AppCompatActivity {
          */
 
         //notifyme();
-
-        bookmarkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!isBookMark){
-
-                    SharedPreferences bookmarkSharedPreference = getSharedPreferences("bookmarkedEvent", 0);
-                    bookmarkSharedPreference.edit().putInt(eventData.getId(), 2).apply();
-                    Snackbar.make(view, "Event Bookmarked Successfully", Snackbar.LENGTH_SHORT)
-                            .show();
-                    bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark));
-                    isBookMark = true;
-
-                } else {
-
-                    SharedPreferences bookmarkSharedPreference = getSharedPreferences("bookmarkedEvent", 0);
-                    bookmarkSharedPreference.edit().putInt(eventData.getId(), 1).apply();
-                    Snackbar.make(view, "The event is no longer bookmarked", Snackbar.LENGTH_SHORT)
-                            .show();
-                    bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark_border));
-                    isBookMark = false;
-                }
-            }
-        });
 
 
     }
@@ -187,35 +217,5 @@ public class EventDetailActivity extends AppCompatActivity {
         am2.set(AlarmManager.RTC_WAKEUP, millis - 300000, pi);
     }
 
-    private static String toTitleCase(String str) {
-
-        if (str == null) {
-            return null;
-        }
-
-        boolean space = true;
-        StringBuilder builder = new StringBuilder(str);
-        final int len = builder.length();
-
-        for (int i = 0; i < len; ++i) {
-            char c = builder.charAt(i);
-            if (space) {
-                if(c == '('){
-                    i++;
-                }
-                if (!Character.isWhitespace(builder.charAt(i))) {
-                    // Convert to title case and switch out of whitespace mode.
-                    builder.setCharAt(i, Character.toTitleCase(builder.charAt(i)));
-                    space = false;
-                }
-            } else if (Character.isWhitespace(c)) {
-                space = true;
-            } else {
-                builder.setCharAt(i, Character.toLowerCase(c));
-            }
-        }
-
-        return builder.toString();
-    }
 }
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.activities.EventDetailActivity;
+import com.jss.abhi.zealicon.model.EventData;
 import com.jss.abhi.zealicon.model.InnerData;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdapter.UpcomingEventViewHolder> {
 
     public Context context;
-    private ArrayList<? extends InnerData> upcomingEventScheduleArrayList;
+    private ArrayList<EventData> upcomingEventScheduleArrayList;
 
     public class UpcomingEventViewHolder extends RecyclerView.ViewHolder{
         private TextView upcoming_event_name;
@@ -41,7 +42,7 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
         }
     }
 
-    public UpcomingEventAdapter(ArrayList<? extends InnerData> upcomingEventScheduleArrayList) {
+    public UpcomingEventAdapter(ArrayList<EventData> upcomingEventScheduleArrayList) {
         this.upcomingEventScheduleArrayList = upcomingEventScheduleArrayList;
     }
 
@@ -54,8 +55,8 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
 
     @Override
     public void onBindViewHolder(UpcomingEventAdapter.UpcomingEventViewHolder holder, int position) {
-        final InnerData eventInnerData = upcomingEventScheduleArrayList.get(position);
-        holder.upcoming_event_name.setText(eventInnerData.getEvent_name());
+        final EventData eventInnerData = upcomingEventScheduleArrayList.get(position);
+        holder.upcoming_event_name.setText(eventInnerData.getName());
         //holder.event_time.setText(Integer.toString(eventInnerData.getEvent_time()));
    /* holder.event_location.setText((eventInnerData.getEvent_location()));
     holder.event_category.setText(eventInnerData.getCategory());*/
@@ -64,6 +65,7 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EventDetailActivity.class);
+                intent.putExtra("eventData", eventInnerData);
                 context.startActivity(intent);
             }
         });
