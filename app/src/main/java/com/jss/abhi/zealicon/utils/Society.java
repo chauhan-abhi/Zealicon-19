@@ -20,7 +20,7 @@ public class Society {
             put(11, "Impetus");
             put(12,"Connoisseur");
             put(13, "Oorja");
-            put(14, "Yantrashilp[a");
+            put(14, "Yantrashilpa");
             put(15, "Optimist");
             put(16, "MMIL");
             put(17, "Spice");

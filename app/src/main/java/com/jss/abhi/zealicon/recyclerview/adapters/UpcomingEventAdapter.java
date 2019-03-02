@@ -16,6 +16,8 @@ import com.jss.abhi.zealicon.model.InnerData;
 
 import java.util.ArrayList;
 
+import static com.jss.abhi.zealicon.utils.TitleCaseConverter.toTitleCase;
+
 public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdapter.UpcomingEventViewHolder> {
 
     public Context context;
@@ -56,7 +58,7 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
     @Override
     public void onBindViewHolder(UpcomingEventAdapter.UpcomingEventViewHolder holder, int position) {
         final EventData eventInnerData = upcomingEventScheduleArrayList.get(position);
-        holder.upcoming_event_name.setText(eventInnerData.getName());
+        holder.upcoming_event_name.setText(toTitleCase(eventInnerData.getName()));
         //holder.event_time.setText(Integer.toString(eventInnerData.getEvent_time()));
    /* holder.event_location.setText((eventInnerData.getEvent_location()));
     holder.event_category.setText(eventInnerData.getCategory());*/

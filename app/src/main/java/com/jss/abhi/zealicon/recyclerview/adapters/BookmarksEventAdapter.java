@@ -16,6 +16,8 @@ import com.jss.abhi.zealicon.model.InnerData;
 
 import java.util.ArrayList;
 
+import static com.jss.abhi.zealicon.utils.TitleCaseConverter.toTitleCase;
+
 public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAdapter.BookmarkEventScheduleViewHolder> {
 
     public Context context;
@@ -25,7 +27,7 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
         private TextView bookmark_event_name;
         private TextView event_time;
         private TextView event_location;
-        private TextView event_category;
+        private TextView bookmark_event_society;
         private View bookmark_event_schedule_layout;
 
 
@@ -56,7 +58,7 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
     @Override
     public void onBindViewHolder(BookmarkEventScheduleViewHolder holder, int position) {
         final EventData eventInnerData = bookmarkEventScheduleArrayList.get(position);
-        holder.bookmark_event_name.setText(eventInnerData.getName());
+        holder.bookmark_event_name.setText(toTitleCase(eventInnerData.getName()));
         //holder.event_time.setText(Integer.toString(eventInnerData.getEvent_time()));
    /* holder.event_location.setText((eventInnerData.getEvent_location()));
     holder.event_category.setText(eventInnerData.getCategory());*/
