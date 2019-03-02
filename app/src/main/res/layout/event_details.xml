@@ -106,7 +106,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/autour_one"
-                android:text="Venue not decided"
+                android:text="Venue not updated"
                 android:textColor="@color/gray_shade_9"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/mapImage"
