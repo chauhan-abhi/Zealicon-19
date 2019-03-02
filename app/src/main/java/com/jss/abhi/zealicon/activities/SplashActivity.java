@@ -1,11 +1,17 @@
 package com.jss.abhi.zealicon.activities;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -34,11 +40,15 @@ public class SplashActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 2000;
 
     boolean openHome = false;
+    ConstraintLayout splashScreen;
+    ConstraintLayout noInternetScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        splashScreen = findViewById(R.id.splash_screen);
+        noInternetScreen = findViewById(R.id.no_internet_screen);
         AppPreferences appPreferences = new AppPreferences(getApplicationContext());
         if (appPreferences.getInt("firsttime", 0) == 0) {
             requestjson();
@@ -87,7 +97,13 @@ public class SplashActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         //You can handle error here if you want
                         Log.v("MyApp", error.toString());
-                        Toast.makeText(SplashActivity.this, "No Connectivity", Toast.LENGTH_LONG).show();
+                        AppPreferences appPreferences = new AppPreferences(getApplicationContext());
+                        SharedPreferences sf = getSharedPreferences("firsttime", 0);
+                        if (sf.getInt("first", 0) != 1)  {
+                            noInternetScreen.setVisibility(View.VISIBLE);
+                            splashScreen.setVisibility(View.GONE);
+                        }
+
                     }
                 });
 
@@ -184,4 +200,5 @@ public class SplashActivity extends AppCompatActivity {
 
 
     }
+
 }
