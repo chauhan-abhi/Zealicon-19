@@ -158,12 +158,12 @@ public class RegisterFragment extends Fragment {
                         // error in params
                         String contact_error = response.body().getContactErrors();
                         String email_error = response.body().getEmailErrors();
-                        if (email_error != null) {
+                        if (!email_error.equals("")) {
                             Toast.makeText(getActivity(), email_error, Toast.LENGTH_SHORT).show();
-                        } else if (contact_error != null) {
+                        } else if (!contact_error.equals("")) {
                             Toast.makeText(getActivity(), contact_error, Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getActivity(), "Email or contact exists", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Email or contact already registered", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {

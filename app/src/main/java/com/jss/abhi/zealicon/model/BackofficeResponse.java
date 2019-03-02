@@ -39,11 +39,12 @@ public class BackofficeResponse {
     }
 
     public String getContactErrors() {
-        return errors.getContact().get(0);
+        return (errors.getContact() != null&& errors.getContact().size() >0) ? errors.getContact().get(0)
+         : "";
     }
 
     public String getEmailErrors() {
-        return errors.getEmail().get(0);
+        return (errors.getEmail() != null && errors.getEmail().size() >0 )? errors.getEmail().get(0): "";
     }
 
     public void setErrors(ErrorResponse errors) {

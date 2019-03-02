@@ -1,19 +1,13 @@
 package com.jss.abhi.zealicon.recyclerview.adapters;
 
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,15 +15,9 @@ import android.widget.Toast;
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.activities.EventDetailActivity;
 import com.jss.abhi.zealicon.model.EventData;
-import com.jss.abhi.zealicon.service.NotificationService;
 import com.jss.abhi.zealicon.utils.NotifierUtil;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
-import static android.content.Context.ALARM_SERVICE;
 
 /**
  * Created by abhi on 15/2/18.
@@ -75,7 +63,7 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
     }
 
     @Override
-    public void onBindViewHolder(final EventScheduleAdapter.EventViewHolder holder, int position) {
+    public void onBindViewHolder(final EventScheduleAdapter.EventViewHolder holder, final int position) {
         final EventData eventInnerData = eventScheduleArrayList.get(position);
         final int notifyId = context.getSharedPreferences("notify", 0).getInt(eventInnerData.getName(), 0);
         if (notifyId == 0) {
@@ -115,13 +103,17 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
         holder.bell_notify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(notifyId == 0) {
-                    holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.colorAccent), android.graphics.PorterDuff.Mode.SRC_IN);
+                if (notifyId == 0) {
+                    //holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.colorAccent), android.graphics.PorterDuff.Mode.SRC_IN);
                     NotifierUtil.notifyme(context, "01-03-2019 22:00", eventInnerData.getName());
+                    Toast.makeText(context, "You will be notified for this event", Toast.LENGTH_LONG).show();
                 } else {
-                    holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.app_white), android.graphics.PorterDuff.Mode.SRC_IN);
+                    //holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.app_white), android.graphics.PorterDuff.Mode.SRC_IN);
                     NotifierUtil.canclenotifyme(context, eventInnerData.getName());
+                    Toast.makeText(context, "You will not be notified for this event", Toast.LENGTH_LONG).show();
                 }
+                notifyItemChanged(position);
+
             }
         });
         holder.event_schedule_layout.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +125,6 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
             }
         });
     }
-
 
 
     @Override
@@ -154,7 +145,7 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
         for (int i = 0; i < len; ++i) {
             char c = builder.charAt(i);
             if (space) {
-                if(c == '('){
+                if (c == '(') {
                     i++;
                 }
                 if (!Character.isWhitespace(builder.charAt(i))) {

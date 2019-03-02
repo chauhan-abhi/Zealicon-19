@@ -24,7 +24,7 @@
             android:label="Zealicon18"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeTransparentStatusBar"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".activities.SplashActivity"
             android:screenOrientation="portrait">
