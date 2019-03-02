@@ -95,6 +95,11 @@ public class EventDetailActivity extends AppCompatActivity {
 
         isBookMark = getSharedPreferences("bookmarks", 0)
                 .getInt(eventData.getId(), 0) != 0;
+        if (isBookMark) {
+            bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark));
+        } else {
+            bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark_border));
+        }
 
         collapsingToolbarLayout.setTitle(toTitleCase(eventData.getName()));
         eventDescription.setText(eventData.getDescription());
@@ -115,6 +120,7 @@ public class EventDetailActivity extends AppCompatActivity {
                 if (isBookMark) {
                     // delete and unflag
 
+
                     List<EventData> oldArrayList = gson.fromJson(bookmarked_events, type);
                     for (EventData e : oldArrayList) {
                         if (e.getId().equals(eventData.getId())) {
@@ -126,6 +132,8 @@ public class EventDetailActivity extends AppCompatActivity {
                     // add this event object to array list of bookmarks
                     s.edit().putString("list_bookmarked", gson.toJson(oldArrayList)).apply();
                     isBookMark = false;
+                    bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark));
+
                     Toast.makeText(EventDetailActivity.this, "Event removed from Bookmarks", Toast.LENGTH_LONG).show();
 
                 } else {
@@ -141,6 +149,7 @@ public class EventDetailActivity extends AppCompatActivity {
                     // add this event object to array list of bookmarks
                     s.edit().putString("list_bookmarked", gson.toJson(oldArrayList)).apply();
                     isBookMark = true;
+                    bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark_border));
                     Toast.makeText(EventDetailActivity.this, "Event added to Bookmarks", Toast.LENGTH_LONG).show();
 
 

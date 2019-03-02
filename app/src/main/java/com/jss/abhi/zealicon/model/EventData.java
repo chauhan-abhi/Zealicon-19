@@ -17,7 +17,6 @@ public class EventData implements Serializable {
     public EventData() {
 
     }
-
     public String getId() {
         return id;
     }

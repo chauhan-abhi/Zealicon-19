@@ -70,6 +70,7 @@ public class Jsonparser {
             calendar.setTime(date);
             innerData.setEvent_date(calendar.get(Calendar.DATE));
             innerData.setEvent_time(calendar.get(Calendar.HOUR_OF_DAY));*/
+            eventData.setId(get(jsonObject, "id"));
             eventData.setName(get(jsonObject,"name"));
             eventData.setCategory_id(get(jsonObject, "category_id"));
             eventData.setDescription(get(jsonObject,"description"));
