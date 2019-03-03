@@ -83,7 +83,7 @@ public class EventDetailActivity extends AppCompatActivity {
         callButton = (FloatingActionButton) findViewById(R.id.callButton1);
         bookmarkButton = (FloatingActionButton) findViewById(R.id.bookmark_fab);
         eventRegisterButton = (Button) findViewById(R.id.event_register_button);
-
+        eventTime = findViewById(R.id.eventTimeTV);
 
         // getSupportActionBar().setDisplayShowHomeEnabled(true);
         //toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.app_white));
@@ -101,12 +101,13 @@ public class EventDetailActivity extends AppCompatActivity {
 
         collapsingToolbarLayout.setTitle(toTitleCase(eventData.getName()));
         eventDescription.setText(eventData.getDescription());
-        prize1.setText(String.format("₹ %s", ""));
-        prize2.setText(String.format("₹ %s", ""));
-        contactName.setText("");
-        contactNumber.setText("");
+        prize1.setText(String.format("₹ %s", eventData.getWinner1()));
+        prize2.setText(String.format("₹ %s", eventData.getWinner2()));
+        contactName.setText(eventData.getContact_name());
+        contactNumber.setText(eventData.getContact_no());
         eventVenue.setText(eventData.getVenue());
         eventDate.setText(eventData.getFullDate());
+        eventTime.setText(eventData.getTiming());
 
         bookmarkButton.setOnClickListener(new View.OnClickListener() {
             @Override

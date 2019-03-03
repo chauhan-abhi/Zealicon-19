@@ -73,10 +73,10 @@ public class Jsonparser {
             //eventData.setCategory_id(get(jsonObject, "category_id"));
             String desc = get(jsonObject, "description").equals("Write your content here")?"Desciption not updated":get(jsonObject, "description");
             eventData.setDescription(desc);
-            //eventData.setContact_name(get(jsonObject, "contact_name"));
-            //eventData.setContact_no(get(jsonObject, "contact_no"));
-            //eventData.setWinner1(get(jsonObject, "winner1"));
-            //eventData.setWinner2(get(jsonObject,  "winner2"));
+            eventData.setContact_name(get(jsonObject, "contact_name"));
+            eventData.setContact_no(get(jsonObject, "contact_no"));
+            eventData.setWinner1(get(jsonObject, "winner1"));
+            eventData.setWinner2(get(jsonObject,  "winner2"));
             eventData.setSocietyId(get(jsonObject, "creatorname"));
 
             /**
