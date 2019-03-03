@@ -102,9 +102,9 @@ public class EventDetailActivity extends AppCompatActivity {
         eventDescription.setText(eventData.getDescription());
         prize1.setText(String.format("₹ %s", eventData.getWinner1()));
         prize2.setText(String.format("₹ %s", eventData.getWinner2()));
-        contactName.setText(eventData.getContact_name());
+        contactName.setText(toTitleCase(eventData.getContact_name()));
         contactNumber.setText(eventData.getContact_no());
-        eventVenue.setText(eventData.getVenue());
+        eventVenue.setText(toTitleCase(eventData.getVenue()));
         eventDate.setText(eventData.getFullDate());
         eventTime.setText(eventData.getTiming());
 

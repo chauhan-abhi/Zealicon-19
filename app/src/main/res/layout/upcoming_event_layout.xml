@@ -35,9 +35,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/delius"
-            android:textColor="@android:color/white"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="#D5AC7D"
             android:textStyle="bold"
-            android:textSize="24sp"
+            android:textSize="20sp"
             tools:text="Event Name" />
 
         <TextView
@@ -51,7 +53,7 @@
             android:gravity="center"
             android:text="Not decided yet"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorAccent" />
+            android:textColor="#80927A" />
 
         <TextView
             android:id="@+id/eventTimeTV"
@@ -65,7 +67,7 @@
             android:gravity="center"
             android:text="10:00 AM"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorAccent" />
+            android:textColor="#80927A" />
 
         <TextView
             android:id="@+id/societyTV"
@@ -78,7 +80,7 @@
             android:fontFamily="@font/product_sans_regular"
             android:gravity="center"
             android:text="Society"
-            android:textSize="24sp"
-            android:textColor="@color/colorAccent" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#80927A" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

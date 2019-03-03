@@ -27,7 +27,7 @@
             android:layout_margin="10dp"
             android:fontFamily="@font/aref_ruqaa"
             android:text="Reach Us:"
-            android:textColor="@color/app_white"
+            android:textColor="@color/colorAccent"
             android:textSize="20sp"
             android:textStyle="bold" />
 
