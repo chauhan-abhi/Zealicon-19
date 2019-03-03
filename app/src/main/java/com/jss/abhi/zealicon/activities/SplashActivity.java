@@ -64,6 +64,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void requestjson() {
         final String backofficeUrl = "http://backoffice.zealicon.in/api/event";
+        final String eventmanagerUrl = "http://18.188.126.83:8080/";
         final RequestQueue requestQueue = Volley.newRequestQueue(this);
         final StringRequest eventRequest = new StringRequest(Request.Method.GET, backofficeUrl,
                 new Response.Listener<String>() {
@@ -78,129 +79,124 @@ public class SplashActivity extends AppCompatActivity {
                                     JSONArray eventsarray = resp.getJSONArray("data");
                                     SharedPreferences s = getSharedPreferences("events", 0);
                                     s.edit().putString("allevents", eventsarray.toString()).apply();
-                                    intializeSchedule();
-                                    AppPreferences appPreferences = new AppPreferences(getApplicationContext());
-                                    appPreferences.put("firsttime", 1);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 
                         }
-                        if (!openHome) {
-                            openHome = true;
-                            Intent in = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(in);
-                            finish();
-                        }
-
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //You can handle error here if you want
-                        Log.v("MyApp", error.toString());
-                        splashayout.setVisibility(View.GONE);
-                        noNetworkLayout.setVisibility(View.VISIBLE);
-                        retryButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                splashayout.setVisibility(View.VISIBLE);
-                                noNetworkLayout.setVisibility(View.GONE);
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        requestjson();
-                                    }
-                                }, SPLASH_TIME_OUT);
-                            }
-                        });
+                        retry(error);
+                    }
+                });
+        final StringRequest dataRequest = new StringRequest(Request.Method.GET, eventmanagerUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.v("EVENTMGR", response);
+                        intializeSchedule(response);
+                        AppPreferences appPreferences = new AppPreferences(getApplicationContext());
+                        appPreferences.put("firsttime", 1);
+
+                        if (!openHome) {
+                            openHome = true;
+                            Intent in = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(in);
+                            finish();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        retry(error);
                     }
                 });
 
         requestQueue.add(eventRequest);
+        requestQueue.add(dataRequest);
         int socketTimeout = 2000;//20 seconds - change to what you want
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         eventRequest.setRetryPolicy(policy);
-        //final RequestQueue requestQueue = Volley.newRequestQueue(this);
-       /* new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!openHome) {
-                    openHome = true;
-                    Intent in = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(in);
-                    finish();
-                }
-                //finish();
-            }
-        }, SPLASH_TIME_OUT);*/
+        dataRequest.setRetryPolicy(policy);
     }
 
-    void intializeSchedule() {
+    private void retry(VolleyError error) {
+        Log.v("MyApp", error.toString());
+        splashayout.setVisibility(View.GONE);
+        noNetworkLayout.setVisibility(View.VISIBLE);
+        retryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                splashayout.setVisibility(View.VISIBLE);
+                noNetworkLayout.setVisibility(View.GONE);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        requestjson();
+                    }
+                }, SPLASH_TIME_OUT);
+            }
+        });
+    }
+
+    void intializeSchedule(String response) {
         SharedPreferences s = getSharedPreferences("events", 0);
         String events = s.getString("allevents", "[]");
-        JSONArray eventsArray, day1Array, day2Array, day3Array, day4Array;
+        JSONArray backofficeArray, eventsArray, day1Array, day2Array, day3Array, day4Array;
         day1Array = new JSONArray();
         day2Array = new JSONArray();
         day3Array = new JSONArray();
         day4Array = new JSONArray();
         try {
-            eventsArray = new JSONArray(events);
+            backofficeArray = new JSONArray(events);
+            eventsArray = new JSONArray(response);
             for (int i = 0; i < eventsArray.length(); i++) {
                 JSONObject eventObject = eventsArray.getJSONObject(i);
-                switch (i % 4) {
-                    case 0:
-                        day1Array.put(eventObject);
+
+                JSONObject optimised = new JSONObject();
+                optimised.put("venue", eventObject.getString("venue"));
+                optimised.put("__v", eventObject.getInt("__v"));
+                optimised.put("name", eventObject.getString("name"));
+                optimised.put("creatorname", eventObject.getString("creatorname"));
+                optimised.put("date", eventObject.getString("date"));
+                optimised.put("description", eventObject.getString("description"));
+                for (int j=0;j<backofficeArray.length();j++) {
+                    JSONObject backOfficeObject=  backofficeArray.getJSONObject(j);
+                    if (backOfficeObject.getString("name").equals(optimised.getString("name"))) {
+                        optimised.put("contact_name", backOfficeObject.getString("contact_name"));
+                        optimised.put("contact_no", backOfficeObject.get("contact_no"));
+                        optimised.put("winner1", backOfficeObject.get("winner1"));
+                        optimised.put("winner2", backOfficeObject.get("winner2"));
                         break;
-                    case 1:
-                        day2Array.put(eventObject);
+                    }
+                }
+                String timeArray[] = getDate(eventObject.getString("date"));
+                String day = timeArray[0];
+                switch (day) {
+                    case "03":
+                    case "04":
+                    case "05":
+                        day1Array.put(optimised);
                         break;
-                    case 2:
-                        day3Array.put(eventObject);
+                    case "06":
+                        day2Array.put(optimised);
                         break;
-                    case 3:
-                        day4Array.put(eventObject);
+                    case "07":
+                        day3Array.put(optimised);
+                        break;
+                    case "08":
+                        day4Array.put(optimised);
                         break;
                     default:
                 }
-                /*String timing = eventObject.getString("timing");
-
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                Date date = null; // You will need try/catch around this
-                try {
-                    date = formatter.parse(timing);
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(date);
-                    int dateInt = calendar.get(Calendar.DATE);
-                    switch (dateInt) {
-                        case 11:
-                        case 12:
-                        case 13:
-                            day1Array.put(eventObject);
-                            break;
-                        case 14:
-                            day1Array.put(eventObject);
-                            break;
-                        case 15:
-                            day2Array.put(eventObject);
-                            break;
-                        case 16:
-                            day3Array.put(eventObject);
-                            break;
-                        case 17:
-                            day4Array.put(eventObject);
-                            break;
-                        default:
-
-                    }
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }*/
             }
-            s.edit().putString("allevents", "[]").apply();
+            //s.edit().putString("allevents", "[]").apply();
             s.edit().putString("day1events", day1Array.toString()).apply();
             s.edit().putString("day2events", day2Array.toString()).apply();
             s.edit().putString("day3events", day3Array.toString()).apply();
@@ -211,5 +207,14 @@ public class SplashActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private String[] getDate(String dateString) {
+        //Tue Mar 05 2019 13:30:49 GMT+0530 (IST)
+        //0123456789
+        String date[] = new String[2];
+        date[0] = dateString.substring(8, 10);
+        date[1] = dateString.substring(16, 21);
+        return date;
     }
 }

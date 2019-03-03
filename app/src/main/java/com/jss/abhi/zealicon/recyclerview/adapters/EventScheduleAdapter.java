@@ -74,7 +74,9 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
             holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.colorAccent), android.graphics.PorterDuff.Mode.SRC_IN);
         }
         holder.event_name.setText(toTitleCase(eventInnerData.getName()));
-        holder.event_society.setText(getSociety(Integer.valueOf(eventInnerData.getSocietyId())));
+        holder.event_society.setText(eventInnerData.getSocietyId());
+        holder.event_location.setText(eventInnerData.getVenue());
+        holder.event_time.setText(eventInnerData.getTiming());
 
         //holder.event_time.setText(Integer.toString(eventInnerData.getEvent_time()));
    /* holder.event_location.setText((eventInnerData.getEvent_location()));
@@ -85,7 +87,7 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
             public void onClick(View view) {
                 if (notifyId == 0) {
                     //holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.colorAccent), android.graphics.PorterDuff.Mode.SRC_IN);
-                    NotifierUtil.notifyme(context, "01-03-2019 22:00", eventInnerData.getName());
+                    NotifierUtil.notifyme(context, eventInnerData.getFullDate()+" "+ eventInnerData.getTiming(), eventInnerData.getName());
                     Toast.makeText(context, "You will be notified for this event", Toast.LENGTH_LONG).show();
                 } else {
                     //holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.app_white), android.graphics.PorterDuff.Mode.SRC_IN);
