@@ -71,22 +71,22 @@ public class Jsonparser {
             eventData.setId(get(jsonObject, "__v"));
             eventData.setName(get(jsonObject, "name"));
             //eventData.setCategory_id(get(jsonObject, "category_id"));
-            String desc = get(jsonObject, "description").equals("Write your content here")?"Desciption not updated":get(jsonObject, "description");
+            String desc = get(jsonObject, "description").equals("Write your content here") ? "Desciption not updated" : get(jsonObject, "description");
             eventData.setDescription(desc);
             eventData.setContact_name(get(jsonObject, "contact_name"));
             eventData.setContact_no(get(jsonObject, "contact_no"));
             eventData.setWinner1(get(jsonObject, "winner1"));
-            eventData.setWinner2(get(jsonObject,  "winner2"));
+            eventData.setWinner2(get(jsonObject, "winner2"));
             eventData.setSocietyId(get(jsonObject, "creatorname"));
-
-            /**
-             * it has to be replaced
-             */
-            //eventData.setTiming(get(jsonObject, "timing"));
-            String s[] = parseTime(get(jsonObject, "date"));
-            eventData.setTiming(s[0]);
-            eventData.setFullDate(s[1]);
-            eventData.setVenue(get(jsonObject, "venue"));
+            if (get(jsonObject, "date") != null) {
+                String s[] = parseTime(get(jsonObject, "date"));
+                eventData.setTiming(s[0]);
+                eventData.setFullDate(s[1]);
+            } else {
+                eventData.setTiming("To be updated");
+                eventData.setFullDate("To be updated");
+            }
+            eventData.setVenue(get(jsonObject, "venue") != null ? get(jsonObject, "venue") : "To be updated");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -96,15 +96,15 @@ public class Jsonparser {
     private static String[] parseTime(String date) {
         String result[] = new String[2];
         date = date.substring(4, 21);
-        SimpleDateFormat format24  = new SimpleDateFormat("MMM dd yyyy hh:mm");
-        SimpleDateFormat format12  = new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat format24 = new SimpleDateFormat("MMM dd yyyy hh:mm");
+        SimpleDateFormat format12 = new SimpleDateFormat("hh:mm a");
 
-        Date d=  new Date();
+        Date d = new Date();
         try {
-            d= format24.parse(date);
+            d = format24.parse(date);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(d);
-            result[0] = format12.format(d).replace("am","AM").replace("pm","PM");
+            result[0] = format12.format(d).replace("am", "AM").replace("pm", "PM");
             result[1] = date.substring(0, 11);
         } catch (ParseException e) {
             e.printStackTrace();

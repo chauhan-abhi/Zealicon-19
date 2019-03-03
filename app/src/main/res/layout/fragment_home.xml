@@ -44,8 +44,18 @@
             android:padding="8dp"
             android:textColor="@android:color/white"
             android:text="Bookmarks"
-            android:textSize="24sp"
+            android:textSize="28dp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/noBookmarkTextView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:textColor="#D5AC7D"
+            android:text="No Bookmarks yet!"
+            android:fontFamily="@font/product_sans_bold"
+            android:textSize="18sp"
+            android:gravity="center_horizontal|center_vertical"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/bookmarksRecyclerView"
@@ -68,6 +78,17 @@
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/noUpcomingTextView"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:textColor="#D5AC7D"
+            android:text="No Upcoming Events!\nCheck back later."
+            android:fontFamily="@font/product_sans_bold"
+            android:textSize="18sp"
+            android:gravity="center_horizontal|center_vertical"/>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/upcomingRecyclerView"
