@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
             case 2:
                 todaysEventString = s.getString("day1events", "[]");
                 break;
-            case 6:
+            case 3:
                 todaysEventString = s.getString("day2events", "[]");
                 break;
             case 7:

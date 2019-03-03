@@ -1,6 +1,7 @@
 package com.jss.abhi.zealicon.di
 
 import com.jss.abhi.zealicon.ZealApp
+import com.jss.abhi.zealicon.activities.SplashActivity
 import com.jss.abhi.zealicon.fragments.RegisterFragment
 import dagger.Component
 import javax.inject.Singleton

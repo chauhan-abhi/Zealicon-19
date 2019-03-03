@@ -85,7 +85,7 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
             public void onClick(View view) {
                 if (notifyId == 0) {
                     //holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.colorAccent), android.graphics.PorterDuff.Mode.SRC_IN);
-                    NotifierUtil.notifyme(context, "01-03-2019 22:00", eventInnerData.getName());
+                    NotifierUtil.notifyme(context, "2019-03-02 23:30:00", eventInnerData.getName());
                     Toast.makeText(context, "You will be notified for this event", Toast.LENGTH_LONG).show();
                 } else {
                     //holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.app_white), android.graphics.PorterDuff.Mode.SRC_IN);
