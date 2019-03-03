@@ -75,14 +75,14 @@ public class EventDetailActivity extends AppCompatActivity {
 
         eventVenue = findViewById(R.id.locationTextView);
         eventDate = findViewById(R.id.eventDateTextView);
-        eventDescription = (TextView) findViewById(R.id.descriptionTextView);
-        prize1 = (TextView) findViewById(R.id.prize1);
-        prize2 = (TextView) findViewById(R.id.prize2);
-        contactNumber = (TextView) findViewById(R.id.organizerNumber1);
-        contactName = (TextView) findViewById(R.id.organizerName1);
-        callButton = (FloatingActionButton) findViewById(R.id.callButton1);
-        bookmarkButton = (FloatingActionButton) findViewById(R.id.bookmark_fab);
-        eventRegisterButton = (Button) findViewById(R.id.event_register_button);
+        eventDescription = findViewById(R.id.descriptionTextView);
+        prize1 = findViewById(R.id.prize1);
+        prize2 = findViewById(R.id.prize2);
+        contactNumber = findViewById(R.id.organizerNumber1);
+        contactName = findViewById(R.id.organizerName1);
+        callButton = findViewById(R.id.callButton1);
+        bookmarkButton = findViewById(R.id.bookmark_fab);
+        eventRegisterButton = findViewById(R.id.event_register_button);
         eventTime = findViewById(R.id.eventTimeTV);
 
         // getSupportActionBar().setDisplayShowHomeEnabled(true);
