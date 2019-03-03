@@ -1,18 +1,14 @@
 package com.jss.abhi.zealicon.activities;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.Button;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -30,31 +26,39 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 public class SplashActivity extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT = 2000;
 
     boolean openHome = false;
-    ConstraintLayout splashScreen;
-    ConstraintLayout noInternetScreen;
+    ConstraintLayout splashayout;
+    ConstraintLayout noNetworkLayout;
+    Button retryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        splashScreen = findViewById(R.id.splash_screen);
-        noInternetScreen = findViewById(R.id.no_internet_screen);
+        splashayout = findViewById(R.id.loader_layout);
+        noNetworkLayout = findViewById(R.id.no_internet_screen);
+        retryButton = findViewById(R.id.retry_button);
+
         AppPreferences appPreferences = new AppPreferences(getApplicationContext());
         if (appPreferences.getInt("firsttime", 0) == 0) {
             requestjson();
         } else {
-            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(i);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!openHome) {
+                        openHome = true;
+                        Intent in = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(in);
+                        finish();
+                    }
+                    //finish();
+                }
+            }, SPLASH_TIME_OUT);
         }
     }
 
@@ -75,8 +79,8 @@ public class SplashActivity extends AppCompatActivity {
                                     SharedPreferences s = getSharedPreferences("events", 0);
                                     s.edit().putString("allevents", eventsarray.toString()).apply();
                                     intializeSchedule();
-                                    SharedPreferences sf = getSharedPreferences("firsttime", 0);
-                                    sf.edit().putInt("first", 1).apply();
+                                    AppPreferences appPreferences = new AppPreferences(getApplicationContext());
+                                    appPreferences.put("firsttime", 1);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -97,13 +101,21 @@ public class SplashActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         //You can handle error here if you want
                         Log.v("MyApp", error.toString());
-                        AppPreferences appPreferences = new AppPreferences(getApplicationContext());
-                        SharedPreferences sf = getSharedPreferences("firsttime", 0);
-                        if (sf.getInt("first", 0) != 1)  {
-                            noInternetScreen.setVisibility(View.VISIBLE);
-                            splashScreen.setVisibility(View.GONE);
-                        }
-
+                        splashayout.setVisibility(View.GONE);
+                        noNetworkLayout.setVisibility(View.VISIBLE);
+                        retryButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                splashayout.setVisibility(View.VISIBLE);
+                                noNetworkLayout.setVisibility(View.GONE);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        requestjson();
+                                    }
+                                }, SPLASH_TIME_OUT);
+                            }
+                        });
                     }
                 });
 
@@ -112,7 +124,7 @@ public class SplashActivity extends AppCompatActivity {
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         eventRequest.setRetryPolicy(policy);
         //final RequestQueue requestQueue = Volley.newRequestQueue(this);
-        new Handler().postDelayed(new Runnable() {
+       /* new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (!openHome) {
@@ -123,7 +135,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 //finish();
             }
-        }, SPLASH_TIME_OUT);
+        }, SPLASH_TIME_OUT);*/
     }
 
     void intializeSchedule() {
@@ -138,7 +150,7 @@ public class SplashActivity extends AppCompatActivity {
             eventsArray = new JSONArray(events);
             for (int i = 0; i < eventsArray.length(); i++) {
                 JSONObject eventObject = eventsArray.getJSONObject(i);
-                switch (i%4) {
+                switch (i % 4) {
                     case 0:
                         day1Array.put(eventObject);
                         break;
@@ -200,5 +212,4 @@ public class SplashActivity extends AppCompatActivity {
 
 
     }
-
 }

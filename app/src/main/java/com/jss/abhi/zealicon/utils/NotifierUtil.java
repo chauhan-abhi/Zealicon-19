@@ -28,7 +28,7 @@ public class NotifierUtil {
             }
             SharedPreferences sf = context.getSharedPreferences("notify", 0);
             int notificationid = sf.getInt("key", 1);
-            sf.edit().putInt(event_name, 1).apply();
+            sf.edit().putInt(event_name,1).apply();
             long millis = date.getTime();
             Intent intent = new Intent(context, NotificationService.AlarmReceiver.class);
             intent.putExtra("keynotify", notificationid);
