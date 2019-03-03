@@ -3,6 +3,7 @@ package com.jss.abhi.zealicon.recyclerview.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,7 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
         private TextView event_time;
         private TextView event_location;
         private TextView bookmark_event_society;
-        private View bookmark_event_schedule_layout;
+        private CardView bookmark_event_schedule_layout;
 
 
         public BookmarkEventScheduleViewHolder(View itemView) {
@@ -36,10 +37,10 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
             context = itemView.getContext();
 
             bookmark_event_name = itemView.findViewById(R.id.titleTextView);
-           // event_time = itemView.findViewById(R.id.timeTextView);
-            //event_location= itemView.findViewById(R.id.locationTextView);
+            event_time = itemView.findViewById(R.id.timeTextView);
+            event_location= itemView.findViewById(R.id.locationTextView);
             bookmark_event_schedule_layout = itemView.findViewById(R.id.bookmark_event_schedule_layout);
-
+            bookmark_event_society = itemView.findViewById(R.id.societyTextView);
             // event_category = itemView.findViewById(R.id.categoryTextView);
         }
     }
@@ -59,9 +60,9 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
     public void onBindViewHolder(BookmarkEventScheduleViewHolder holder, int position) {
         final EventData eventInnerData = bookmarkEventScheduleArrayList.get(position);
         holder.bookmark_event_name.setText(toTitleCase(eventInnerData.getName()));
-        //holder.event_time.setText(Integer.toString(eventInnerData.getEvent_time()));
-   /* holder.event_location.setText((eventInnerData.getEvent_location()));
-    holder.event_category.setText(eventInnerData.getCategory());*/
+        holder.event_time.setText(eventInnerData.getTiming());
+        holder.event_location.setText((eventInnerData.getVenue()));
+        holder.bookmark_event_society.setText(eventInnerData.getSocietyId());
 
         holder.bookmark_event_schedule_layout.setOnClickListener(new View.OnClickListener() {
             @Override

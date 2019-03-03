@@ -65,10 +65,12 @@ public class HomeFragment extends Fragment {
         int today = calendar.get(Calendar.DATE);
         String todaysEventString="";
         switch (today) {
-            case 2:
+            case 3:
+            case 4:
+            case 5:
                 todaysEventString = s.getString("day1events", "[]");
                 break;
-            case 3:
+            case 6:
                 todaysEventString = s.getString("day2events", "[]");
                 break;
             case 7:
@@ -82,12 +84,12 @@ public class HomeFragment extends Fragment {
         List<EventData> todayList = new ArrayList<>(Jsonparser.stringToEventArray(todaysEventString));
 
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy hh:mm a");
         try {
             Date date;
             for (EventData e : todayList) {
-                date = formatter.parse(e.getTiming());
-                if (date.getTime() - calendar.getTimeInMillis() < 3600000) {
+                date = formatter.parse(e.getFullDate()+" "+ e.getTiming());
+                if (date.getTime() - calendar.getTimeInMillis() < 3600000*4) {
                     upcomingEventArrayList.add(e);
                 }
             }

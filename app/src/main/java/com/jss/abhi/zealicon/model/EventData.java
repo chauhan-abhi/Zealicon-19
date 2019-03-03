@@ -14,11 +14,20 @@ public class EventData implements Serializable {
     private String contact_name;
     private String contact_no;
     private Integer is_active;
+    private String fullDate;
     private String timing;
     private String venue;
 
     public EventData() {
 
+    }
+
+    public String getFullDate() {
+        return fullDate;
+    }
+
+    public void setFullDate(String fullDate) {
+        this.fullDate = fullDate;
     }
 
     public String getTiming() {

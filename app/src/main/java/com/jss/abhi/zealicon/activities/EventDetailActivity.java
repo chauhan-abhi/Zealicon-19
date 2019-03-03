@@ -1,9 +1,6 @@
 package com.jss.abhi.zealicon.activities;
 
 import android.Manifest;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -29,17 +26,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.model.EventData;
-import com.jss.abhi.zealicon.service.NotificationService;
-import com.jss.abhi.zealicon.utils.TitleCaseConverter;
-
-import org.json.JSONArray;
 
 import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import static com.jss.abhi.zealicon.utils.TitleCaseConverter.toTitleCase;
 
@@ -84,6 +73,8 @@ public class EventDetailActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        eventVenue = findViewById(R.id.locationTextView);
+        eventDate = findViewById(R.id.eventDateTextView);
         eventDescription = (TextView) findViewById(R.id.descriptionTextView);
         prize1 = (TextView) findViewById(R.id.prize1);
         prize2 = (TextView) findViewById(R.id.prize2);
@@ -92,7 +83,6 @@ public class EventDetailActivity extends AppCompatActivity {
         callButton = (FloatingActionButton) findViewById(R.id.callButton1);
         bookmarkButton = (FloatingActionButton) findViewById(R.id.bookmark_fab);
         eventRegisterButton = (Button) findViewById(R.id.event_register_button);
-
 
 
         // getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -111,10 +101,12 @@ public class EventDetailActivity extends AppCompatActivity {
 
         collapsingToolbarLayout.setTitle(toTitleCase(eventData.getName()));
         eventDescription.setText(eventData.getDescription());
-        prize1.setText(String.format("₹ %s", eventData.getWinner1()));
-        prize2.setText(String.format("₹ %s", eventData.getWinner2()));
-        contactName.setText(toTitleCase(eventData.getContact_name()));
-        contactNumber.setText(eventData.getContact_no());
+        prize1.setText(String.format("₹ %s", ""));
+        prize2.setText(String.format("₹ %s", ""));
+        contactName.setText("");
+        contactNumber.setText("");
+        eventVenue.setText(eventData.getVenue());
+        eventDate.setText(eventData.getFullDate());
 
         bookmarkButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,7 +153,6 @@ public class EventDetailActivity extends AppCompatActivity {
                     Toast.makeText(EventDetailActivity.this, "Event added to Bookmarks", Toast.LENGTH_LONG).show();
 
 
-
                 }
             }
         });
@@ -191,43 +182,6 @@ public class EventDetailActivity extends AppCompatActivity {
                 startActivity(eventRegisterActivityIntent);
             }
         });
-
-
-        /**
-         * this function will be called when star or bell is pressed
-         */
-
-        //notifyme();
-
-
     }
-
-    private void notifyme() {
-        // String toParse = innerData.getTimings(); // Results in "2-5-2012 20:43"
-        String toParse = "11-02-2019 11:40";
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()); // I assume d-M, you may refer to M-d for month-day instead.
-        Date date = new Date(); // You will need try/catch around this
-        try {
-            date = formatter.parse(toParse);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        SharedPreferences sf = getSharedPreferences("notify", 0);
-        int notificationid = sf.getInt("key", 1);
-        sf.edit().putInt("Code in Pair", 1).apply();
-        long millis = date.getTime();
-        Intent intent = new Intent(getApplicationContext(), NotificationService.AlarmReceiver.class);
-        intent.putExtra("keynotify", notificationid);
-        intent.putExtra("eventname", "Code in Pair");
-        Log.v("keynotify1", notificationid + "");
-
-        PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), notificationid, intent, PendingIntent.FLAG_ONE_SHOT);
-        sf.edit().putInt("key", notificationid + 1).apply();
-        AlarmManager am = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-        am.set(AlarmManager.RTC_WAKEUP, millis - 3600000, pi);
-        AlarmManager am2 = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-        am2.set(AlarmManager.RTC_WAKEUP, millis - 300000, pi);
-    }
-
 }
 
