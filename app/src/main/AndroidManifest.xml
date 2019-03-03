@@ -19,6 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeTransparentStatusBar"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activities.EventRegistrationActivity"></activity>
         <activity
             android:name=".activities.MainActivity"
             android:label="Zealicon18"
@@ -57,7 +58,7 @@
 
         <activity
             android:name=".activities.EventDetailActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

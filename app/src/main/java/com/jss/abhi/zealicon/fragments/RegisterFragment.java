@@ -34,7 +34,7 @@ import static android.util.Patterns.PHONE;
 
 public class RegisterFragment extends Fragment {
 
-    private EditText nameView, emailView, contactView;
+        private EditText nameView, emailView, contactView;
     private AutoCompleteTextView collegeView;
     private Spinner branchView, yearView, courseView;
     private Button register;

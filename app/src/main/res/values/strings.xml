@@ -13,7 +13,7 @@
     <string name="congrats">CONGRATULATIONS !!!</string>
     <string name="succes_register">You have been successfully registered! </string>
     <string name="your_id">Your temporary Zeal-Id is</string>
-    <string name="rules">Note: You need this registration id and pay \nregistration amount at the registration desk \nNon-JSS Students need to bring their College-Ids and passport size photographs</string>
+    <string name="rules">Note: You cannot participate in any event using this temporary ID. To avail the main Zeal_ID, you have to reach any of the zealicon registration desks available in college campus. You will have to pay Rs.250 and collect your Zeal_ID.</string>
 
     <!--register page -->
     <string name="jss">JSS Academy of Technical Education [JSSATE], Noida</string>

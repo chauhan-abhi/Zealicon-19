@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class EventDetailActivity extends AppCompatActivity {
     private TextView eventDescription;
     private TextView prize1, prize2, contactName, contactNumber;
     private FloatingActionButton callButton, bookmarkButton;
+    private Button eventRegisterButton;
     private boolean isBookMark = false;
 
 
@@ -89,6 +91,7 @@ public class EventDetailActivity extends AppCompatActivity {
         contactName = (TextView) findViewById(R.id.organizerName1);
         callButton = (FloatingActionButton) findViewById(R.id.callButton1);
         bookmarkButton = (FloatingActionButton) findViewById(R.id.bookmark_fab);
+        eventRegisterButton = (Button) findViewById(R.id.event_register_button);
 
 
 
@@ -177,6 +180,15 @@ public class EventDetailActivity extends AppCompatActivity {
                 }
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + eventData.getContact_no()));
                 startActivity(intent);
+            }
+        });
+
+        eventRegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent eventRegisterActivityIntent = new Intent(EventDetailActivity.this, EventRegistrationActivity.class);
+                eventRegisterActivityIntent.putExtra("eventData", eventData);
+                startActivity(eventRegisterActivityIntent);
             }
         });
 
