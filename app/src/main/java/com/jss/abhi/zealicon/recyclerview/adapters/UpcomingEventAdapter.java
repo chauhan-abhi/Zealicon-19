@@ -65,6 +65,8 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
         if(eventInnerData.getSocietyId().equals("MMIL") || eventInnerData.getSocietyId().equals("ACE")||
                 eventInnerData.getSocietyId().equals("DSC") || eventInnerData.getSocietyId().equals("SPICE") || eventInnerData.getSocietyId().equals("YFAC")){
             holder.societyName.setText(eventInnerData.getSocietyId());
+        } else if(toTitleCase(eventInnerData.getSocietyId()).equals("Linguafranca")){
+                holder.societyName.setText("Lingua Franca");
         } else {
             holder.societyName.setText(toTitleCase(eventInnerData.getSocietyId()));
         }

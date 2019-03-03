@@ -68,7 +68,9 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
         if(eventInnerData.getSocietyId().equals("MMIL") || eventInnerData.getSocietyId().equals("ACE")||
                 eventInnerData.getSocietyId().equals("DSC") || eventInnerData.getSocietyId().equals("SPICE") || eventInnerData.getSocietyId().equals("YFAC")){
             holder.bookmark_event_society.setText(eventInnerData.getSocietyId());
-        } else {
+        } else if(toTitleCase(eventInnerData.getSocietyId()).equals("Linguafranca")){
+            holder.bookmark_event_society.setText("Lingua Franca");
+        }else {
             holder.bookmark_event_society.setText(toTitleCase(eventInnerData.getSocietyId()));
         }
 

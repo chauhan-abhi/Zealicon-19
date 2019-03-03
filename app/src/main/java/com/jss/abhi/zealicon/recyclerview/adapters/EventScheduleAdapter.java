@@ -77,7 +77,9 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
         if(eventInnerData.getSocietyId().equals("MMIL") || eventInnerData.getSocietyId().equals("ACE")||
                 eventInnerData.getSocietyId().equals("DSC") || eventInnerData.getSocietyId().equals("SPICE") || eventInnerData.getSocietyId().equals("YFAC")){
             holder.event_society.setText(eventInnerData.getSocietyId());
-        } else {
+        } else if(toTitleCase(eventInnerData.getSocietyId()).equals("Linguafranca")){
+            holder.event_society.setText("Lingua Franca");
+        }else {
             holder.event_society.setText(toTitleCase(eventInnerData.getSocietyId()));
         }
         holder.event_location.setText(toTitleCase(eventInnerData.getVenue()));
