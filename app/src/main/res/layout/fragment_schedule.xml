@@ -51,7 +51,7 @@
                 app:siRadiusMax="30dp"
                 app:siIndicatorColors="@array/indicator_colors"
                 app:siTextColor="@color/app_white"
-                app:siSelectedTextColor="@color/gray_shade_7"
+                app:siSelectedTextColor="@color/colorPrimaryDark"
                 app:siIndicatorColor="@color/colorPrimary"
                 android:id="@+id/indicator"
                 android:layout_width="match_parent"

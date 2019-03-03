@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.EventDetailActivity"
-    android:background="@color/gray_shade_0">
+    android:background="@color/fragment_background">
 
     <LinearLayout
         android:id="@+id/eventContentScrollView"
@@ -34,13 +34,14 @@
                 app:srcCompat="@drawable/ic_time" />
 
             <TextView
+                android:id="@+id/eventTimeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="10:00 AM"
-                android:textColor="@color/gray_shade_9"
+                android:textColor="@color/app_white"
                 android:fontFamily="@font/autour_one"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/clockImage"
@@ -69,7 +70,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/autour_one"
                 android:text="5th March 2019"
-                android:textColor="@color/gray_shade_9"
+                android:textColor="@color/app_white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/dateImage"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -106,8 +107,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/autour_one"
-                android:text="Venue not updated"
-                android:textColor="@color/gray_shade_9"
+                android:text="Venue not decided"
+                android:textColor="@color/app_white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/mapImage"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -133,7 +134,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Description will be displayed here"
-                android:textColor="@color/gray_shade_8"
+                android:textColor="@color/app_white"
                 android:fontFamily="@font/delius"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -152,7 +153,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/delius"
             android:text="Prizes"
-            android:textColor="@color/gray_shade_9"
+            android:textColor="#D58F38"
             android:textSize="24sp" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -175,7 +176,7 @@
                 android:fontFamily="@font/delius"
                 android:paddingLeft="4dp"
                 android:text="Rs.3000"
-                android:textColor="@color/gray_shade_8"
+                android:textColor="@color/app_white"
                 android:textSize="18sp"/>
         </LinearLayout>
 
@@ -200,7 +201,7 @@
                 android:fontFamily="@font/delius"
                 android:paddingLeft="4dp"
                 android:text="Rs.2000"
-                android:textColor="@color/gray_shade_8"
+                android:textColor="@color/app_white"
                 android:textSize="18sp"/>
         </LinearLayout>
 
@@ -214,7 +215,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/delius"
             android:text="Event Organizers"
-            android:textColor="@color/gray_shade_9"
+            android:textColor="#D58F38"
             android:textSize="24sp" />
 
         <LinearLayout
@@ -240,7 +241,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:text="Organizer Name 1"
-                    android:textColor="@color/gray_shade_8"
+                    android:textColor="@color/app_white"
                     android:fontFamily="@font/delius"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toStartOf="@+id/callButton1"
@@ -255,7 +256,6 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginTop="8dp"
                     android:clickable="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_call"
@@ -270,10 +270,29 @@
                     android:layout_marginTop="4dp"
                     android:fontFamily="sans-serif-condensed"
                     android:text="1223466789"
-                    android:textColor="@color/gray_shade_8"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/app_white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/organizerName1" />
+
+                <Button
+                    android:id="@+id/event_register_button"
+                    android:layout_width="144dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/button_press"
+                    android:fontFamily="@font/delius"
+                    android:shadowColor="@color/black_opaq"
+                    android:text="Register"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.502"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/organizerNumber1"
+                    app:layout_constraintVertical_bias="1.0" />
             </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>

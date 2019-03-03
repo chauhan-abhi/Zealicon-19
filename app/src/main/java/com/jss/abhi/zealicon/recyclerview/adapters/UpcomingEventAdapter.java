@@ -3,6 +3,7 @@ package com.jss.abhi.zealicon.recyclerview.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import com.jss.abhi.zealicon.model.InnerData;
 
 import java.util.ArrayList;
 
+import static com.jss.abhi.zealicon.utils.TitleCaseConverter.toTitleCase;
+
 public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdapter.UpcomingEventViewHolder> {
 
     public Context context;
@@ -26,7 +29,8 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
         private TextView event_time;
         private TextView event_location;
         private TextView event_category;
-        private View upcoming_event_schedule_layout;
+        private TextView societyName;
+        private CardView upcoming_event_schedule_layout;
 
 
         public UpcomingEventViewHolder(View itemView) {
@@ -34,10 +38,10 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
             context = itemView.getContext();
 
             upcoming_event_name = itemView.findViewById(R.id.eventNameTV);
-           // event_time = itemView.findViewById(R.id.timeTextView);
-            //event_location= itemView.findViewById(R.id.locationTextView);
+            event_time = itemView.findViewById(R.id.eventTimeTV);
+            event_location= itemView.findViewById(R.id.eventVenueTV);
             upcoming_event_schedule_layout = itemView.findViewById(R.id.upcoming_event_schedule_layout);
-
+            societyName = itemView.findViewById(R.id.societyTV);
             // event_category = itemView.findViewById(R.id.categoryTextView);
         }
     }
@@ -56,11 +60,10 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
     @Override
     public void onBindViewHolder(UpcomingEventAdapter.UpcomingEventViewHolder holder, int position) {
         final EventData eventInnerData = upcomingEventScheduleArrayList.get(position);
-        holder.upcoming_event_name.setText(eventInnerData.getName());
-        //holder.event_time.setText(Integer.toString(eventInnerData.getEvent_time()));
-   /* holder.event_location.setText((eventInnerData.getEvent_location()));
-    holder.event_category.setText(eventInnerData.getCategory());*/
-
+        holder.upcoming_event_name.setText(toTitleCase(eventInnerData.getName()));
+        holder.event_time.setText(eventInnerData.getTiming());
+        holder.event_location.setText(eventInnerData.getVenue());
+        holder.societyName.setText(eventInnerData.getSocietyId());
         holder.upcoming_event_schedule_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

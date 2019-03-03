@@ -19,7 +19,7 @@ public class NotifierUtil {
 
         public static void notifyme(Context context, String timing, String event_name) {
             //String toParse = innerData.getTimings(); // Results in "2-5-2012 20:43"
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); // I assume d-M, you may refer to M-d for month-day instead.
+            SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy hh:mm a");
             Date date = new Date(); // You will need try/catch around this
             try {
                 date = formatter.parse(timing);

@@ -1,9 +1,6 @@
 package com.jss.abhi.zealicon.activities;
 
 import android.Manifest;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -21,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,16 +26,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.model.EventData;
-import com.jss.abhi.zealicon.service.NotificationService;
-
-import org.json.JSONArray;
 
 import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+
+import static com.jss.abhi.zealicon.utils.TitleCaseConverter.toTitleCase;
 
 public class EventDetailActivity extends AppCompatActivity {
 
@@ -47,6 +40,7 @@ public class EventDetailActivity extends AppCompatActivity {
     private TextView eventDescription;
     private TextView prize1, prize2, contactName, contactNumber;
     private FloatingActionButton callButton, bookmarkButton;
+    private Button eventRegisterButton;
     private boolean isBookMark = false;
 
 
@@ -79,13 +73,17 @@ public class EventDetailActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        eventDescription = (TextView) findViewById(R.id.descriptionTextView);
-        prize1 = (TextView) findViewById(R.id.prize1);
-        prize2 = (TextView) findViewById(R.id.prize2);
-        contactNumber = (TextView) findViewById(R.id.organizerNumber1);
-        contactName = (TextView) findViewById(R.id.organizerName1);
-        callButton = (FloatingActionButton) findViewById(R.id.callButton1);
-        bookmarkButton = (FloatingActionButton) findViewById(R.id.bookmark_fab);
+        eventVenue = findViewById(R.id.locationTextView);
+        eventDate = findViewById(R.id.eventDateTextView);
+        eventDescription = findViewById(R.id.descriptionTextView);
+        prize1 = findViewById(R.id.prize1);
+        prize2 = findViewById(R.id.prize2);
+        contactNumber = findViewById(R.id.organizerNumber1);
+        contactName = findViewById(R.id.organizerName1);
+        callButton = findViewById(R.id.callButton1);
+        bookmarkButton = findViewById(R.id.bookmark_fab);
+        eventRegisterButton = findViewById(R.id.event_register_button);
+        eventTime = findViewById(R.id.eventTimeTV);
 
         // getSupportActionBar().setDisplayShowHomeEnabled(true);
         //toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.app_white));
@@ -105,8 +103,11 @@ public class EventDetailActivity extends AppCompatActivity {
         eventDescription.setText(eventData.getDescription());
         prize1.setText(String.format("₹ %s", eventData.getWinner1()));
         prize2.setText(String.format("₹ %s", eventData.getWinner2()));
-        contactName.setText(toTitleCase(eventData.getContact_name()));
+        contactName.setText(eventData.getContact_name());
         contactNumber.setText(eventData.getContact_no());
+        eventVenue.setText(eventData.getVenue());
+        eventDate.setText(eventData.getFullDate());
+        eventTime.setText(eventData.getTiming());
 
         bookmarkButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,7 +154,6 @@ public class EventDetailActivity extends AppCompatActivity {
                     Toast.makeText(EventDetailActivity.this, "Event added to Bookmarks", Toast.LENGTH_LONG).show();
 
 
-
                 }
             }
         });
@@ -175,72 +175,14 @@ public class EventDetailActivity extends AppCompatActivity {
             }
         });
 
-
-        /**
-         * this function will be called when star or bell is pressed
-         */
-
-        //notifyme();
-
-
-    }
-
-    private void notifyme() {
-        // String toParse = innerData.getTimings(); // Results in "2-5-2012 20:43"
-        String toParse = "11-02-2019 11:40";
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()); // I assume d-M, you may refer to M-d for month-day instead.
-        Date date = new Date(); // You will need try/catch around this
-        try {
-            date = formatter.parse(toParse);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        SharedPreferences sf = getSharedPreferences("notify", 0);
-        int notificationid = sf.getInt("key", 1);
-        sf.edit().putInt("Code in Pair", 1).apply();
-        long millis = date.getTime();
-        Intent intent = new Intent(getApplicationContext(), NotificationService.AlarmReceiver.class);
-        intent.putExtra("keynotify", notificationid);
-        intent.putExtra("eventname", "Code in Pair");
-        Log.v("keynotify1", notificationid + "");
-
-        PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), notificationid, intent, PendingIntent.FLAG_ONE_SHOT);
-        sf.edit().putInt("key", notificationid + 1).apply();
-        AlarmManager am = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-        am.set(AlarmManager.RTC_WAKEUP, millis - 3600000, pi);
-        AlarmManager am2 = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-        am2.set(AlarmManager.RTC_WAKEUP, millis - 300000, pi);
-    }
-
-    private static String toTitleCase(String str) {
-
-        if (str == null) {
-            return null;
-        }
-
-        boolean space = true;
-        StringBuilder builder = new StringBuilder(str);
-        final int len = builder.length();
-
-        for (int i = 0; i < len; ++i) {
-            char c = builder.charAt(i);
-            if (space) {
-                if (c == '(') {
-                    i++;
-                }
-                if (!Character.isWhitespace(builder.charAt(i))) {
-                    // Convert to title case and switch out of whitespace mode.
-                    builder.setCharAt(i, Character.toTitleCase(builder.charAt(i)));
-                    space = false;
-                }
-            } else if (Character.isWhitespace(c)) {
-                space = true;
-            } else {
-                builder.setCharAt(i, Character.toLowerCase(c));
+        eventRegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent eventRegisterActivityIntent = new Intent(EventDetailActivity.this, EventRegistrationActivity.class);
+                eventRegisterActivityIntent.putExtra("eventData", eventData);
+                startActivity(eventRegisterActivityIntent);
             }
-        }
-
-        return builder.toString();
+        });
     }
 }
 

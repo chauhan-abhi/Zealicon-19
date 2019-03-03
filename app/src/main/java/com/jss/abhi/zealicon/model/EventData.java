@@ -7,17 +7,25 @@ public class EventData implements Serializable {
     private String id;
     private String name;
     private String description;
-    private String category_id;
+    private String societyId;
     private String winner1;
     private String winner2;
     private String contact_name;
     private String contact_no;
-    private Integer is_active;
+    private String fullDate;
     private String timing;
     private String venue;
 
     public EventData() {
 
+    }
+
+    public String getFullDate() {
+        return fullDate;
+    }
+
+    public void setFullDate(String fullDate) {
+        this.fullDate = fullDate;
     }
 
     public String getTiming() {
@@ -60,12 +68,12 @@ public class EventData implements Serializable {
         this.description = description;
     }
 
-    public String getCategory_id() {
-        return category_id;
+    public String getSocietyId() {
+        return societyId;
     }
 
-    public void setCategory_id(String category_id) {
-        this.category_id = category_id;
+    public void setSocietyId(String societyId) {
+        this.societyId = societyId;
     }
 
     public String getWinner1() {
@@ -98,13 +106,5 @@ public class EventData implements Serializable {
 
     public void setContact_no(String contact_no) {
         this.contact_no = contact_no;
-    }
-
-    public Integer getIs_active() {
-        return is_active;
-    }
-
-    public void setIs_active(Integer is_active) {
-        this.is_active = is_active;
     }
 }

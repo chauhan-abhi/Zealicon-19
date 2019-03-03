@@ -1,7 +1,6 @@
 package com.jss.abhi.zealicon.utils;
 
 import com.jss.abhi.zealicon.model.EventData;
-import com.jss.abhi.zealicon.model.InnerData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,26 +37,25 @@ public class Jsonparser {
         return eventDataList;
     }
 
-    public static String get(JSONObject jsonObject,String key){
-        if(jsonObject.has(key)){
+    public static String get(JSONObject jsonObject, String key) {
+        if (jsonObject.has(key)) {
             try {
-                String string=jsonObject.getString(key);
+                String string = jsonObject.getString(key);
                 return string;
             } catch (JSONException e) {
                 e.printStackTrace();
                 return "";
             }
-        }
-        else{
+        } else {
             return "";
         }
     }
 
-    public static EventData toObject(String jsonString){
-        EventData eventData=new
+    public static EventData toObject(String jsonString) {
+        EventData eventData = new
                 EventData();
         try {
-            JSONObject jsonObject=new JSONObject(jsonString);
+            JSONObject jsonObject = new JSONObject(jsonString);
             /*innerData.setTimings(get(jsonObject,"timing"));
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             Date date = new Date(); // You will need try/catch around this
@@ -70,24 +68,47 @@ public class Jsonparser {
             calendar.setTime(date);
             innerData.setEvent_date(calendar.get(Calendar.DATE));
             innerData.setEvent_time(calendar.get(Calendar.HOUR_OF_DAY));*/
-            eventData.setId(get(jsonObject, "id"));
-            eventData.setName(get(jsonObject,"name"));
-            eventData.setCategory_id(get(jsonObject, "category_id"));
-            eventData.setDescription(get(jsonObject,"description"));
+            eventData.setId(get(jsonObject, "__v"));
+            eventData.setName(get(jsonObject, "name"));
+            //eventData.setCategory_id(get(jsonObject, "category_id"));
+            String desc = get(jsonObject, "description").equals("Write your content here") ? "Desciption not updated" : get(jsonObject, "description");
+            eventData.setDescription(desc);
             eventData.setContact_name(get(jsonObject, "contact_name"));
             eventData.setContact_no(get(jsonObject, "contact_no"));
             eventData.setWinner1(get(jsonObject, "winner1"));
-            eventData.setWinner2(get(jsonObject,  "winner2"));
-            eventData.setId(get(jsonObject, "id"));
-
-            /**
-             * it has to be replaced
-             */
-            //eventData.setTiming(get(jsonObject, "timing"));
-            eventData.setTiming("2019-03-02 16:45:00");
+            eventData.setWinner2(get(jsonObject, "winner2"));
+            eventData.setSocietyId(get(jsonObject, "creatorname"));
+            if (get(jsonObject, "date") != null) {
+                String s[] = parseTime(get(jsonObject, "date"));
+                eventData.setTiming(s[0]);
+                eventData.setFullDate(s[1]);
+            } else {
+                eventData.setTiming("To be updated");
+                eventData.setFullDate("To be updated");
+            }
+            eventData.setVenue(get(jsonObject, "venue") != null ? get(jsonObject, "venue") : "To be updated");
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return eventData;
+    }
+
+    private static String[] parseTime(String date) {
+        String result[] = new String[2];
+        date = date.substring(4, 21);
+        SimpleDateFormat format24 = new SimpleDateFormat("MMM dd yyyy hh:mm");
+        SimpleDateFormat format12 = new SimpleDateFormat("hh:mm a");
+
+        Date d = new Date();
+        try {
+            d = format24.parse(date);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(d);
+            result[0] = format12.format(d).replace("am", "AM").replace("pm", "PM");
+            result[1] = date.substring(0, 11);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

@@ -40,10 +40,15 @@
     <color name="black_overlay">#66000000</color>
 
 
-    <color name="indicator_1">#AEEECB</color>
+    <!--<color name="indicator_1">#AEEECB</color>
     <color name="indicator_2">#EFDBCD</color>
     <color name="indicator_3">#F3E097</color>
-    <color name="indicator_4">#AFD8CA</color>
+    <color name="indicator_4">#AFD8CA</color>-->
+
+  <color name="indicator_1">#A09D8E</color>
+  <color name="indicator_2">#7D9478</color>
+  <color name="indicator_3">#AFAE56</color>#ACAA9F
+  <color name="indicator_4">#ACAA9F</color>
     <color name="base_color">#f9bd18</color>
 
     <!--<color name="indicator_1">#696763</color>
