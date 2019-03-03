@@ -27,7 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/theeducationtree" />
+            app:srcCompat="@drawable/hdfc" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline2"

@@ -89,10 +89,9 @@ public class HomeFragment extends Fragment {
             Date date;
             for (EventData e : todayList) {
                 date = formatter.parse(e.getFullDate()+" "+ e.getTiming());
-               /* if (date.getTime() - calendar.getTimeInMillis() < 3600000*4) {
+                if (date.getTime() - calendar.getTimeInMillis() < 3600000*4 && date.getTime() - calendar.getTimeInMillis() > 0) {
                     upcomingEventArrayList.add(e);
-                }*/
-                upcomingEventArrayList.add(e);
+                }
             }
         } catch (ParseException e) {
             e.printStackTrace();
