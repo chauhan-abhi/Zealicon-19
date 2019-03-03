@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
         int today = calendar.get(Calendar.DATE);
         String todaysEventString="";
         switch (today) {
-            case 2:
+            case 3:
                 todaysEventString = s.getString("day1events", "[]");
                 break;
             case 6:

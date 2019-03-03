@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/cardbg5" />
+            android:src="@drawable/cardbg5"/>
 
 
         <TextView
@@ -30,8 +30,9 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/delius"
             android:text="Title"
+            android:textStyle="bold"
             android:textColor="#000000"
-            android:textSize="22sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/societyTextView"
