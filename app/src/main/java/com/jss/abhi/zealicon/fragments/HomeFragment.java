@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -33,6 +34,8 @@ public class HomeFragment extends Fragment {
     ArrayList<EventData> upcomingEventArrayList;
     ArrayList<EventData> bookmarkEventArrayList;
     BookmarksEventAdapter bookmarksEventAdapter;
+    TextView noBookmarkTextView;
+    TextView noUpcomingTextView;
 
     public static Fragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -45,6 +48,16 @@ public class HomeFragment extends Fragment {
         initBookmarkEventData();
         bookmarksEventAdapter.setData(bookmarkEventArrayList);
         initUpcomingEventData();
+        if(bookmarkEventArrayList.size() == 0){
+            noBookmarkTextView.setVisibility(View.VISIBLE);
+        }else {
+            noBookmarkTextView.setVisibility((View.GONE));
+        }
+        if(upcomingEventArrayList.size() == 0){
+            noUpcomingTextView.setVisibility(View.VISIBLE);
+        }else {
+            noUpcomingTextView.setVisibility((View.GONE));
+        }
     }
 
     private void initBookmarkEventData() {
@@ -56,6 +69,7 @@ public class HomeFragment extends Fragment {
 
         List<EventData> oldArrayList = gson.fromJson(bookmarked_events, type);
         bookmarkEventArrayList = new ArrayList<>(oldArrayList);
+
     }
 
     public void initUpcomingEventData() {
@@ -89,7 +103,7 @@ public class HomeFragment extends Fragment {
             Date date;
             for (EventData e : todayList) {
                 date = formatter.parse(e.getFullDate()+" "+ e.getTiming());
-                if (date.getTime() - calendar.getTimeInMillis() < 3600000*4) {
+                if (date.getTime() - calendar.getTimeInMillis() < 3600000*4 && date.getTime() - calendar.getTimeInMillis() > 0) {
                     upcomingEventArrayList.add(e);
                 }
             }
@@ -108,6 +122,14 @@ public class HomeFragment extends Fragment {
         initBookmarkEventData();
         initUpcomingEventData();
         upcomingRecyclerView = view.findViewById(R.id.upcomingRecyclerView);
+        noBookmarkTextView = view.findViewById(R.id.noBookmarkTextView);
+        noUpcomingTextView = view.findViewById(R.id.noUpcomingTextView);
+        if(bookmarkEventArrayList.size() != 0){
+            noBookmarkTextView.setVisibility(View.GONE);
+        }
+        if(upcomingEventArrayList.size() != 0){
+            noUpcomingTextView.setVisibility(View.GONE);
+        }
         upcomingRecyclerView.setNestedScrollingEnabled(false);
         upcomingRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         upcomingRecyclerView.setAdapter(new UpcomingEventAdapter(upcomingEventArrayList));

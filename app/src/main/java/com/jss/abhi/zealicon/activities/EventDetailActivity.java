@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -41,7 +42,6 @@ public class EventDetailActivity extends AppCompatActivity {
     private TextView eventDescription;
     private TextView prize1, prize2, contactName, contactNumber;
     private FloatingActionButton callButton, bookmarkButton;
-    private Button eventRegisterButton;
     private boolean isBookMark = false;
 
 
@@ -76,14 +76,13 @@ public class EventDetailActivity extends AppCompatActivity {
 
         eventVenue = findViewById(R.id.locationTextView);
         eventDate = findViewById(R.id.eventDateTextView);
-        eventDescription = findViewById(R.id.descriptionTextView);
-        prize1 = findViewById(R.id.prize1);
-        prize2 = findViewById(R.id.prize2);
-        contactNumber = findViewById(R.id.organizerNumber1);
-        contactName = findViewById(R.id.organizerName1);
-        callButton = findViewById(R.id.callButton1);
-        bookmarkButton = findViewById(R.id.bookmark_fab);
-        eventRegisterButton = findViewById(R.id.event_register_button);
+        eventDescription = (TextView) findViewById(R.id.descriptionTextView);
+        prize1 = (TextView) findViewById(R.id.prize1);
+        prize2 = (TextView) findViewById(R.id.prize2);
+        contactNumber = (TextView) findViewById(R.id.organizerNumber1);
+        contactName = (TextView) findViewById(R.id.organizerName1);
+        callButton = (FloatingActionButton) findViewById(R.id.callButton1);
+        bookmarkButton = (FloatingActionButton) findViewById(R.id.bookmark_fab);
         eventTime = findViewById(R.id.eventTimeTV);
 
         // getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -109,9 +108,9 @@ public class EventDetailActivity extends AppCompatActivity {
         //eventDescription.setText(eventData.getDescription());
         prize1.setText(String.format("₹ %s", eventData.getWinner1()));
         prize2.setText(String.format("₹ %s", eventData.getWinner2()));
-        contactName.setText(eventData.getContact_name());
+        contactName.setText(toTitleCase(eventData.getContact_name()));
         contactNumber.setText(eventData.getContact_no());
-        eventVenue.setText(eventData.getVenue());
+        eventVenue.setText(toTitleCase(eventData.getVenue()));
         eventDate.setText(eventData.getFullDate());
         eventTime.setText(eventData.getTiming());
 
@@ -141,7 +140,9 @@ public class EventDetailActivity extends AppCompatActivity {
                     isBookMark = false;
                     bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark_border));
 
-                    Toast.makeText(EventDetailActivity.this, "Event removed from Bookmarks", Toast.LENGTH_LONG).show();
+                    Snackbar.make(view, "The event is no longer bookmarked", Snackbar.LENGTH_SHORT)
+                            .show();
+
 
                 } else {
                     // add and show flag
@@ -157,7 +158,8 @@ public class EventDetailActivity extends AppCompatActivity {
                     s.edit().putString("list_bookmarked", gson.toJson(oldArrayList)).apply();
                     isBookMark = true;
                     bookmarkButton.setImageDrawable(ContextCompat.getDrawable(EventDetailActivity.this, R.drawable.ic_bookmark));
-                    Toast.makeText(EventDetailActivity.this, "Event added to Bookmarks", Toast.LENGTH_LONG).show();
+                    Snackbar.make(view, "Event Bookmarked Successfully", Snackbar.LENGTH_SHORT)
+                            .show();
 
 
                 }
@@ -181,14 +183,7 @@ public class EventDetailActivity extends AppCompatActivity {
             }
         });
 
-        eventRegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent eventRegisterActivityIntent = new Intent(EventDetailActivity.this, EventRegistrationActivity.class);
-                eventRegisterActivityIntent.putExtra("eventData", eventData);
-                startActivity(eventRegisterActivityIntent);
-            }
-        });
+
     }
 }
 

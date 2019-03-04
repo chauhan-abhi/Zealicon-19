@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="35dp"
+    android:paddingTop="8dp"
     android:layout_marginRight="35dp"
     android:background="@drawable/ripple">
 
@@ -92,7 +93,6 @@
         android:layout_width="325dp"
         android:layout_height="1dp"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="8dp"
         android:background="@color/app_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -37,7 +37,7 @@ public class NotificationService extends IntentService {
 // the addAction re-use the same intent to keep the example short
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, "1")
-                        .setSmallIcon(R.drawable.corpbank)
+                        .setSmallIcon(R.drawable.hdfc)
                         .setContentTitle("Hurry up!!!!")
                         .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
                         .setContentText(message);

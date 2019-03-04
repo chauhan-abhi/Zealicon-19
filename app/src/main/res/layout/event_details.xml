@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.EventDetailActivity"
-    android:background="@color/fragment_background">
+    android:background="@color/cardview_dark_background">
 
     <LinearLayout
         android:id="@+id/eventContentScrollView"
@@ -228,7 +228,7 @@
                 android:id="@+id/organizer1_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="30dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
                 android:layout_marginTop="4dp"
@@ -265,34 +265,16 @@
                     android:id="@+id/organizerNumber1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="32dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="sans-serif-condensed"
                     android:text="1223466789"
                     android:textColor="@color/app_white"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/organizerName1" />
 
-                <Button
-                    android:id="@+id/event_register_button"
-                    android:layout_width="144dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="48dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/button_press"
-                    android:fontFamily="@font/delius"
-                    android:shadowColor="@color/black_opaq"
-                    android:text="Register"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.502"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/organizerNumber1"
-                    app:layout_constraintVertical_bias="1.0" />
             </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>

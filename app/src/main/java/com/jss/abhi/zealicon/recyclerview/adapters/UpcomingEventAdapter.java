@@ -62,8 +62,16 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
         final EventData eventInnerData = upcomingEventScheduleArrayList.get(position);
         holder.upcoming_event_name.setText(toTitleCase(eventInnerData.getName()));
         holder.event_time.setText(eventInnerData.getTiming());
-        holder.event_location.setText(eventInnerData.getVenue());
-        holder.societyName.setText(eventInnerData.getSocietyId());
+        if(eventInnerData.getSocietyId().equals("MMIL") || eventInnerData.getSocietyId().equals("ACE")||
+                eventInnerData.getSocietyId().equals("DSC") || eventInnerData.getSocietyId().equals("SPICE") || eventInnerData.getSocietyId().equals("YFAC")){
+            holder.societyName.setText(eventInnerData.getSocietyId());
+        } else if(toTitleCase(eventInnerData.getSocietyId()).equals("Linguafranca")){
+                holder.societyName.setText("Lingua Franca");
+        } else {
+            holder.societyName.setText(toTitleCase(eventInnerData.getSocietyId()));
+        }
+        holder.event_location.setText(toTitleCase(eventInnerData.getVenue()));
+
         holder.upcoming_event_schedule_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

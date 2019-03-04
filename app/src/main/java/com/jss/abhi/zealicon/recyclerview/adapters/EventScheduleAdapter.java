@@ -74,8 +74,15 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
             holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.colorAccent), android.graphics.PorterDuff.Mode.SRC_IN);
         }
         holder.event_name.setText(toTitleCase(eventInnerData.getName()));
-        holder.event_society.setText(eventInnerData.getSocietyId());
-        holder.event_location.setText(eventInnerData.getVenue());
+        if(eventInnerData.getSocietyId().equals("MMIL") || eventInnerData.getSocietyId().equals("ACE")||
+                eventInnerData.getSocietyId().equals("DSC") || eventInnerData.getSocietyId().equals("SPICE") || eventInnerData.getSocietyId().equals("YFAC")){
+            holder.event_society.setText(eventInnerData.getSocietyId());
+        } else if(toTitleCase(eventInnerData.getSocietyId()).equals("Linguafranca")){
+            holder.event_society.setText("Lingua Franca");
+        }else {
+            holder.event_society.setText(toTitleCase(eventInnerData.getSocietyId()));
+        }
+        holder.event_location.setText(toTitleCase(eventInnerData.getVenue()));
         holder.event_time.setText(eventInnerData.getTiming());
 
         //holder.event_time.setText(Integer.toString(eventInnerData.getEvent_time()));

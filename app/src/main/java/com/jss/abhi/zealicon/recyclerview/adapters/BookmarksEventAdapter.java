@@ -27,6 +27,7 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
     public class BookmarkEventScheduleViewHolder extends RecyclerView.ViewHolder{
         private TextView bookmark_event_name;
         private TextView event_time;
+        private TextView event_date;
         private TextView event_location;
         private TextView bookmark_event_society;
         private CardView bookmark_event_schedule_layout;
@@ -38,6 +39,7 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
 
             bookmark_event_name = itemView.findViewById(R.id.titleTextView);
             event_time = itemView.findViewById(R.id.timeTextView);
+            event_date = itemView.findViewById(R.id.dateTextView);
             event_location= itemView.findViewById(R.id.locationTextView);
             bookmark_event_schedule_layout = itemView.findViewById(R.id.bookmark_event_schedule_layout);
             bookmark_event_society = itemView.findViewById(R.id.societyTextView);
@@ -61,8 +63,16 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
         final EventData eventInnerData = bookmarkEventScheduleArrayList.get(position);
         holder.bookmark_event_name.setText(toTitleCase(eventInnerData.getName()));
         holder.event_time.setText(eventInnerData.getTiming());
-        holder.event_location.setText((eventInnerData.getVenue()));
-        holder.bookmark_event_society.setText(eventInnerData.getSocietyId());
+        holder.event_date.setText(eventInnerData.getFullDate());
+        holder.event_location.setText((toTitleCase(eventInnerData.getVenue())));
+        if(eventInnerData.getSocietyId().equals("MMIL") || eventInnerData.getSocietyId().equals("ACE")||
+                eventInnerData.getSocietyId().equals("DSC") || eventInnerData.getSocietyId().equals("SPICE") || eventInnerData.getSocietyId().equals("YFAC")){
+            holder.bookmark_event_society.setText(eventInnerData.getSocietyId());
+        } else if(toTitleCase(eventInnerData.getSocietyId()).equals("Linguafranca")){
+            holder.bookmark_event_society.setText("Lingua Franca");
+        }else {
+            holder.bookmark_event_society.setText(toTitleCase(eventInnerData.getSocietyId()));
+        }
 
         holder.bookmark_event_schedule_layout.setOnClickListener(new View.OnClickListener() {
             @Override

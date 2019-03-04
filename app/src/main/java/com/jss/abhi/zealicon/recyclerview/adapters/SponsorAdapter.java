@@ -23,22 +23,31 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.SponsorV
   private ArrayList<Developer> mSponsorList;
   int[] sponsorResArray=
           new int[]{
-                  R.drawable.corpbank,
-                  R.drawable.ies,
-                  R.drawable.gateforum,
-                  R.drawable.upsc,
-                  R.drawable.hellointern,
-                  R.drawable.dukhabar,
-                  R.drawable.download,
-                  R.drawable.dub,
-                  R.drawable.theeducationtree,
-                  R.drawable.xoxo,
-                  R.drawable.i3indian,
-                  R.drawable.smaash,
-                  R.drawable.ktmlogo,
+                  R.drawable.hdfc,
+                  R.drawable.glued,
+                  R.drawable.ace,
+                  R.drawable.iot_acdemy,
+                  R.drawable.primesweet,
+                  R.drawable.hutkar,
+                  R.drawable.kamat,
+                  R.drawable.cafeyuva,
+                  R.drawable.sweetcorner,
+                  R.drawable.strawsome1,
+                  R.drawable.cupcake,
+                  R.drawable.rio,
+                  R.drawable.bingo,
+                  R.drawable.joy,
+                  R.drawable.salon,
+                  R.drawable.aptron,
                   R.drawable.cetpa,
-                  //R.drawable.ducat,
-                  R.drawable.cb
+                  R.drawable.rcpl,
+                  R.drawable.pfc,
+                  R.drawable.alkceee,
+                  R.drawable.panit,
+                  R.drawable.honda,
+                  R.drawable.grogg,
+                  R.drawable.atkt,
+                  R.drawable.dubeat
           };
 
   public class SponsorViewHolder extends RecyclerView.ViewHolder {

@@ -58,8 +58,6 @@
         <activity android:name=".activities.EventDetailActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activities.EventRegistrationActivity"
-            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
