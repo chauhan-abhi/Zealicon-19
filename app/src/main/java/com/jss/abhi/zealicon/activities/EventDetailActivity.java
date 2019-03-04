@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -100,7 +101,12 @@ public class EventDetailActivity extends AppCompatActivity {
         }
 
         collapsingToolbarLayout.setTitle(toTitleCase(eventData.getName()));
-        eventDescription.setText(eventData.getDescription());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            eventDescription.setText(Html.fromHtml(eventData.getDescription(), Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            eventDescription.setText(Html.fromHtml(eventData.getDescription()));
+        }
+        //eventDescription.setText(eventData.getDescription());
         prize1.setText(String.format("₹ %s", eventData.getWinner1()));
         prize2.setText(String.format("₹ %s", eventData.getWinner2()));
         contactName.setText(eventData.getContact_name());

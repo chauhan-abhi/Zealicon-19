@@ -175,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/delius"
                 android:paddingLeft="4dp"
-                android:text="Rs.3000"
+                android:text="Not updated"
                 android:textColor="@color/app_white"
                 android:textSize="18sp"/>
         </LinearLayout>
@@ -200,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/delius"
                 android:paddingLeft="4dp"
-                android:text="Rs.2000"
+                android:text="Not updated"
                 android:textColor="@color/app_white"
                 android:textSize="18sp"/>
         </LinearLayout>
