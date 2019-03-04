@@ -165,7 +165,7 @@
                         android:layout_weight="2"
                         android:orientation="vertical">
 
-                        <com.jss.abhi.zealicon.model.NoDefaultSpinner
+                        <com.jss.abhijeet.zealicon.model.NoDefaultSpinner
                             android:id="@+id/course"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -201,7 +201,7 @@
                         android:layout_weight="2"
                         android:orientation="vertical">
 
-                        <com.jss.abhi.zealicon.model.NoDefaultSpinner
+                        <com.jss.abhijeet.zealicon.model.NoDefaultSpinner
                             android:id="@+id/branch"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -238,7 +238,7 @@
                         android:layout_weight="2"
                         android:orientation="vertical">
 
-                        <com.jss.abhi.zealicon.model.NoDefaultSpinner
+                        <com.jss.abhijeet.zealicon.model.NoDefaultSpinner
                             android:id="@+id/year"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

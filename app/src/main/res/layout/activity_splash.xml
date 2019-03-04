@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/register_background"
-    tools:context="com.jss.abhi.zealicon.activities.SplashActivity">
+    tools:context="com.jss.abhijeet.zealicon.com.jss.abhijeet.zealicon.activities.SplashActivity">
 
 
   <android.support.constraint.ConstraintLayout

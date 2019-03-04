@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.jss.abhi.zealicon">
+    package="com.jss.abhijeet.zealicon">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,7 +11,7 @@
     <uses-permission-sdk-23 android:name="android.permission.CALL_PHONE" />
 
     <application
-        android:name=".ZealApp"
+        android:name="com.jss.abhijeet.zealicon.ZealApp"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
@@ -20,13 +20,13 @@
         android:theme="@style/AppThemeTransparentStatusBar"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.jss.abhijeet.zealicon.activities.MainActivity"
             android:label="Zealicon18"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeTransparentStatusBar"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name="com.jss.abhijeet.zealicon.activities.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,18 +34,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ZealIDActivity" />
+        <activity android:name="com.jss.abhijeet.zealicon.activities.ZealIDActivity" />
 
         <service
-            android:name=".service.NotificationService"
+            android:name="com.jss.abhijeet.zealicon.service.NotificationService"
             android:exported="false"></service>
-        <service android:name=".service.MyFirebaseMessagingService">
+        <service android:name="com.jss.abhijeet.zealicon.service.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name=".service.MyFirebaseInstanceIDService"
+            android:name="com.jss.abhijeet.zealicon.service.MyFirebaseInstanceIDService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -53,9 +53,9 @@
             </intent-filter>
         </service>
 
-        <receiver android:name=".service.NotificationService$AlarmReceiver" />
+        <receiver android:name="com.jss.abhijeet.zealicon.service.NotificationService$AlarmReceiver" />
 
-        <activity android:name=".activities.EventDetailActivity"
+        <activity android:name="com.jss.abhijeet.zealicon.activities.EventDetailActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>

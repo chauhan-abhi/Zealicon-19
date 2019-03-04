@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:71617597866:android:17fbbe002be800ce",
         "android_client_info": {
-          "package_name": "com.example.abhi.zealicon"
+          "package_name": "com.example.abhijeet.zealicon"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "71617597866-8es0elf6uh1r4p9393ljad90kubjvrsc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.abhi.zealicon",
+            "package_name": "com.example.abhijeet.zealicon",
             "certificate_hash": "103bc7f4716080fcde06bbc5ba459b75a02987ea"
           }
         },
@@ -54,7 +54,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:71617597866:android:3ea1124b6c66b9fc",
         "android_client_info": {
-          "package_name": "com.jss.abhi.zealicon"
+          "package_name": "com.jss.abhijeet.zealicon"
         }
       },
       "oauth_client": [
@@ -62,7 +62,7 @@
           "client_id": "71617597866-64lmrq5kjvknaoeghjioetdtpa5etb48.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.jss.abhi.zealicon",
+            "package_name": "com.jss.abhijeet.zealicon",
             "certificate_hash": "9da809593c0a08c1287257b1134ceb6f4fa48860"
           }
         },

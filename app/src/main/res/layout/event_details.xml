@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/cardview_dark_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activities.EventDetailActivity">
+    tools:context="com.jss.abhijeet.zealicon.activities.EventDetailActivity">
 
     <LinearLayout
         android:id="@+id/eventContentScrollView"

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bck19"
     android:fitsSystemWindows="true"
-    tools:context="com.jss.abhi.zealicon.activities.ZealIDActivity"
+    tools:context="com.jss.abhijeet.zealicon.com.jss.abhijeet.zealicon.activities.ZealIDActivity"
     >
   <TextView
       android:id="@+id/textView5"
