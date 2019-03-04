@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Created by abhi on 1/2/18.
  */
 
-public class InnerData implements Serializable{
+public class InnerData implements Serializable {
 
     public String event_name;
     public int event_time;
@@ -25,9 +25,10 @@ public class InnerData implements Serializable{
     public String category;
     public String rules;
 
-    public InnerData(){
+    public InnerData() {
 
     }
+
     public String getTimings() {
         return timings;
     }
@@ -155,7 +156,7 @@ public class InnerData implements Serializable{
         this.event_date = event_date;
     }
 
-    public InnerData (String event_name){
+    public InnerData(String event_name) {
         this.event_name = event_name;
     }
 

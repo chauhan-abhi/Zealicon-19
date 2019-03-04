@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < menuView.getChildCount(); i++) {
 
                 BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
-                item.setShiftingMode(false);
+                item.setShifting(false);
                 //To update view, set the checked value again
                 item.setChecked(item.getItemData().isChecked());
             }

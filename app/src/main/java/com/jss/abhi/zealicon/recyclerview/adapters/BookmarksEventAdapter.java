@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.activities.EventDetailActivity;
 import com.jss.abhi.zealicon.model.EventData;
-import com.jss.abhi.zealicon.model.InnerData;
 
 import java.util.ArrayList;
 
@@ -24,7 +23,7 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
     public Context context;
     private ArrayList<EventData> bookmarkEventScheduleArrayList;
 
-    public class BookmarkEventScheduleViewHolder extends RecyclerView.ViewHolder{
+    public class BookmarkEventScheduleViewHolder extends RecyclerView.ViewHolder {
         private TextView bookmark_event_name;
         private TextView event_time;
         private TextView event_date;
@@ -40,7 +39,7 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
             bookmark_event_name = itemView.findViewById(R.id.titleTextView);
             event_time = itemView.findViewById(R.id.timeTextView);
             event_date = itemView.findViewById(R.id.dateTextView);
-            event_location= itemView.findViewById(R.id.locationTextView);
+            event_location = itemView.findViewById(R.id.locationTextView);
             bookmark_event_schedule_layout = itemView.findViewById(R.id.bookmark_event_schedule_layout);
             bookmark_event_society = itemView.findViewById(R.id.societyTextView);
             // event_category = itemView.findViewById(R.id.categoryTextView);
@@ -54,7 +53,7 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
     @Override
 
     public BookmarkEventScheduleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookmark_event_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookmark_event_layout, parent, false);
         return new BookmarkEventScheduleViewHolder(view);
     }
 
@@ -65,12 +64,12 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
         holder.event_time.setText(eventInnerData.getTiming());
         holder.event_date.setText(eventInnerData.getFullDate());
         holder.event_location.setText((toTitleCase(eventInnerData.getVenue())));
-        if(eventInnerData.getSocietyId().equals("MMIL") || eventInnerData.getSocietyId().equals("ACE")||
-                eventInnerData.getSocietyId().equals("DSC") || eventInnerData.getSocietyId().equals("SPICE") || eventInnerData.getSocietyId().equals("YFAC")){
+        if (eventInnerData.getSocietyId().equals("MMIL") || eventInnerData.getSocietyId().equals("ACE") ||
+                eventInnerData.getSocietyId().equals("DSC") || eventInnerData.getSocietyId().equals("SPICE") || eventInnerData.getSocietyId().equals("YFAC")) {
             holder.bookmark_event_society.setText(eventInnerData.getSocietyId());
-        } else if(toTitleCase(eventInnerData.getSocietyId()).equals("Linguafranca")){
+        } else if (toTitleCase(eventInnerData.getSocietyId()).equals("Linguafranca")) {
             holder.bookmark_event_society.setText("Lingua Franca");
-        }else {
+        } else {
             holder.bookmark_event_society.setText(toTitleCase(eventInnerData.getSocietyId()));
         }
 
@@ -84,7 +83,8 @@ public class BookmarksEventAdapter extends RecyclerView.Adapter<BookmarksEventAd
         });
     }
 
-    @Override public int getItemCount() {
+    @Override
+    public int getItemCount() {
         return bookmarkEventScheduleArrayList.size();
     }
 

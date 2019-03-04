@@ -20,31 +20,32 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleTextAppearance="@android:color/transparent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
             <ImageView
                 android:id="@+id/backdrop_Event"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerInside"
                 android:fitsSystemWindows="true"
-                app:layout_collapseMode="parallax"
-                android:src="@drawable/logo" />
+                android:scaleType="centerInside"
+                android:src="@drawable/logo"
+                app:layout_collapseMode="parallax" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/gradient_effect"
                 android:fitsSystemWindows="true"
-                app:layout_collapseMode="parallax"
-                android:background="@drawable/gradient_effect"/>
+                app:layout_collapseMode="parallax" />
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
 
 
         </android.support.design.widget.CollapsingToolbarLayout>

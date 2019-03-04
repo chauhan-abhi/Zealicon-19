@@ -26,14 +26,15 @@ public class InfoFragment extends Fragment {
         return fragment;
     }
 
-    @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mFragments= new ArrayList<>();
+        mFragments = new ArrayList<>();
         initFragments();
 
         mViewPager = view.findViewById(R.id.pager);
         tabs = view.findViewById(R.id.tab_layout);
-        mViewPager.setAdapter(new MyPagerAdapter(getActivity().getSupportFragmentManager(),mFragments));
+        mViewPager.setAdapter(new MyPagerAdapter(getActivity().getSupportFragmentManager(), mFragments));
         tabs.setupWithViewPager(mViewPager);
     }
 
@@ -50,7 +51,7 @@ public class InfoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-        Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_info, container, false);
     }
 

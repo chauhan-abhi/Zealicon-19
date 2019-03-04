@@ -19,7 +19,6 @@ import com.jss.abhi.zealicon.utils.NotifierUtil;
 
 import java.util.ArrayList;
 
-import static com.jss.abhi.zealicon.utils.Society.getSociety;
 import static com.jss.abhi.zealicon.utils.TitleCaseConverter.toTitleCase;
 
 /**
@@ -74,12 +73,12 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
             holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.colorAccent), android.graphics.PorterDuff.Mode.SRC_IN);
         }
         holder.event_name.setText(toTitleCase(eventInnerData.getName()));
-        if(eventInnerData.getSocietyId().equals("MMIL") || eventInnerData.getSocietyId().equals("ACE")||
-                eventInnerData.getSocietyId().equals("DSC") || eventInnerData.getSocietyId().equals("SPICE") || eventInnerData.getSocietyId().equals("YFAC")){
+        if (eventInnerData.getSocietyId().equals("MMIL") || eventInnerData.getSocietyId().equals("ACE") ||
+                eventInnerData.getSocietyId().equals("DSC") || eventInnerData.getSocietyId().equals("SPICE") || eventInnerData.getSocietyId().equals("YFAC")) {
             holder.event_society.setText(eventInnerData.getSocietyId());
-        } else if(toTitleCase(eventInnerData.getSocietyId()).equals("Linguafranca")){
+        } else if (toTitleCase(eventInnerData.getSocietyId()).equals("Linguafranca")) {
             holder.event_society.setText("Lingua Franca");
-        }else {
+        } else {
             holder.event_society.setText(toTitleCase(eventInnerData.getSocietyId()));
         }
         holder.event_location.setText(toTitleCase(eventInnerData.getVenue()));
@@ -94,7 +93,7 @@ public class EventScheduleAdapter extends RecyclerView.Adapter<EventScheduleAdap
             public void onClick(View view) {
                 if (notifyId == 0) {
                     //holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.colorAccent), android.graphics.PorterDuff.Mode.SRC_IN);
-                    NotifierUtil.notifyme(context, eventInnerData.getFullDate()+" "+ eventInnerData.getTiming(), eventInnerData.getName());
+                    NotifierUtil.notifyme(context, eventInnerData.getFullDate() + " " + eventInnerData.getTiming(), eventInnerData.getName());
                     Toast.makeText(context, "You will be notified for this event", Toast.LENGTH_LONG).show();
                 } else {
                     //holder.bell_notify.setColorFilter(ContextCompat.getColor(context, R.color.app_white), android.graphics.PorterDuff.Mode.SRC_IN);

@@ -42,7 +42,7 @@ class AppModule(internal var application: Application) {
         }
         return OkHttpClient.Builder()
                 .addInterceptor(logging)
-                .addNetworkInterceptor(StethoInterceptor())
+                //.addNetworkInterceptor(StethoInterceptor())
                 .build()
     }
 

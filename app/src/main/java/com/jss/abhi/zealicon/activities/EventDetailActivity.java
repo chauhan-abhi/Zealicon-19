@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,9 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -43,6 +42,7 @@ public class EventDetailActivity extends AppCompatActivity {
     private TextView prize1, prize2, contactName, contactNumber;
     private FloatingActionButton callButton, bookmarkButton;
     private boolean isBookMark = false;
+    private ConstraintLayout moreDetails;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -84,6 +84,7 @@ public class EventDetailActivity extends AppCompatActivity {
         callButton = (FloatingActionButton) findViewById(R.id.callButton1);
         bookmarkButton = (FloatingActionButton) findViewById(R.id.bookmark_fab);
         eventTime = findViewById(R.id.eventTimeTV);
+        moreDetails = findViewById(R.id.more_details_layout);
 
         // getSupportActionBar().setDisplayShowHomeEnabled(true);
         //toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.app_white));
@@ -106,9 +107,16 @@ public class EventDetailActivity extends AppCompatActivity {
             eventDescription.setText(Html.fromHtml(eventData.getDescription()));
         }
         //eventDescription.setText(eventData.getDescription());
-        prize1.setText(String.format("₹ %s", eventData.getWinner1()));
-        prize2.setText(String.format("₹ %s", eventData.getWinner2()));
-        contactName.setText(toTitleCase(eventData.getContact_name()));
+        boolean details = (eventData.getWinner1().equals(""));
+        if (details) {
+            moreDetails.setVisibility(View.GONE);
+        }
+        else {
+            moreDetails.setVisibility(View.VISIBLE);
+        }
+        prize1.setText((eventData.getWinner1() != null || !eventData.getWinner1().equals("")) ? String.format("₹ %s", eventData.getWinner1()) : "Prize not updated");
+        prize2.setText((eventData.getWinner2() != null || !eventData.getWinner1().equals("")) ? String.format("₹ %s", eventData.getWinner2()) : "Prize not updated");
+        contactName.setText(eventData.getContact_name() != null ? toTitleCase(eventData.getContact_name()) : "Contact not updated");
         contactNumber.setText(eventData.getContact_no());
         eventVenue.setText(toTitleCase(eventData.getVenue()));
         eventDate.setText(eventData.getFullDate());

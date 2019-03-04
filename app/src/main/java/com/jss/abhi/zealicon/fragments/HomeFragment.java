@@ -48,14 +48,14 @@ public class HomeFragment extends Fragment {
         initBookmarkEventData();
         bookmarksEventAdapter.setData(bookmarkEventArrayList);
         initUpcomingEventData();
-        if(bookmarkEventArrayList.size() == 0){
+        if (bookmarkEventArrayList.size() == 0) {
             noBookmarkTextView.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             noBookmarkTextView.setVisibility((View.GONE));
         }
-        if(upcomingEventArrayList.size() == 0){
+        if (upcomingEventArrayList.size() == 0) {
             noUpcomingTextView.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             noUpcomingTextView.setVisibility((View.GONE));
         }
     }
@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
         SharedPreferences s = getContext().getSharedPreferences("events", 0);
         Calendar calendar = Calendar.getInstance();
         int today = calendar.get(Calendar.DATE);
-        String todaysEventString="";
+        String todaysEventString = "";
         switch (today) {
             case 3:
             case 4:
@@ -102,8 +102,8 @@ public class HomeFragment extends Fragment {
         try {
             Date date;
             for (EventData e : todayList) {
-                date = formatter.parse(e.getFullDate()+" "+ e.getTiming());
-                if (date.getTime() - calendar.getTimeInMillis() < 3600000*4 && date.getTime() - calendar.getTimeInMillis() > 0) {
+                date = formatter.parse(e.getFullDate() + " " + e.getTiming());
+                if (date.getTime() - calendar.getTimeInMillis() < 3600000 * 4 && date.getTime() - calendar.getTimeInMillis() > 0) {
                     upcomingEventArrayList.add(e);
                 }
             }
@@ -124,10 +124,10 @@ public class HomeFragment extends Fragment {
         upcomingRecyclerView = view.findViewById(R.id.upcomingRecyclerView);
         noBookmarkTextView = view.findViewById(R.id.noBookmarkTextView);
         noUpcomingTextView = view.findViewById(R.id.noUpcomingTextView);
-        if(bookmarkEventArrayList.size() != 0){
+        if (bookmarkEventArrayList.size() != 0) {
             noBookmarkTextView.setVisibility(View.GONE);
         }
-        if(upcomingEventArrayList.size() != 0){
+        if (upcomingEventArrayList.size() != 0) {
             noUpcomingTextView.setVisibility(View.GONE);
         }
         upcomingRecyclerView.setNestedScrollingEnabled(false);

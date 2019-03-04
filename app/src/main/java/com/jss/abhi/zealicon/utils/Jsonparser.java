@@ -68,7 +68,7 @@ public class Jsonparser {
             calendar.setTime(date);
             innerData.setEvent_date(calendar.get(Calendar.DATE));
             innerData.setEvent_time(calendar.get(Calendar.HOUR_OF_DAY));*/
-            eventData.setId(get(jsonObject, "__v"));
+            eventData.setId(get(jsonObject, "_id"));
             eventData.setName(get(jsonObject, "name"));
             //eventData.setCategory_id(get(jsonObject, "category_id"));
             String desc = get(jsonObject, "description").equals("Write your content here") ? "Desciption not updated" : get(jsonObject, "description");

@@ -34,7 +34,7 @@ import static android.util.Patterns.PHONE;
 
 public class RegisterFragment extends Fragment {
 
-        private EditText nameView, emailView, contactView;
+    private EditText nameView, emailView, contactView;
     private AutoCompleteTextView collegeView;
     private Spinner branchView, yearView, courseView;
     private Button register;
@@ -42,7 +42,7 @@ public class RegisterFragment extends Fragment {
     @Inject
     ApiService apiService;
 
-    private String name="", email="", college="", contact="", year="", branch="", course="";
+    private String name = "", email = "", college = "", contact = "", year = "", branch = "", course = "";
 
 
     public static Fragment newInstance() {
@@ -151,7 +151,7 @@ public class RegisterFragment extends Fragment {
                     if (response.body() != null && response.body().getResponse().equals("200")) {
                         // zeal id given no errors
                         Intent i = new Intent(getActivity(), ZealIDActivity.class);
-                        i.putExtra("zealId", response.body().getId()+"");
+                        i.putExtra("zealId", response.body().getId() + "");
                         startActivity(i);
 
                     } else if (response.body() != null && response.body().getResponse().equals("500") && response.body().getErrors() != null) {

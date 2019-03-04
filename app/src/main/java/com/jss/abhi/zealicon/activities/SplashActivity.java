@@ -161,14 +161,14 @@ public class SplashActivity extends AppCompatActivity {
 
                 JSONObject optimised = new JSONObject();
                 optimised.put("venue", eventObject.getString("venue"));
-                optimised.put("__v", eventObject.getInt("__v"));
+                optimised.put("_id", eventObject.get("_id"));
                 optimised.put("name", eventObject.getString("name"));
                 optimised.put("creatorname", eventObject.getString("creatorname"));
                 optimised.put("date", eventObject.getString("date"));
                 optimised.put("description", eventObject.getString("description"));
-                for (int j=0;j<backofficeArray.length();j++) {
-                    JSONObject backOfficeObject=  backofficeArray.getJSONObject(j);
-                    if (backOfficeObject.getString("name").equals(optimised.getString("name"))) {
+                for (int j = 0; j < backofficeArray.length(); j++) {
+                    JSONObject backOfficeObject = backofficeArray.getJSONObject(j);
+                    if (backOfficeObject.getString("name").equalsIgnoreCase(optimised.getString("name"))) {
                         optimised.put("contact_name", backOfficeObject.getString("contact_name"));
                         optimised.put("contact_no", backOfficeObject.get("contact_no"));
                         optimised.put("winner1", backOfficeObject.get("winner1"));

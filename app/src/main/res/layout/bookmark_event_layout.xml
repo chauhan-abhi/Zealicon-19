@@ -2,6 +2,7 @@
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bookmark_event_schedule_layout"
     android:layout_width="250dp"
     android:layout_height="150dp"
@@ -9,7 +10,7 @@
     android:elevation="2dp"
     app:cardCornerRadius="4dp">
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -18,9 +19,13 @@
             android:id="@+id/eventImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
             android:foreground="@drawable/gradients_bookmark"
-            android:src="@drawable/cardbg10"/>
+            android:scaleType="fitXY"
+            android:src="@drawable/cardbg10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
@@ -29,72 +34,78 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/delius"
-            android:text="Title"
-            android:textSize="18sp"
-            android:maxLines="2"
             android:ellipsize="end"
+            android:fontFamily="@font/delius"
+            android:maxLines="2"
+            android:text="Title"
+            android:textColor="#D5AC7D"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#D5AC7D"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/societyTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_above="@id/dateTextView"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/product_sans_regular"
             android:text="Society"
             android:textColor="#D5AC7D"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/dateTextView"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/dateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_above="@id/timePlaceLL"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/product_sans_regular"
             android:text="March 5, 2019"
             android:textColor="#80927A"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/timeTextView"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/timePlaceLL"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="4dp"
             android:layout_marginStart="8dp"
-            android:orientation="horizontal"
-            android:paddingBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/product_sans_regular"
 
-            <TextView
-                android:id="@+id/timeTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:fontFamily="@font/product_sans_regular"
-                android:maxLines="1"
-                android:text="10:00 PM"
+            android:maxLines="1"
+            android:text="10:00 PM"
+            android:textColor="#80927A"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-                android:textColor="#80927A"
-                android:textSize="14sp" />
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="bottom|end"
+            android:fontFamily="@font/product_sans_regular"
+            android:text="Venue Not Updated"
+            android:textColor="#80927A"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/societyTextView" />
 
-            <TextView
-                android:id="@+id/locationTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/product_sans_regular"
-                android:text="Main Stage"
-                android:textColor="#80927A"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>

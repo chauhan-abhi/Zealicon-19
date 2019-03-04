@@ -39,72 +39,72 @@ public class TeamFragment extends Fragment {
                 "Chairman", ""));
         mTeamList.add(new Developer("Dr. Prashant Chauhan",
                 "prashant_chauhan",
-                "Convener","9990841257"));
+                "Convener", "9990841257"));
 
         mTeamList.add(new Developer("Sonu Kumar Bharti",
                 "sonu_bharti",
-                "Festival Secretary","9319446763"));
+                "Festival Secretary", "9319446763"));
 
         mTeamList.add(new Developer("Satyam Verma",
                 "satyam_verma",
-                "Festival Co-Secretary","9559870238"));
+                "Festival Co-Secretary", "9559870238"));
         mTeamList.add(new Developer("Satwik Singh",
                 "satwik_singh",
-                "Creative Head","8853842111"));
+                "Creative Head", "8853842111"));
         mTeamList.add(new Developer("Dhruv Srivastav",
                 "dhruv_srivastav",
-                "Technical Head","9917475447"));
+                "Technical Head", "9917475447"));
         mTeamList.add(new Developer("Aditya Rawat",
                 "aditya_rawat",
-                "Management Head","8527371779"));
+                "Management Head", "8527371779"));
         mTeamList.add(new Developer("Ashutosh Atri",
                 "ashutosh_atri",
-                "Security Head","9457177554"));
+                "Security Head", "9457177554"));
         mTeamList.add(new Developer("Waris",
                 "waris",
-                "Promotion & Marketing Head","9643709668"));
+                "Promotion & Marketing Head", "9643709668"));
         mTeamList.add(new Developer("Naman Jain",
                 "naman_jain",
-                "Dep. Security Head","9721335607"));
+                "Dep. Security Head", "9721335607"));
         mTeamList.add(new Developer("Anurag Agarwal",
                 "anurag_agarwal",
-                "Sponsorship Head","8743082849"));
+                "Sponsorship Head", "8743082849"));
         mTeamList.add(new Developer("Aabhas Pradhan",
                 "aabhas_pradhan",
-                "Dep. Sponsorship & Management Head","8750668273"));
+                "Dep. Sponsorship & Management Head", "8750668273"));
         mTeamList.add(new Developer("Ankit Gupta",
                 "ankit_gupta",
-                "Cultural Head","8587974281"));
+                "Cultural Head", "8587974281"));
         mTeamList.add(new Developer("Ishan Dalela",
                 "ishan_dalela",
-                "Media & Photography Head","8826384385"));
+                "Media & Photography Head", "8826384385"));
         mTeamList.add(new Developer("Rishabh Handa",
                 "rishabh_handa",
-                "Student Welafare Head","9696016668"));
+                "Student Welafare Head", "9696016668"));
         mTeamList.add(new Developer("Hitwik Singh",
                 "hitwik_singh",
-                "Scheduling Head","9958346697"));
+                "Scheduling Head", "9958346697"));
         mTeamList.add(new Developer("Utkarsh Mishra",
                 "utkarsh_mishra",
-                "Merchandise Head","8750668707"));
+                "Merchandise Head", "8750668707"));
         mTeamList.add(new Developer("Sujata Bajaj",
                 "sujata_bajaj",
-                "Merchandise Head","9354024413"));
+                "Merchandise Head", "9354024413"));
         mTeamList.add(new Developer("Vineet Sharma",
                 "vineet_sharma",
                 "P.A. System Head", ""));
         mTeamList.add(new Developer("Abhay",
                 "abhay",
-                "College Promotion Head","8505830434"));
+                "College Promotion Head", "8505830434"));
         mTeamList.add(new Developer("Prashant",
                 "prashant",
-                "Resource Head","7838018484"));
+                "Resource Head", "7838018484"));
         mTeamList.add(new Developer("Vibhav Chaturvedi",
                 "vibhav_chaturvedi",
-                "Social Media & Marketing Head","9454755102"));
+                "Social Media & Marketing Head", "9454755102"));
         mTeamList.add(new Developer("Vinayak Bansal",
                 "vinayak_bansal",
-                "Social Media & Marketing Head","7840050914"));
+                "Social Media & Marketing Head", "7840050914"));
         mTeamList.add(new Developer("Sarvagya Singh",
                 "sarvagya_singh",
                 "Application Head", ""));
@@ -115,7 +115,7 @@ public class TeamFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_team, container, false);
+        View view = inflater.inflate(R.layout.fragment_team, container, false);
         mTeamRecycler = view.findViewById(R.id.team_rv);
         mTeamRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         mTeamRecycler.setAdapter(new TeamAdapter(mTeamList));

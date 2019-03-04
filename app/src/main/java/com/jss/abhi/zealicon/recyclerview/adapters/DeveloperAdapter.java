@@ -24,72 +24,74 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DeveloperAdapter extends RecyclerView.Adapter<DeveloperAdapter.DevViewHolder> {
 
-  private Context context;
-  private ArrayList<Developer> developerArrayList;
+    private Context context;
+    private ArrayList<Developer> developerArrayList;
 
-  public class DevViewHolder extends RecyclerView.ViewHolder{
+    public class DevViewHolder extends RecyclerView.ViewHolder {
 
-    private CircleImageView profileImg;
-    private TextView name,position;
-    private ImageView gitFab;
+        private CircleImageView profileImg;
+        private TextView name, position;
+        private ImageView gitFab;
 
 
-    public DevViewHolder(View itemView) {
-      super(itemView);
-      context = itemView.getContext();
-      profileImg = itemView.findViewById(R.id.devImageView);
-      name = itemView.findViewById(R.id.nameTextView);
-      position = itemView.findViewById(R.id.positionTextView);
-      gitFab = itemView.findViewById(R.id.githubImageView);
+        public DevViewHolder(View itemView) {
+            super(itemView);
+            context = itemView.getContext();
+            profileImg = itemView.findViewById(R.id.devImageView);
+            name = itemView.findViewById(R.id.nameTextView);
+            position = itemView.findViewById(R.id.positionTextView);
+            gitFab = itemView.findViewById(R.id.githubImageView);
+        }
     }
-  }
 
-  public DeveloperAdapter(ArrayList<Developer> developerArrayList) {
-    this.developerArrayList = developerArrayList;
-  }
+    public DeveloperAdapter(ArrayList<Developer> developerArrayList) {
+        this.developerArrayList = developerArrayList;
+    }
 
  /* public void addDeveloper(List<Developer> developerList){
     this.developerArrayList.addAll(developerList);
     notifyDataSetChanged();
   }*/
 
-  @Override
+    @Override
 
-  public DevViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_developer_member,parent,false);
-    return new DevViewHolder(view);
-  }
-
-  @Override public void onBindViewHolder(DeveloperAdapter.DevViewHolder holder, int position) {
-    final Developer developer = developerArrayList.get(position);
-    holder.name.setText(developer.getName());
-    holder.position.setText(developer.getPosition());
-    //holder.profileImg.setImageResource(R.drawable.avatar);
-    if(!(developer.getImgurl().isEmpty() || developer.getImgurl() == null)) {
-      switch (position){
-        case 0:
-          holder.profileImg.setImageResource(R.drawable.abhijeet);
-          break;
-        case 1:
-          holder.profileImg.setImageResource(R.drawable.divyanshu);
-          break;
-      }
-    }
-    else {
-      holder.profileImg.setImageResource(R.drawable.aavatar);
+    public DevViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_developer_member, parent, false);
+        return new DevViewHolder(view);
     }
 
-    holder.gitFab.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View view) {
+    @Override
+    public void onBindViewHolder(DeveloperAdapter.DevViewHolder holder, int position) {
+        final Developer developer = developerArrayList.get(position);
+        holder.name.setText(developer.getName());
+        holder.position.setText(developer.getPosition());
+        //holder.profileImg.setImageResource(R.drawable.avatar);
+        if (!(developer.getImgurl().isEmpty() || developer.getImgurl() == null)) {
+            switch (position) {
+                case 0:
+                    holder.profileImg.setImageResource(R.drawable.abhijeet);
+                    break;
+                case 1:
+                    holder.profileImg.setImageResource(R.drawable.divyanshu);
+                    break;
+            }
+        } else {
+            holder.profileImg.setImageResource(R.drawable.aavatar);
+        }
 
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(developer.getGitUrl()));
-        context.startActivity(intent);
-      }
-    });
+        holder.gitFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-  }
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(developer.getGitUrl()));
+                context.startActivity(intent);
+            }
+        });
 
-  @Override public int getItemCount() {
-    return developerArrayList.size();
-  }
+    }
+
+    @Override
+    public int getItemCount() {
+        return developerArrayList.size();
+    }
 }

@@ -48,7 +48,8 @@ public class AboutUsFragment extends Fragment {
         twitterImage = view.findViewById(R.id.twitter_icon);
 
         fbImage.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
                 String fbUrl = getFacebookPageURL(context);
                 Intent fbIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(fbUrl));
                 startActivity(fbIntent);
@@ -60,7 +61,7 @@ public class AboutUsFragment extends Fragment {
             public void onClick(View v) {
                 String scheme = "http://instagram.com/_u/zealicon";
                 String path = "https://instagram.com/zealicon";
-                String nomPackageInfo ="com.instagram.android";
+                String nomPackageInfo = "com.instagram.android";
                 Intent instaIntent;
                 try {
                     getActivity().getPackageManager().getPackageInfo(nomPackageInfo, 0);
@@ -74,7 +75,8 @@ public class AboutUsFragment extends Fragment {
         });
 
         youtubeImage.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://https://youtu.be/lJIlIQYAvmc"));
                 startActivity(intent);
             }
@@ -85,7 +87,7 @@ public class AboutUsFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?screen_name=" + FACEBOOK_PAGE_ID)));
-                }catch (Exception e) {
+                } catch (Exception e) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/#!/" + FACEBOOK_PAGE_ID)));
                 }
             }
@@ -107,7 +109,6 @@ public class AboutUsFragment extends Fragment {
             return FACEBOOK_URL; //normal web url
         }
     }
-
 
 
 }

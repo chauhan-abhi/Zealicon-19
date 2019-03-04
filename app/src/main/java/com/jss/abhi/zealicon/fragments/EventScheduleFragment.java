@@ -3,7 +3,6 @@ package com.jss.abhi.zealicon.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,12 +11,11 @@ import android.view.ViewGroup;
 
 import com.jss.abhi.zealicon.R;
 import com.jss.abhi.zealicon.model.EventData;
-import com.jss.abhi.zealicon.model.InnerData;
 import com.jss.abhi.zealicon.recyclerview.adapters.EventScheduleAdapter;
 
 import java.util.ArrayList;
 
-public class EventScheduleFragment extends Fragment{
+public class EventScheduleFragment extends Fragment {
 
     private ArrayList<? extends EventData> eventScheduleArrayList;
     private RecyclerView eventScheduleRv;
