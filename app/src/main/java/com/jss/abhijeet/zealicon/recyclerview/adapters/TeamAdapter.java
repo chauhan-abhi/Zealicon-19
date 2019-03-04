@@ -64,7 +64,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         holder.name.setText(team.getName());
         holder.position.setText(team.getPosition());
         //holder.profileImg.setImageResource(R.drawable.avatar);
-        if (!(team.getImgurl().isEmpty() || team.getImgurl() == null)) {
+      /*  if (!(team.getImgurl().isEmpty() || team.getImgurl() == null)) {
             if (team.getImgurl().equals("gurulingappa_patil")) {
                 holder.profileImg.setImageResource(R.drawable.gurulingappa_patil);
             } else if (team.getImgurl().equals("prashant_chauhan"))
@@ -117,7 +117,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
                 holder.profileImg.setImageResource(R.drawable.aavatar);
         } else {
             holder.profileImg.setImageResource(R.drawable.aavatar);
-        }
+        }*/
 
         holder.callImageview.setOnClickListener(new View.OnClickListener() {
             @Override

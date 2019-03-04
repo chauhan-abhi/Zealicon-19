@@ -42,7 +42,7 @@ public class InfoFragment extends Fragment {
     private void initFragments() {
         mFragments = new ArrayList<>();
         //Add fragments
-        mFragments.add(TeamFragment.newInstance());
+        //mFragments.add(TeamFragment.newInstance());
         mFragments.add(DeveloperFragment.newInstance());
         mFragments.add(SponsorsFragment.newInstance());
         mFragments.add(AboutUsFragment.newInstance());

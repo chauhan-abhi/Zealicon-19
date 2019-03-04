@@ -35,6 +35,7 @@
         app:itemIconTint="@color/bottom_navigation_icon_color_selector"
         app:itemTextColor="@color/bottom_navigation_icon_color_selector"
         android:background="@color/colorPrimary"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_navigation_items"/>
 
    <!-- app:elevation="16dp"-->

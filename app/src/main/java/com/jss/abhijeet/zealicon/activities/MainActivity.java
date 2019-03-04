@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < menuView.getChildCount(); i++) {
 
                 BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
-                //item.setShiftingMode(false);
+                item.setShifting(false);
                 item.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
 
                 //To update view, set the checked value again
