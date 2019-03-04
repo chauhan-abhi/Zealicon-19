@@ -31,7 +31,7 @@ public class SponsorsFragment extends Fragment {
             "Kamat Rolls",
             "Cafe Yuva",
             "Sweet Corner",
-            "Strawesome Mocktails and ",
+            "Strawesome Mocktails and Drinks",
             "Wish a Cupcake",
             "Rio Drinks",
             "Bingo",
