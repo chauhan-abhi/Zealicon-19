@@ -18,7 +18,10 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppThemeTransparentStatusBar"
+        android:usesCleartextTraffic="true"
+
         tools:ignore="GoogleAppIndexingWarning">
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
         <activity
             android:name="com.jss.abhijeet.zealicon.activities.MainActivity"
             android:label="Zealicon18"
