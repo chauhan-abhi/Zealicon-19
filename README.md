@@ -11,3 +11,15 @@
 
 ## Link to Playstore
 https://play.google.com/store/apps/details?id=com.jss.abhijeet.zealicon&hl=en&hl=en
+
+## PlayStore Screenshots
+<table>
+  <td>
+  <img src = "https://github.com/chauhan-abhi/Zealicon-19/blob/master/screenshot_1.png" width = 240>
+  <img src = "https://github.com/chauhan-abhi/Zealicon-19/blob/master/screenshot_2.png" width = 240>
+ 
+  <img src = "https://github.com/chauhan-abhi/Zealicon-19/blob/master/screenshot_3.png" width = 240>
+  <img src = "https://github.com/chauhan-abhi/Zealicon-19/blob/master/screenshot_4.png" width = 240>
+  <img src = "https://github.com/chauhan-abhi/Zealicon-19/blob/master/screenshot_5.png" width = 240>
+</td>
+</table>
